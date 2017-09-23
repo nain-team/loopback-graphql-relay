@@ -51,6 +51,7 @@
     "graphql-server-express": "^0.7.2",
     "graphql-type-json": "^0.1.4",
     "lodash": "^4.16.3",
+    "loopback-filters": "^0.1.3",
     "promisify-node": "^0.4.0",
     "subscriptions-transport-ws": "^0.5.5-alpha.0"
   },
