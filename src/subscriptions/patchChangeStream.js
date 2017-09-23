@@ -98,6 +98,9 @@ module.exports = function(PatchModel) {
           case 'delete':
             change.type = 'remove';
             break;
+
+          default:
+            break;
         }
 
         // TODO(ritch) this is ugly... maybe a ReadableStream would be better

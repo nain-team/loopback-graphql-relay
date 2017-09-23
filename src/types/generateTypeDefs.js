@@ -19,7 +19,7 @@ const { connectionFromPromisedArray } = require('../db/resolveConnection');
         Number = float
         Object = JSON (custom scalar)
         String - string
-    ***/
+    ** */
 
 let types = {};
 
