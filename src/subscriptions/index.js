@@ -1,8 +1,11 @@
+const _ = require('lodash');
+
 const PubSub = require('./pubsub');
 const SubscriptionManager = require('./subscriptionManager');
 const SubscriptionServer = require('./server');
+const patchChangeStream = require('./patchChangeStream');
 
-// start a subscription (for testing)
+// // start a subscription (for testing)
 // function test(subscriptionManager) {
 //   subscriptionManager.subscribe({
 //     query: `
@@ -27,7 +30,7 @@ const SubscriptionServer = require('./server');
 //       }
 //     `,
 //     variables: {
-//       options: {},
+//       options: { where: { last_name: 'bar' } },
 //       create: true,
 //       update: true,
 //       remove: true,
@@ -41,6 +44,11 @@ const SubscriptionServer = require('./server');
 
 module.exports = function startSubscriptionServer(app, schema, options) {
   const models = app.models();
+
+  _.forEach(models, (model) =>  {
+    patchChangeStream(model);
+  });
+
   const subscriptionManager = SubscriptionManager(models, schema, new PubSub());
   SubscriptionServer(app, subscriptionManager, options);
 
