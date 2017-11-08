@@ -45,15 +45,15 @@
     "async": "^2.4.0",
     "body-parser": "^1.15.2",
     "event-stream": "^3.3.4",
-    "graphql": "^0.9.5",
-    "graphql-date": "^1.0.2",
-    "graphql-relay": "^0.5.1",
-    "graphql-server-express": "^0.7.2",
-    "graphql-type-json": "^0.1.4",
+    "graphql": "0.11.7",
+    "graphql-date": "1.0.3",
+    "graphql-relay": "0.5.3",
+    "graphql-server-express": "1.2.0",
+    "graphql-type-json": "0.1.4",
     "lodash": "^4.16.3",
-    "loopback-filters": "^0.1.3",
+    "loopback-filters": "0.1.3",
     "promisify-node": "^0.4.0",
-    "subscriptions-transport-ws": "^0.5.5-alpha.0"
+    "subscriptions-transport-ws": "0.9.1"
   },
   "devDependencies": {
     "apollo-client": "^0.8.5",
