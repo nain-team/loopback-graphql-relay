@@ -2,8 +2,9 @@
 
 const {createServer} = require('http');
 const {SubscriptionServer} = require('subscriptions-transport-ws');
+const {execute, subscribe} = require('graphql');
 
-module.exports = function(app, subscriptionManager, opts) {
+module.exports = function(app, schema, opts) {
   const subscriptionOpts = opts.subscriptionServer || {};
 
   const disable = subscriptionOpts.disable || false;
@@ -25,31 +26,15 @@ module.exports = function(app, subscriptionManager, opts) {
     `Websocket Server is now running on http://localhost:${WS_PORT}`
   ));
 
-  const server = new SubscriptionServer(
-    Object.assign({}, {
-      // onConnect: ({ accessToken }) => {
-      //   return new Promise((resolve, reject) => {
-      //     app.loopback.AccessToken.findById(accessToken, (err, token) => {
-      //       if (err) {
-      //         reject(err);
-      //       }
+  const server = SubscriptionServer.create({schema, execute, subscribe}, {server: websocketServer, path: '/'});
 
-      //       if (!token) {
-      //         reject(new Error('Access denied!'));
-      //       }
-
-      //       return resolve({ accessToken: token });
-      //     });
-      //   });
-
-      // },
-      subscriptionManager,
-    }, options),
-    Object.assign({}, {
-      server: websocketServer,
-      path: '/',
-    }, socketOptions)
-  );
+  /*  const server = new SubscriptionServer(
+        Object.assign({}, {subscriptionManager}, options),
+        Object.assign({}, {
+          server: websocketServer,
+          path: '/',
+        }, socketOptions)
+      ); */
 
   return server;
 };

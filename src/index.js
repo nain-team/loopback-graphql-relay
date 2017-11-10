@@ -19,6 +19,8 @@ module.exports = function(app, options) {
       app,
       req,
     },
+    tracing: true,
+    cacheControl: true,
   })));
 
   app.use(graphiqlPath, graphql.graphiqlExpress({
@@ -26,5 +28,9 @@ module.exports = function(app, options) {
   }));
 
   // Subscriptions
-  startSubscriptionServer(app, schema, options);
+  try {
+    startSubscriptionServer(app, schema, options);
+  } catch (ex) {
+    console.log(ex);
+  }
 };
