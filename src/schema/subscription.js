@@ -2,9 +2,9 @@
 
 const _ = require('lodash');
 
-const { GraphQLObjectType } = require('graphql');
+const {GraphQLObjectType} = require('graphql');
 
-const { getType } = require('../types/type');
+const {getType} = require('../types/type');
 const subscriptionWithPayload = require('../subscriptions/subscriptionWithPayload');
 
 /**
@@ -22,7 +22,7 @@ function addModel(model) {
     outputFields: {
       obj: {
         type: getType(model.modelName),
-        resolve: o => o
+        resolve: o => o,
       },
     },
     // subscribeAndGetPayload: obj => obj
@@ -32,10 +32,8 @@ function addModel(model) {
 }
 
 module.exports = function(models) {
-
   const fields = {};
   _.forEach(models, (model) => {
-
     if (!model.shared) {
       return;
     }
@@ -48,6 +46,6 @@ module.exports = function(models) {
 
   return new GraphQLObjectType({
     name: 'Subscription',
-    fields
+    fields,
   });
 };

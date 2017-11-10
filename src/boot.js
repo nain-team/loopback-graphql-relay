@@ -2,7 +2,7 @@
 
 const graphql = require('graphql-server-express');
 const bodyParser = require('body-parser');
-const { getSchema } = require('./schema/index');
+const {getSchema} = require('./schema/index');
 
 const startSubscriptionServer = require('./subscriptions');
 
@@ -17,12 +17,12 @@ module.exports = function(app, options) {
     schema,
     context: {
       app,
-      req
-    }
+      req,
+    },
   })));
 
   app.use(graphiqlPath, graphql.graphiqlExpress({
-    endpointURL: path
+    endpointURL: path,
   }));
 
   // Subscriptions

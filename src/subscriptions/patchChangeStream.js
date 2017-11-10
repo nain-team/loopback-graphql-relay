@@ -1,3 +1,5 @@
+'use strict';
+
 const applyFilter = require('loopback-filters');
 const PassThrough = require('stream').PassThrough;
 
@@ -8,7 +10,6 @@ const PassThrough = require('stream').PassThrough;
  * More Info here: https://github.com/strongloop/angular-live-set/issues/11
  */
 module.exports = function(PatchModel) {
-
   PatchModel.createChangeStream = function(options, cb) {
     /* Based on persisted-model#createChangeStream
      *
@@ -24,7 +25,7 @@ module.exports = function(PatchModel) {
     const idName = this.getIdName();
     const Model = this;
 
-    let changes = new PassThrough({ objectMode: true });
+    let changes = new PassThrough({objectMode: true});
     let writeable = true;
 
     changes.destroy = function() {
@@ -45,7 +46,6 @@ module.exports = function(PatchModel) {
       cb(null, changes);
     });
 
-
     Model.observe('after save', createChangeHandler('save', options));
     Model.observe('after delete', createChangeHandler('delete', options));
 
@@ -58,7 +58,6 @@ module.exports = function(PatchModel) {
 
         const where = ctx.where;
         const data = ctx.instance || ctx.data;
-
 
         const filtered = applyFilter([data], options);
 
@@ -83,7 +82,7 @@ module.exports = function(PatchModel) {
         const change = {
           target,
           where,
-          data
+          data,
         };
 
         switch (type) {
@@ -112,5 +111,4 @@ module.exports = function(PatchModel) {
       };
     }
   };
-
 };

@@ -1,13 +1,12 @@
 'use strict';
 
-const { GraphQLSchema } = require('graphql');
+const {GraphQLSchema} = require('graphql');
 const getQuery = require('./query');
 const getMutation = require('./mutation');
 const getSubscription = require('./subscription');
 const getTypes = require('../types');
 
 function getSchema(models, options) {
-
   getTypes(models);
 
   const items = {
@@ -22,5 +21,5 @@ function getSchema(models, options) {
 }
 
 module.exports = {
-  getSchema
+  getSchema,
 };

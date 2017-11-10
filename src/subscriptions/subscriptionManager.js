@@ -1,12 +1,12 @@
+'use strict';
+
 const SubscriptionManager = require('graphql-subscriptions').SubscriptionManager;
 const _ = require('lodash');
 
 module.exports = function(models, schema, pubsub) {
-
   const setupFunctions = {};
 
   _.forEach(models, (model) => {
-
     if (!model.shared) {
       return;
     }
@@ -14,13 +14,12 @@ module.exports = function(models, schema, pubsub) {
     setupFunctions[model.modelName] = (options, args) => {
       const ret = {};
       ret[_.lowerCase(model.modelName)] = {
-          // filter: comment => comment.repository_name === args.repoFullName,
-        channelOptions: getOptions(model, options, args)
+        // filter: comment => comment.repository_name === args.repoFullName,
+        channelOptions: getOptions(model, options, args),
       };
 
       return ret;
     };
-
   });
 
   return new SubscriptionManager({
@@ -30,7 +29,7 @@ module.exports = function(models, schema, pubsub) {
     // setupFunctions maps from subscription name to a map of channel names and their filter functions
     // in this case it will subscribe to the commentAddedChannel and re-run the subscription query
     // every time a new comment is posted whose repository name matches args.repoFullName.
-    setupFunctions
+    setupFunctions,
   });
 };
 

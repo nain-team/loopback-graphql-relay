@@ -6,17 +6,16 @@ const Promise = require('bluebird');
 
 const expect = require('chai').expect;
 const chai = require('chai')
-    .use(require('chai-http'));
+  .use(require('chai-http'));
 const server = require('../server/server');
 const cpx = require('cpx');
 
-const { fromGlobalId } = require('graphql-relay');
+const {fromGlobalId} = require('graphql-relay');
 
 const gql = require('graphql-tag');
 // var _ = require('lodash');
 
 describe('Pagination', () => {
-
   before(() => Promise.fromCallback(cb => cpx.copy('./data.json', './data/', cb)));
 
   it('should query first 2 entities', () => {
@@ -41,17 +40,17 @@ describe('Pagination', () => {
       }
     }`;
     return chai.request(server)
-            .post('/graphql')
-            .set('Authorization', '6NJWVfqaWHjgcv3mmuWarSVuUic8WzFSutftH0mADLCZaZeuLlSJYbaHAVC6D3gw')
-            .send({
-              query
-            })
-            .then((res) => {
-              expect(res).to.have.status(200);
-              res = res.body.data;
-              expect(res.viewer.sites.edges.length).to.equal(2);
-              expect(res.viewer.sites.totalCount).to.equal(3);
-            });
+      .post('/graphql')
+      .set('Authorization', '6NJWVfqaWHjgcv3mmuWarSVuUic8WzFSutftH0mADLCZaZeuLlSJYbaHAVC6D3gw')
+      .send({
+        query,
+      })
+      .then((res) => {
+        expect(res).to.have.status(200);
+        res = res.body.data;
+        expect(res.viewer.sites.edges.length).to.equal(2);
+        expect(res.viewer.sites.totalCount).to.equal(3);
+      });
   });
 
   it('should query entity after cursor', () => {
@@ -76,19 +75,19 @@ describe('Pagination', () => {
       }
     }`;
     return chai.request(server)
-            .post('/graphql')
-            .set('Authorization', '6NJWVfqaWHjgcv3mmuWarSVuUic8WzFSutftH0mADLCZaZeuLlSJYbaHAVC6D3gw')
-            .send({
-              query
-            })
-            .then((res) => {
-              expect(res).to.have.status(200);
-              res = res.body.data;
-              expect(res.viewer.sites.totalCount).to.equal(3);
-              expect(res.viewer.sites.edges.length).to.be.above(0);
-              expect(fromGlobalId(res.viewer.sites.edges[0].node.id).id).to.equal('3');
-              expect(res.viewer.sites.pageInfo.hasNextPage).to.be.true;
-            });
+      .post('/graphql')
+      .set('Authorization', '6NJWVfqaWHjgcv3mmuWarSVuUic8WzFSutftH0mADLCZaZeuLlSJYbaHAVC6D3gw')
+      .send({
+        query,
+      })
+      .then((res) => {
+        expect(res).to.have.status(200);
+        res = res.body.data;
+        expect(res.viewer.sites.totalCount).to.equal(3);
+        expect(res.viewer.sites.edges.length).to.be.above(0);
+        expect(fromGlobalId(res.viewer.sites.edges[0].node.id).id).to.equal('3');
+        expect(res.viewer.sites.pageInfo.hasNextPage).to.be.true;
+      });
   });
 
   it('should query related entity on edge', () => {
@@ -120,19 +119,18 @@ describe('Pagination', () => {
 			}
 		}`;
     return chai.request(server)
-            .post('/graphql')
-            .set('Authorization', '6NJWVfqaWHjgcv3mmuWarSVuUic8WzFSutftH0mADLCZaZeuLlSJYbaHAVC6D3gw')
-            .send({
-              query
-            })
-            .then((res) => {
-              expect(res).to.have.status(200);
-              res = res.body.data;
-              expect(res.viewer.sites.edges[0].node.name).to.equal('sample site');
-              expect(res.viewer.sites.edges[0].node.books.edges.length).to.be.above(0);
-              expect(res.viewer.sites.edges[0].node.books.totalCount).to.be.above(0);
-              expect(res.viewer.sites.edges[0].cursor).not.to.be.empty;
-            });
+      .post('/graphql')
+      .set('Authorization', '6NJWVfqaWHjgcv3mmuWarSVuUic8WzFSutftH0mADLCZaZeuLlSJYbaHAVC6D3gw')
+      .send({
+        query,
+      })
+      .then((res) => {
+        expect(res).to.have.status(200);
+        res = res.body.data;
+        expect(res.viewer.sites.edges[0].node.name).to.equal('sample site');
+        expect(res.viewer.sites.edges[0].node.books.edges.length).to.be.above(0);
+        expect(res.viewer.sites.edges[0].node.books.totalCount).to.be.above(0);
+        expect(res.viewer.sites.edges[0].cursor).not.to.be.empty;
+      });
   });
-
 });

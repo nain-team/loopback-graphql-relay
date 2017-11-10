@@ -1,36 +1,34 @@
 'use strict';
 
 module.exports = function(Author) {
-
   Author.remoteMethod(
-        'addFriend', {
-          http: {
-            path: '/addFriend',
-            verb: 'post'
-          },
+    'addFriend', {
+      http: {
+        path: '/addFriend',
+        verb: 'post',
+      },
 
-          accepts: [{
-            arg: 'author',
-            type: 'number'
-          }, {
-            arg: 'friend',
-            type: ['number']
-          }],
+      accepts: [{
+        arg: 'author',
+        type: 'number',
+      }, {
+        arg: 'friend',
+        type: ['number'],
+      }],
 
-          returns: {
-            arg: 'result',
-            type: 'object'
-          }
-        }
-    );
+      returns: {
+        arg: 'result',
+        type: 'object',
+      },
+    }
+  );
 
   Author.addFriend = function(author, friend) {
-
     return Author.findById(author)
-            .then((res) => {
-              const updated = res;
-              updated.friendIds.push(friend);
-              return updated.save();
-            }).then((res) => {});
+      .then((res) => {
+        const updated = res;
+        updated.friendIds.push(friend);
+        return updated.save();
+      }).then((res) => {});
   };
 };

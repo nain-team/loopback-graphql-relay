@@ -5,7 +5,7 @@ const _ = require('lodash');
 const promisify = require('promisify-node');
 
 const utils = require('../utils');
-const { connectionFromPromisedArray } = require('graphql-relay');
+const {connectionFromPromisedArray} = require('graphql-relay');
 const allowedVerbs = ['get', 'head'];
 
 module.exports = function getRemoteMethodQueries(model) {
@@ -14,7 +14,6 @@ module.exports = function getRemoteMethodQueries(model) {
   if (model.sharedClass && model.sharedClass.methods) {
     model.sharedClass.methods().forEach((method) => {
       if (method.name.indexOf('Stream') === -1 && method.name.indexOf('invoke') === -1) {
-
         if (!utils.isRemoteMethodAllowed(method, allowedVerbs)) {
           return;
         }
@@ -31,7 +30,7 @@ module.exports = function getRemoteMethodQueries(model) {
         hooks[hookName] = {
           name: hookName,
           description: method.description,
-          meta: { relation: true },
+          meta: {relation: true},
           args: acceptingParams,
           type: typeObj.type,
           resolve: (__, args, context, info) => {
@@ -47,7 +46,7 @@ module.exports = function getRemoteMethodQueries(model) {
             }
 
             return wrap.apply(model, params);
-          }
+          },
         };
       }
     });

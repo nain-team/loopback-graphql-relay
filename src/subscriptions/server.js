@@ -1,9 +1,9 @@
-const { createServer } = require('http');
-const { SubscriptionServer } = require('subscriptions-transport-ws');
+'use strict';
 
+const {createServer} = require('http');
+const {SubscriptionServer} = require('subscriptions-transport-ws');
 
 module.exports = function(app, subscriptionManager, opts) {
-
   const subscriptionOpts = opts.subscriptionServer || {};
 
   const disable = subscriptionOpts.disable || false;
@@ -26,30 +26,30 @@ module.exports = function(app, subscriptionManager, opts) {
   ));
 
   const server = new SubscriptionServer(
-      Object.assign({}, {
-        // onConnect: ({ accessToken }) => {
-        //   return new Promise((resolve, reject) => {
-        //     app.loopback.AccessToken.findById(accessToken, (err, token) => {
-        //       if (err) {
-        //         reject(err);
-        //       }
+    Object.assign({}, {
+      // onConnect: ({ accessToken }) => {
+      //   return new Promise((resolve, reject) => {
+      //     app.loopback.AccessToken.findById(accessToken, (err, token) => {
+      //       if (err) {
+      //         reject(err);
+      //       }
 
-        //       if (!token) {
-        //         reject(new Error('Access denied!'));
-        //       }
+      //       if (!token) {
+      //         reject(new Error('Access denied!'));
+      //       }
 
-        //       return resolve({ accessToken: token });
-        //     });
-        //   });
+      //       return resolve({ accessToken: token });
+      //     });
+      //   });
 
-        // },
-        subscriptionManager
-      }, options),
-      Object.assign({}, {
-        server: websocketServer,
-        path: '/'
-      }, socketOptions)
-    );
+      // },
+      subscriptionManager,
+    }, options),
+    Object.assign({}, {
+      server: websocketServer,
+      path: '/',
+    }, socketOptions)
+  );
 
   return server;
 };
