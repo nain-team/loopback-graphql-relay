@@ -99,9 +99,9 @@ describe('Mutations', () => {
 
   it('should delete a single entity', () => {
     const query = gql `
-      mutation delete($id: ID!) {
+      mutation delete{
         Author {
-          AuthorDeleteById(input: {id: $id}) {
+          AuthorDeleteById(id: 3) {
             clientMutationId
           }
         }

@@ -28,13 +28,5 @@ module.exports = function(app, schema, opts) {
 
   const server = SubscriptionServer.create({schema, execute, subscribe}, {server: websocketServer, path: '/'});
 
-  /*  const server = new SubscriptionServer(
-        Object.assign({}, {subscriptionManager}, options),
-        Object.assign({}, {
-          server: websocketServer,
-          path: '/',
-        }, socketOptions)
-      ); */
-
   return server;
 };
