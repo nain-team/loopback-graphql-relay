@@ -41,15 +41,14 @@ describe('Pagination', () => {
     }`;
     return chai.request(server)
       .post('/graphql')
-      .set('Authorization', '6NJWVfqaWHjgcv3mmuWarSVuUic8WzFSutftH0mADLCZaZeuLlSJYbaHAVC6D3gw')
+      .set('Authorization', 'iZF7aA2eXoadDrPDhFiqj6HvrbHNl2akDcoZ5DDD716QKI9h8ERqcLgU1EIQDlGo')
       .send({
         query,
       })
       .then((res) => {
         expect(res).to.have.status(200);
-        res = res.body.data;
-        expect(res.viewer.sites.edges.length).to.equal(2);
-        expect(res.viewer.sites.totalCount).to.equal(3);
+        expect(res.body.data.viewer.sites.edges.length).to.equal(2);
+        expect(res.body.data.viewer.sites.totalCount).to.equal(3);
       });
   });
 
@@ -76,7 +75,7 @@ describe('Pagination', () => {
     }`;
     return chai.request(server)
       .post('/graphql')
-      .set('Authorization', '6NJWVfqaWHjgcv3mmuWarSVuUic8WzFSutftH0mADLCZaZeuLlSJYbaHAVC6D3gw')
+      .set('Authorization', 'iZF7aA2eXoadDrPDhFiqj6HvrbHNl2akDcoZ5DDD716QKI9h8ERqcLgU1EIQDlGo')
       .send({
         query,
       })
@@ -85,7 +84,7 @@ describe('Pagination', () => {
         res = res.body.data;
         expect(res.viewer.sites.totalCount).to.equal(3);
         expect(res.viewer.sites.edges.length).to.be.above(0);
-        expect(fromGlobalId(res.viewer.sites.edges[0].node.id).id).to.equal('3');
+        expect(fromGlobalId(res.viewer.sites.edges[0].node.id).id).to.equal('2');
         expect(res.viewer.sites.pageInfo.hasNextPage).to.be.true;
       });
   });
@@ -120,14 +119,14 @@ describe('Pagination', () => {
 		}`;
     return chai.request(server)
       .post('/graphql')
-      .set('Authorization', '6NJWVfqaWHjgcv3mmuWarSVuUic8WzFSutftH0mADLCZaZeuLlSJYbaHAVC6D3gw')
+      .set('Authorization', 'iZF7aA2eXoadDrPDhFiqj6HvrbHNl2akDcoZ5DDD716QKI9h8ERqcLgU1EIQDlGo')
       .send({
         query,
       })
       .then((res) => {
         expect(res).to.have.status(200);
         res = res.body.data;
-        expect(res.viewer.sites.edges[0].node.name).to.equal('sample site');
+        expect(res.viewer.sites.edges[0].node.name).to.equal('Site A of owner 5');
         expect(res.viewer.sites.edges[0].node.books.edges.length).to.be.above(0);
         expect(res.viewer.sites.edges[0].node.books.totalCount).to.be.above(0);
         expect(res.viewer.sites.edges[0].cursor).not.to.be.empty;

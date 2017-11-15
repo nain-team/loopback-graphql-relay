@@ -30,7 +30,7 @@ describe('Queries', () => {
             }`;
       return chai.request(server)
         .post('/graphql')
-        .set('Authorization', '6NJWVfqaWHjgcv3mmuWarSVuUic8WzFSutftH0mADLCZaZeuLlSJYbaHAVC6D3gw')
+        .set('Authorization', 'iZF7aA2eXoadDrPDhFiqj6HvrbHNl2akDcoZ5DDD716QKI9h8ERqcLgU1EIQDlGo')
         .send({
           query,
         })
@@ -38,8 +38,8 @@ describe('Queries', () => {
           expect(res).to.have.status(200);
           const result = res.body.data;
           expect(result.viewer.sites.edges.length).to.equal(1);
-          expect(result.viewer.sites.edges[0].node.name).to.equal('blueeast');
-          expect(result.viewer.sites.edges[0].node.owner.username).to.equal('artalat');
+          expect(result.viewer.sites.edges[0].node.name).to.equal('Site B of owner 5');
+          expect(result.viewer.sites.edges[0].node.owner.username).to.equal('aatif');
         });
     });
   });
@@ -55,7 +55,7 @@ describe('Queries', () => {
       }`;
     return chai.request(server)
       .post('/graphql')
-      .set('Authorization', '6NJWVfqaWHjgcv3mmuWarSVuUic8WzFSutftH0mADLCZaZeuLlSJYbaHAVC6D3gw')
+      .set('Authorization', 'iZF7aA2eXoadDrPDhFiqj6HvrbHNl2akDcoZ5DDD716QKI9h8ERqcLgU1EIQDlGo')
       .send({
         query,
       })
@@ -82,14 +82,14 @@ describe('Queries', () => {
       }`;
     return chai.request(server)
       .post('/graphql')
-      .set('Authorization', '6NJWVfqaWHjgcv3mmuWarSVuUic8WzFSutftH0mADLCZaZeuLlSJYbaHAVC6D3gw')
+      .set('Authorization', 'iZF7aA2eXoadDrPDhFiqj6HvrbHNl2akDcoZ5DDD716QKI9h8ERqcLgU1EIQDlGo')
       .send({
         query,
       })
       .then((res) => {
         expect(res).to.have.status(200);
         expect(res.body.data.viewer.sites.totalCount).to.equal(3);
-        expect(res.body.data.viewer.sites.edges[0].node.name).to.equal('xyz');
+        expect(res.body.data.viewer.sites.edges[0].node.name).to.equal('Site C of owner 5');
       });
   });
 
@@ -102,14 +102,14 @@ describe('Queries', () => {
       }`;
     return chai.request(server)
       .post('/graphql')
-      .set('Authorization', '6NJWVfqaWHjgcv3mmuWarSVuUic8WzFSutftH0mADLCZaZeuLlSJYbaHAVC6D3gw')
+      .set('Authorization', 'iZF7aA2eXoadDrPDhFiqj6HvrbHNl2akDcoZ5DDD716QKI9h8ERqcLgU1EIQDlGo')
       .send({
         query,
       })
       .then((res) => {
         expect(res).to.have.status(200);
-        expect(res.body.data.viewer.me.username).to.equal('artalat');
-        expect(res.body.data.viewer.me.email).to.equal('me@artalat.com');
+        expect(res.body.data.viewer.me.username).to.equal('aatif');
+        expect(res.body.data.viewer.me.email).to.equal('aatif@email.com');
       });
   });
 
@@ -135,8 +135,8 @@ describe('Queries', () => {
     it('exists', () => {
       const query = gql `
         {
-          Author {
-            exists: AuthorExists(id: 3) 
+          Reader {
+            exists: ReaderExists(id: 1) 
           }
         }`;
       return chai.request(server)
@@ -146,7 +146,7 @@ describe('Queries', () => {
         })
         .then((res) => {
           expect(res).to.have.status(200);
-          expect(res.body.data.Author.exists).to.equal(true);
+          expect(res.body.data.Reader.exists).to.equal(true);
         });
     });
 
@@ -225,7 +225,7 @@ describe('Queries', () => {
       const query = gql `
         {
           Customer {
-            CustomerFindById(id: 1) {
+            CustomerFindById(id: 3) {
               name
               age
               billingAddress {

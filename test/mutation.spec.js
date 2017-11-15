@@ -47,7 +47,6 @@ describe('Mutations', () => {
         const result = res.body.data;
         expect(result.Author.AuthorCreate.obj.first_name).to.equal(variables.data.first_name);
         expect(result.Author.AuthorCreate.obj.last_name).to.equal(variables.data.last_name);
-        // expect(Date.parse(result.Author.AuthorCreate.obj.birth_date)).to.equal(variables.data.birth_date);
       });
   });
 
@@ -99,15 +98,15 @@ describe('Mutations', () => {
 
   it('should delete a single entity', () => {
     const query = gql `
-      mutation delete{
+      mutation delete($input: AuthorDeleteByIdInput!) {
         Author {
-          AuthorDeleteById(id: 3) {
+          AuthorDeleteById(input: $input) {
             clientMutationId
           }
         }
       }`;
     const variables = {
-      id: 4,
+      input: {id: '1'},
     };
 
     return chai.request(server)
@@ -118,31 +117,61 @@ describe('Mutations', () => {
       })
       .then((res) => {
         expect(res).to.have.status(200);
+      }).catch((err) =>{
+        throw err;
       });
   });
 
   it('should login and return an accessToken', () => {
     const query = gql `
-      mutation login {
-        User {
-          UserLogin(input:{
-            credentials: {
-              username: "naveenmeher", 
-              password: "welcome"
-            }
-          }) {
+      mutation login ($input: AccountLoginInput!){
+        Account {
+          AccountLogin(input: $input) {
             obj
           }
         }
       }`;
+    const variables = {
+      input: {credentials: {username: 'aatif', password: 'welcome'}},
+    };
+
     return chai.request(server)
       .post('/graphql')
       .send({
         query,
+        variables,
       })
       .then((res) => {
         expect(res).to.have.status(200);
-        expect(res).to.have.deep.property('body.data.User.UserLogin.obj.id');
+        expect(res.body.data.Account.AccountLogin.obj).to.have.deep.property('id');
+      }).catch((err) =>{
+        throw err;
+      });
+  });
+
+  it('should not login and return an error', () => {
+    const query = gql `
+    mutation login ($input: AccountLoginInput!){
+      Account {
+        AccountLogin(input: $input) {
+          obj
+        }
+      }
+    }`;
+
+    const variables = {
+      input: {credentials: {username: 'aatif', password: 'welcome123'}},
+    };
+
+    return chai.request(server)
+      .post('/graphql')
+      .send({
+        query,
+        variables,
+      })
+      .then((res) => {
+        expect(res).to.have.status(200);
+        expect(res.body).to.have.property('errors');
       });
   });
 });
