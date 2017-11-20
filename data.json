@@ -5,8 +5,8 @@
     "ACL": 1,
     "RoleMapping": 1,
     "Role": 1,
-    "Note": 26,
-    "Author": 38,
+    "Note": 33,
+    "Author": 45,
     "Reader": 2,
     "Book": 6,
     "BookAuthor": 3,
@@ -17,7 +17,7 @@
     "Account": 6,
     "Order": 6,
     "Googlemaps": 2,
-    "CustomAccessToken": 31,
+    "CustomAccessToken": 38,
     "Site": 5
   },
   "models": {
@@ -88,7 +88,14 @@
       "22": "{\"title\":\"Heckelbery Finn\",\"content\":{\"body\":\"Heckelbery Finn\",\"footer\":\"The end\"},\"authorId\":8,\"id\":22}",
       "23": "{\"title\":\"Heckelbery Finn\",\"content\":{\"body\":\"Heckelbery Finn\",\"footer\":\"The end\"},\"authorId\":8,\"id\":23}",
       "24": "{\"title\":\"Heckelbery Finn\",\"content\":{\"body\":\"Heckelbery Finn\",\"footer\":\"The end\"},\"authorId\":8,\"id\":24}",
-      "25": "{\"title\":\"Heckelbery Finn\",\"content\":{\"body\":\"Heckelbery Finn\",\"footer\":\"The end\"},\"authorId\":8,\"id\":25}"
+      "25": "{\"title\":\"Heckelbery Finn\",\"content\":{\"body\":\"Heckelbery Finn\",\"footer\":\"The end\"},\"authorId\":8,\"id\":25}",
+      "26": "{\"title\":\"Heckelbery Finn\",\"content\":{\"body\":\"Heckelbery Finn\",\"footer\":\"The end\"},\"authorId\":8,\"id\":26}",
+      "27": "{\"title\":\"Heckelbery Finn\",\"content\":{\"body\":\"Heckelbery Finn\",\"footer\":\"The end\"},\"authorId\":8,\"id\":27}",
+      "28": "{\"title\":\"Heckelbery Finn\",\"content\":{\"body\":\"Heckelbery Finn\",\"footer\":\"The end\"},\"authorId\":8,\"id\":28}",
+      "29": "{\"title\":\"Heckelbery Finn\",\"content\":{\"body\":\"Heckelbery Finn\",\"footer\":\"The end\"},\"authorId\":8,\"id\":29}",
+      "30": "{\"title\":\"Heckelbery Finn\",\"content\":{\"body\":\"Heckelbery Finn\",\"footer\":\"The end\"},\"authorId\":8,\"id\":30}",
+      "31": "{\"title\":\"Heckelbery Finn\",\"content\":{\"body\":\"Heckelbery Finn\",\"footer\":\"The end\"},\"authorId\":8,\"id\":31}",
+      "32": "{\"title\":\"Heckelbery Finn\",\"content\":{\"body\":\"Heckelbery Finn\",\"footer\":\"The end\"},\"authorId\":8,\"id\":32}"
     },
     "Author": {
       "1": "{\"first_name\":\"Jane\",\"last_name\":\"Austin\",\"birth_date\":\"1883-10-15T00:00:00.000Z\",\"id\":8,\"friendIds\":[5,7]}",
@@ -111,7 +118,14 @@
       "34": "{\"first_name\":\"Unit Test\",\"last_name\":\"Author\",\"birth_date\":\"2017-11-15T12:36:12.237Z\",\"friendIds\":[],\"id\":34}",
       "35": "{\"first_name\":\"Unit Test\",\"last_name\":\"Author\",\"birth_date\":\"2017-11-15T13:00:34.146Z\",\"friendIds\":[],\"id\":35}",
       "36": "{\"first_name\":\"Unit Test\",\"last_name\":\"Author\",\"birth_date\":\"2017-11-15T13:01:49.823Z\",\"friendIds\":[],\"id\":36}",
-      "37": "{\"first_name\":\"Unit Test\",\"last_name\":\"Author\",\"birth_date\":\"2017-11-15T13:03:33.984Z\",\"friendIds\":[],\"id\":37}"
+      "37": "{\"first_name\":\"Unit Test\",\"last_name\":\"Author\",\"birth_date\":\"2017-11-15T13:03:33.984Z\",\"friendIds\":[],\"id\":37}",
+      "38": "{\"first_name\":\"Unit Test\",\"last_name\":\"Author\",\"birth_date\":\"2017-11-16T06:00:19.103Z\",\"friendIds\":[],\"id\":38}",
+      "39": "{\"first_name\":\"Unit Test\",\"last_name\":\"Author\",\"birth_date\":\"2017-11-16T06:01:21.204Z\",\"friendIds\":[],\"id\":39}",
+      "40": "{\"first_name\":\"Unit Test\",\"last_name\":\"Author\",\"birth_date\":\"2017-11-16T06:40:00.357Z\",\"friendIds\":[],\"id\":40}",
+      "41": "{\"first_name\":\"Unit Test\",\"last_name\":\"Author\",\"birth_date\":\"2017-11-16T06:41:12.341Z\",\"friendIds\":[],\"id\":41}",
+      "42": "{\"first_name\":\"Unit Test\",\"last_name\":\"Author\",\"birth_date\":\"2017-11-16T06:42:29.916Z\",\"friendIds\":[],\"id\":42}",
+      "43": "{\"first_name\":\"Unit Test\",\"last_name\":\"Author\",\"birth_date\":\"2017-11-16T06:46:24.108Z\",\"friendIds\":[],\"id\":43}",
+      "44": "{\"first_name\":\"Unit Test\",\"last_name\":\"Author\",\"birth_date\":\"2017-11-20T12:08:47.077Z\",\"friendIds\":[],\"id\":44}"
     },
     "Reader": {
       "1": "{\"name\":\"Reader 1\",\"id\":1}"
@@ -180,7 +194,14 @@
       "XezTMQMJnoAQUJYCsx9pOhpXf2JyUX6F3wEbPWsJxpGB7f4tyGwEJAgjuOZ9ITVH": "{\"id\":\"XezTMQMJnoAQUJYCsx9pOhpXf2JyUX6F3wEbPWsJxpGB7f4tyGwEJAgjuOZ9ITVH\",\"ttl\":1209600,\"created\":\"2017-11-15T12:36:12.437Z\",\"userId\":5,\"principalType\":\"Account\"}",
       "zukWhYdkVZKqXAHR7vGGFIuAx1RM16Tcj0MAaguRrX9hgmKRAigPor6AG11tErP7": "{\"id\":\"zukWhYdkVZKqXAHR7vGGFIuAx1RM16Tcj0MAaguRrX9hgmKRAigPor6AG11tErP7\",\"ttl\":1209600,\"created\":\"2017-11-15T13:00:34.359Z\",\"userId\":5,\"principalType\":\"Account\"}",
       "KI2zVbFD8xtN4LGfGHX5B8UzqzCaVY3AaQfTeZTYGYSxDD6qX2tDjGGuhKvDwkET": "{\"id\":\"KI2zVbFD8xtN4LGfGHX5B8UzqzCaVY3AaQfTeZTYGYSxDD6qX2tDjGGuhKvDwkET\",\"ttl\":1209600,\"created\":\"2017-11-15T13:01:50.029Z\",\"userId\":5,\"principalType\":\"Account\"}",
-      "4jYVEeWnGwQydXK0cf8mjYIcenZL6DhHmaosEzrHejZcKvpF7E4wric3TmBC31hi": "{\"id\":\"4jYVEeWnGwQydXK0cf8mjYIcenZL6DhHmaosEzrHejZcKvpF7E4wric3TmBC31hi\",\"ttl\":1209600,\"created\":\"2017-11-15T13:03:34.181Z\",\"userId\":5,\"principalType\":\"Account\"}"
+      "4jYVEeWnGwQydXK0cf8mjYIcenZL6DhHmaosEzrHejZcKvpF7E4wric3TmBC31hi": "{\"id\":\"4jYVEeWnGwQydXK0cf8mjYIcenZL6DhHmaosEzrHejZcKvpF7E4wric3TmBC31hi\",\"ttl\":1209600,\"created\":\"2017-11-15T13:03:34.181Z\",\"userId\":5,\"principalType\":\"Account\"}",
+      "BCxLNpji39H4TzTYAxCmjpwG7NnCUUzb2rRxYKpYHinY0TLxK76FlNtiMtUWCs3z": "{\"id\":\"BCxLNpji39H4TzTYAxCmjpwG7NnCUUzb2rRxYKpYHinY0TLxK76FlNtiMtUWCs3z\",\"ttl\":1209600,\"created\":\"2017-11-16T06:00:19.306Z\",\"userId\":5,\"principalType\":\"Account\"}",
+      "HjqeixnRE62J3AKTXcqXq3nig1FyWh8HmhZGdaqWW5r93VjLzWYbogxqGTf3l11N": "{\"id\":\"HjqeixnRE62J3AKTXcqXq3nig1FyWh8HmhZGdaqWW5r93VjLzWYbogxqGTf3l11N\",\"ttl\":1209600,\"created\":\"2017-11-16T06:01:21.406Z\",\"userId\":5,\"principalType\":\"Account\"}",
+      "yp0WFQ5UffMCA5bqcA60pzwDeKvS4rGT91vKGatIwDMDotyeAw6Cv7u9VjoNkk4h": "{\"id\":\"yp0WFQ5UffMCA5bqcA60pzwDeKvS4rGT91vKGatIwDMDotyeAw6Cv7u9VjoNkk4h\",\"ttl\":1209600,\"created\":\"2017-11-16T06:40:00.557Z\",\"userId\":5,\"principalType\":\"Account\"}",
+      "J65SwxCMwMlWu9j48HUrGN5pm1g06wviwPVHIVAE3SQNsNMueFgs27tEQhQmuowC": "{\"id\":\"J65SwxCMwMlWu9j48HUrGN5pm1g06wviwPVHIVAE3SQNsNMueFgs27tEQhQmuowC\",\"ttl\":1209600,\"created\":\"2017-11-16T06:41:12.566Z\",\"userId\":5,\"principalType\":\"Account\"}",
+      "toEvwq8C7hgEXHEnFt2vrDmgf6eTDHkHZvhUqJlTkxXPUbuzC3CZeSw3p8ot9uBp": "{\"id\":\"toEvwq8C7hgEXHEnFt2vrDmgf6eTDHkHZvhUqJlTkxXPUbuzC3CZeSw3p8ot9uBp\",\"ttl\":1209600,\"created\":\"2017-11-16T06:42:30.117Z\",\"userId\":5,\"principalType\":\"Account\"}",
+      "W2j44Q41iEJttyFkjDNUAgXOrp1wTiwpdGKVijxv3XgDa61GrK2ypYjpz0cWY0Eh": "{\"id\":\"W2j44Q41iEJttyFkjDNUAgXOrp1wTiwpdGKVijxv3XgDa61GrK2ypYjpz0cWY0Eh\",\"ttl\":1209600,\"created\":\"2017-11-16T06:46:24.312Z\",\"userId\":5,\"principalType\":\"Account\"}",
+      "T4zvj1SSa925EV35jIt0ArdIlK7Zy4lSRHbLQDftVdaHNkG2wqmhG80qo9t5gDjA": "{\"id\":\"T4zvj1SSa925EV35jIt0ArdIlK7Zy4lSRHbLQDftVdaHNkG2wqmhG80qo9t5gDjA\",\"ttl\":1209600,\"created\":\"2017-11-20T12:08:47.271Z\",\"userId\":5,\"principalType\":\"Account\"}"
     },
     "Site": {
       "1": "{\"name\":\"Site B of owner 5\",\"active\":true,\"location\":{\"lat\":0,\"lng\":0},\"image\":\"string\",\"ownerId\":5,\"id\":1}",

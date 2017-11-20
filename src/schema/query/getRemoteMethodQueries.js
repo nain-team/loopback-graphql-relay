@@ -3,7 +3,6 @@
 const _ = require('lodash');
 
 const promisify = require('promisify-node');
-
 const utils = require('../utils');
 const {connectionFromPromisedArray} = require('graphql-relay');
 const allowedVerbs = ['get', 'head'];
@@ -39,6 +38,7 @@ module.exports = function getRemoteMethodQueries(model) {
             _.forEach(acceptingParams, (param, name) => {
               params.push(args[name]);
             });
+
             const wrap = promisify(model[method.name]);
 
             if (typeObj.list) {

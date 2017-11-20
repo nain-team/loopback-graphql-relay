@@ -261,4 +261,26 @@ describe('Queries', () => {
         });
     });
   });
+
+  describe('Remote methods', () =>{
+    it('should return filtered data', ()=>{
+      const query = gql `
+         {
+          Author{
+            AuthorFilterAuthors (filter:{authorId:"1"})
+          } 
+        }`;
+      return chai.request(server)
+        .post('/graphql')
+        .send({
+          query,
+        })
+        .then((res) => {
+          expect(res).to.have.status(200);
+          console.log('Filtered Data Response: ' + res);
+        }).catch((err)=> {
+          throw err;
+        });
+    });
+  });
 });
