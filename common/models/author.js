@@ -1,5 +1,4 @@
 'use strict';
-const _ = require('lodash');
 const loopbackUtils = require('loopback/lib/utils');
 
 module.exports = function(Author) {
@@ -34,29 +33,15 @@ module.exports = function(Author) {
       }).then((res) => {});
   };
 
-  Author.getFilterAuthors = function FilterAuthorsByParams(filter, cb) {
-    cb(null, {response: filter});
-  };
-
-  Author.remoteMethod('getFilterAuthors', {
-    accepts: [
-      {arg: 'filter', type: 'object'},
-    ],
-    returns: {arg: 'data', type: ['Author']},
-    http: {path: '/filteredAuthor', verb: 'get'},
+  Author.remoteMethod('noParamMethod', {
+    http: {path: '/noParamMethod', verb: 'get'},
+    accepts: [],
+    returns: {arg: 'result', type: 'array'},
   });
 
-  Author.getNonParamFilterAuthors = function FilterAuthors(cb) {
-    cb = cb || loopbackUtils.createPromiseCallback();
-    Author.find({}, (err, resp) => {
-      return cb(null, resp);
-    });
+  Author.noParamMethod = function my(callback) {
+    var responseData = {name: 'hello'};
 
-    return cb.promise;
+    callback(null, responseData);
   };
-
-  Author.remoteMethod('getNonParamFilterAuthors', {
-    returns: {arg: 'data', type: ['Author'], root: true},
-    http: {path: '/getNonParamFilteredAuthor', verb: 'get'},
-  });
 };
