@@ -124,15 +124,15 @@ describe('Mutations', () => {
 
   it('should login and return an accessToken', () => {
     const query = gql `
-      mutation login ($input: AccountLoginInput!){
-        Account {
-          AccountLogin(input: $input) {
+      mutation login ($input: UserLoginInput!){
+        User {
+          UserLogin(input: $input) {
             obj
           }
         }
       }`;
     const variables = {
-      input: {credentials: {username: 'aatif', password: 'welcome'}},
+      input: {credentials: {username: 'naveenmeher', password: '123'}},
     };
 
     return chai.request(server)
@@ -143,24 +143,22 @@ describe('Mutations', () => {
       })
       .then((res) => {
         expect(res).to.have.status(200);
-        expect(res.body.data.Account.AccountLogin.obj).to.have.deep.property('id');
-      }).catch((err) =>{
-        throw err;
+        expect(res.body.data.User.UserLogin.obj).to.have.property('id');
       });
   });
 
   it('should not login and return an error', () => {
     const query = gql `
-    mutation login ($input: AccountLoginInput!){
-      Account {
-        AccountLogin(input: $input) {
+    mutation login ($input: UserLoginInput!){
+      User {
+        UserLogin(input: $input) {
           obj
         }
       }
     }`;
 
     const variables = {
-      input: {credentials: {username: 'aatif', password: 'welcome123'}},
+      input: {credentials: {username: 'naveenmeher', password: '1234'}},
     };
 
     return chai.request(server)
@@ -172,6 +170,8 @@ describe('Mutations', () => {
       .then((res) => {
         expect(res).to.have.status(200);
         expect(res.body).to.have.property('errors');
+      }).catch((err) => {
+        console.log(err);
       });
   });
 });

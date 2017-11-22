@@ -35,11 +35,11 @@ module.exports = function(Author) {
 
   Author.remoteMethod('searchByName', {
     http: {path: '/searchByName', verb: 'get'},
-    accepts: [{arg: 'name', type: 'string'}],
-    returns: {arg: 'result', type: 'array'},
+    accepts: [],
+    returns: {arg: 'result', type: 'array', root: true},
   });
 
-  Author.searchByName = function searchByName(name, callback) {
-    callback(null, [name]);
+  Author.searchByName = function searchByName(filter, first, last, before, after, callback) {
+    callback(null, filter);
   };
 };

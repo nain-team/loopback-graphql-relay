@@ -267,7 +267,7 @@ describe('Queries', () => {
       const query = gql `
          {
           Author{
-            AuthorSearchByName ('atif')
+            AuthorSearchByName (filter:'atif')
           } 
         }`;
       return chai.request(server)
