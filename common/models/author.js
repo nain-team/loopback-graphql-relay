@@ -39,9 +39,10 @@ module.exports = function(Author) {
     returns: {arg: 'result', type: 'array'},
   });
 
-  Author.noParamMethod = function my(callback) {
-    var responseData = {name: 'hello'};
-
-    callback(null, responseData);
+  Author.noParamMethod = function noParamMethod(callback) {
+    var responseData;
+    Author.find('', (error, resp) =>{
+      callback(null, resp);
+    });
   };
 };
