@@ -14,9 +14,7 @@ const exchangeTypes = {
   boolean: 'Boolean',
   Object: 'JSON',
   object: 'JSON',
-  PersistedModel: 'JSON',
-  string: 'String',
-  String: 'String',
+  PersistedModel: 'JSON'
 };
 
 /**

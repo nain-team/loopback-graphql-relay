@@ -263,11 +263,11 @@ describe('Queries', () => {
   });
 
   describe('Remote methods', () =>{
-    it('should return filtered data', ()=>{
+    it('should work custom remote end point', ()=>{
       const query = gql `
          {
           Author{
-            AuthorFilterAuthors (filter:{authorId:"1"})
+            AuthorSearchByName ('atif')
           } 
         }`;
       return chai.request(server)

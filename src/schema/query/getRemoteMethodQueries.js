@@ -23,6 +23,7 @@ module.exports = function getRemoteMethodQueries(model) {
         }
 
         const typeObj = utils.getRemoteMethodOutput(method);
+
         const acceptingParams = utils.getRemoteMethodInput(method, typeObj.list);
         const hookName = utils.getRemoteMethodQueryName(model, method);
 

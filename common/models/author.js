@@ -33,16 +33,13 @@ module.exports = function(Author) {
       }).then((res) => {});
   };
 
-  Author.remoteMethod('noParamMethod', {
-    http: {path: '/noParamMethod', verb: 'get'},
-    accepts: [],
+  Author.remoteMethod('searchByName', {
+    http: {path: '/searchByName', verb: 'get'},
+    accepts: [{arg: 'name', type: 'string'}],
     returns: {arg: 'result', type: 'array'},
   });
 
-  Author.noParamMethod = function noParamMethod(callback) {
-    var responseData;
-    Author.find('', (error, resp) =>{
-      callback(null, resp);
-    });
+  Author.searchByName = function searchByName(name, callback) {
+    callback(null, [name]);
   };
 };
