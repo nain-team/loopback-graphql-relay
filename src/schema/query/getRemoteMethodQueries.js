@@ -6,6 +6,7 @@ const promisify = require('promisify-node');
 const utils = require('../utils');
 const {connectionFromPromisedArray} = require('graphql-relay');
 const allowedVerbs = ['get', 'head'];
+const defaultFindMethods = ['find'];
 
 module.exports = function getRemoteMethodQueries(model) {
   const hooks = {};
@@ -34,7 +35,7 @@ module.exports = function getRemoteMethodQueries(model) {
           args: acceptingParams,
           type: typeObj.type,
           resolve: (__, args, context, info) => {
-            const params = [];
+            let params = [];
 
             _.forEach(acceptingParams, (param, name) => {
               params.push(args[name]);
@@ -43,6 +44,13 @@ module.exports = function getRemoteMethodQueries(model) {
             const wrap = promisify(model[method.name]);
 
             if (typeObj.list) {
+              if (defaultFindMethods.indexOf(method.name) == -1 && method.returns[0].type.indexOf('any') != -1) {
+                params = [];
+                _.forEach(method.accepts, (accept, index) => {
+                  params.push(args[accept.arg]);
+                });
+              }
+
               return connectionFromPromisedArray(wrap.apply(model, params), args, model);
             }
 

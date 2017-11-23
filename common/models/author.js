@@ -34,12 +34,18 @@ module.exports = function(Author) {
   };
 
   Author.remoteMethod('searchByName', {
-    accepts: [{arg: 'filter', type: 'object'}],
+    accepts: [
+      {arg: 'filter', type: 'object', description:
+          'Filter defining fields, where, include, order, offset, and limit - must be a ' +
+          'JSON-encoded string ({"something":"value"})'},
+      {arg: 'p1', type: 'object', description: ''},
+      {arg: 'p2', type: 'object', description: ''},
+    ],
     returns: {arg: 'result', type: 'array', root: true},
     http: {path: '/searchByName', verb: 'get'},
   });
 
-  Author.searchByName = function searchByName(filter, options, first, last, current, cb) {
+  Author.searchByName = function searchByName(filter, p1, p2, cb) {
     const userInput = {
       input: filter,
     };

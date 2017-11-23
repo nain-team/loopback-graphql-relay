@@ -75,23 +75,6 @@ function getRemoteMethodInput(method, isConnection = false) {
  * @param {*} method
  */
 function getRemoteMethodOutput(method) {
-  // let returnType = 'JSON';
-
-  // if (method.returns && method.returns[0]) {
-  //   if (!SCALARS[method.returns[0].type] && typeof method.returns[0].type !== 'object') {
-  //     returnType = `${method.returns[0].type}`;
-  //   } else {
-  //     returnType = `${_.upperFirst(method.returns[0].type)}`;
-  //     if (typeof method.returns[0].type === 'object') {
-  //       returnType = 'JSON';
-  //     }
-  //   }
-  // }
-
-  // const type = exchangeTypes[returnType] || returnType;
-
-  // return getType(type) || getType('JSON');
-
   let returnType = 'JSON';
   let list = false;
 
