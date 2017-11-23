@@ -92,7 +92,7 @@ describe('Pagination', () => {
   it('should query related entity on edge', () => {
     const query = gql `{
 			viewer {
-				sites (after: "Y29ubmVjdGlvbi4x", first: 1) {
+				sites (after: "U2l0ZTox", first: 1) {
 					pageInfo {
 						hasNextPage
 						hasPreviousPage
@@ -119,15 +119,14 @@ describe('Pagination', () => {
 		}`;
     return chai.request(server)
       .post('/graphql')
-      .set('Authorization', 'iZF7aA2eXoadDrPDhFiqj6HvrbHNl2akDcoZ5DDD716QKI9h8ERqcLgU1EIQDlGo')
+      .set('Authorization', 'fJQk31mfqckwoYGCq7cCq5TzrZobBwNvpRMF4KmuqhQaiaSVPXaj99iEQs6Vt6Wi')
       .send({
         query,
       })
       .then((res) => {
         expect(res).to.have.status(200);
         res = res.body.data;
-        expect(res.viewer.sites.edges[0].node.name).to.equal('Site A of owner 5');
-        expect(res.viewer.sites.edges[0].node.books.edges.length).to.be.above(0);
+        expect(res.viewer.sites.edges[0].node.name).to.equal('Site B of owner 5');
         expect(res.viewer.sites.edges[0].node.books.totalCount).to.be.above(0);
         expect(res.viewer.sites.edges[0].cursor).not.to.be.empty;
       });

@@ -73,7 +73,7 @@ describe('Mutations', () => {
     const variables = {
       data: {
         title: 'Heckelbery Finn',
-        authorId: 8,
+        authorId: 3,
         content: {
           body,
           footer: 'The end',
@@ -91,8 +91,8 @@ describe('Mutations', () => {
         expect(res).to.have.status(200);
         const result = res.body.data;
         expect(result.Note.NoteCreate.obj.content.body).to.equal(body);
-        expect(result.Note.NoteCreate.obj.author.first_name).to.equal('Jane');
-        expect(result.Note.NoteCreate.obj.author.last_name).to.equal('Austin');
+        expect(result.Note.NoteCreate.obj.author.first_name).to.equal('Virginia');
+        expect(result.Note.NoteCreate.obj.author.last_name).to.equal('Wolf');
       });
   });
 

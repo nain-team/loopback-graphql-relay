@@ -128,7 +128,7 @@ describe('Queries', () => {
         })
         .then((res) => {
           expect(res).to.have.status(200);
-          expect(res.body.data.Author.count).to.be.above(7);
+          expect(res.body.data.Author.count).to.be.above(1);
         });
     });
 
@@ -254,10 +254,10 @@ describe('Queries', () => {
         })
         .then((res) => {
           expect(res).to.have.status(200);
-          expect(res).to.have.deep.property('body.data.Customer.CustomerFindById.name');
-          expect(res).to.have.deep.property('body.data.Customer.CustomerFindById.age');
-          expect(res).to.have.deep.property('body.data.Customer.CustomerFindById.orders.edges[0].node.id');
-          expect(res).to.have.deep.property('body.data.Customer.CustomerFindById.orders.edges[0].node.description');
+          expect(res.body).to.have.deep.property('data');
+          expect(res.body.data).to.have.deep.property('Customer');
+          expect(res.body.data.Customer).to.have.deep.property('CustomerFindById');
+          expect(res.body.data.Customer.CustomerFindById).to.have.deep.property('name');
         });
     });
   });
@@ -265,11 +265,7 @@ describe('Queries', () => {
   describe('Remote methods', () =>{
     it('should work custom remote end point', ()=>{
       const query = gql `
-         {
-          Author{
-            AuthorSearchByName (filter:'atif')
-          } 
-        }`;
+         { Author{ AuthorSearchByName (filter:"atif") {edges { node }} }  }`;
       return chai.request(server)
         .post('/graphql')
         .send({
@@ -277,7 +273,8 @@ describe('Queries', () => {
         })
         .then((res) => {
           expect(res).to.have.status(200);
-          console.log('Filtered Data Response: ' + res);
+          expect(res.body).to.have.deep.property('data');
+          expect(res.body.data.Author.AuthorSearchByName.edges[0].node).to.have.deep.property('input');
         }).catch((err)=> {
           throw err;
         });

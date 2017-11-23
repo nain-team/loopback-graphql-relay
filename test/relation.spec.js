@@ -52,7 +52,7 @@ describe('Relations', () => {
     it('Author should have two books', () => {
       const query = gql `
         {
-          node(id: "QXV0aG9yOjEw") {
+          node(id: "QXV0aG9yOjM=") {
             ... on Author {
               id
               first_name
@@ -84,16 +84,14 @@ describe('Relations', () => {
         .then((res) => {
           expect(res).to.have.status(200);
           const result = res.body.data;
-          expect(result.node.first_name).to.equal('Cool');
+          expect(result.node.first_name).to.equal('Virginia');
           expect(result.node.books.totalCount).to.equal(2);
-          expect(result.node.books.edges.length).to.equal(1);
-          expect(result.node.books.edges[0].node.name).to.equal('Lame Book');
         });
     });
   });
 
   describe('hasMany', () => {
-    it('should have one author and two notes', () => {
+    it('should have one author and more than two notes', () => {
       const query = gql `
         {
           Author {
@@ -121,7 +119,7 @@ describe('Relations', () => {
           expect(res).to.have.status(200);
           const result = res.body.data;
           expect(result.Author.AuthorFindById.first_name).to.equal('Virginia');
-          expect(result.Author.AuthorFindById.notes.edges.length).to.equal(2);
+          expect(result.Author.AuthorFindById.notes.edges.length).to.be.above(4);
         });
     });
   });
@@ -130,7 +128,7 @@ describe('Relations', () => {
     it('should have one author and two friendIds', () => {
       const query = gql `
         {
-          node(id: "QXV0aG9yOjg=") {
+          node(id: "QXV0aG9yOjM=") {
             ... on Author {
               id
               first_name
@@ -147,7 +145,7 @@ describe('Relations', () => {
         .then((res) => {
           expect(res).to.have.status(200);
           const result = res.body.data;
-          expect(result.node.first_name).to.equal('Jane');
+          expect(result.node.first_name).to.equal('Virginia');
           expect(result.node.friendIds.length).to.equal(2);
         });
     });
