@@ -46,9 +46,12 @@ module.exports = function(Author) {
   });
 
   Author.searchByName = function searchByName(filter, p1, p2, cb) {
-    const userInput = {
-      input: filter,
-    };
-    cb(null, [userInput]);
+    if (filter) {
+      Author.find({where: {firstName: filter.name}}, (err, resp) => {
+        cb(null, resp);
+      });
+    } else {
+      cb(null, []);
+    }
   };
 };

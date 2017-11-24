@@ -155,8 +155,8 @@ describe('Queries', () => {
           Author {
             AuthorFindOne(filter: { where: {id: 3}}) {
               id
-              first_name
-              last_name
+              firstName
+              lastName
             } 
           }
         }`;
@@ -167,8 +167,8 @@ describe('Queries', () => {
         })
         .then((res) => {
           expect(res).to.have.status(200);
-          expect(res.body.data.Author.AuthorFindOne.first_name).to.equal('Virginia');
-          expect(res.body.data.Author.AuthorFindOne.last_name).to.equal('Wolf');
+          expect(res.body.data.Author.AuthorFindOne.firstName).to.equal('Virginia');
+          expect(res.body.data.Author.AuthorFindOne.lastName).to.equal('Wolf');
         });
     });
 
@@ -178,8 +178,8 @@ describe('Queries', () => {
           Author {
             AuthorFindById(id: 3) {
               id
-              first_name
-              last_name
+              firstName
+              lastName
             } 
           }
         }`;
@@ -190,8 +190,8 @@ describe('Queries', () => {
         })
         .then((res) => {
           expect(res).to.have.status(200);
-          expect(res.body.data.Author.AuthorFindById.first_name).to.equal('Virginia');
-          expect(res.body.data.Author.AuthorFindById.last_name).to.equal('Wolf');
+          expect(res.body.data.Author.AuthorFindById.firstName).to.equal('Virginia');
+          expect(res.body.data.Author.AuthorFindById.lastName).to.equal('Wolf');
         });
     });
 
@@ -272,7 +272,6 @@ describe('Queries', () => {
         })
         .then((res, err) => {
           expect(res).to.have.status(200);
-          expect(res.body).to.have.deep.property('data');
           done();
         }).catch((err)=> {
           throw err;
@@ -289,7 +288,6 @@ describe('Queries', () => {
         })
         .then((res, err) => {
           expect(res).to.have.status(200);
-          expect(res.body).to.have.deep.property('data');
           done();
         }).catch((err)=> {
           throw err;
@@ -306,7 +304,39 @@ describe('Queries', () => {
         })
         .then((res, err) => {
           expect(res).to.have.status(200);
-          expect(res.body).to.have.deep.property('data');
+          done();
+        }).catch((err)=> {
+          throw err;
+        });
+    });
+
+    it('should run successfully if empty array is returned', (done) => {
+      const query = gql `
+         { Author{ AuthorSearchByName {edges { node }} }  }`;
+      chai.request(server)
+        .post('/graphql')
+        .send({
+          query,
+        })
+        .then((res, err) => {
+          expect(res).to.have.status(200);
+          done();
+        }).catch((err)=> {
+          throw err;
+        });
+    });
+
+    it('should run successfully data is returned', (done) => {
+      const query = gql `
+         { Author{ AuthorSearchByName (filter:{name:"Unit Test"}){edges { node }} }  }`;
+      chai.request(server)
+        .post('/graphql')
+        .send({
+          query,
+        })
+        .then((res, err) => {
+          expect(res).to.have.status(200);
+          expect(res.body.data.Author.AuthorSearchByName.edges.length).to.be.above(0);
           done();
         }).catch((err)=> {
           throw err;
@@ -315,7 +345,7 @@ describe('Queries', () => {
 
     it('should return first record', (done) => {
       const query = gql `
-         { Author{ AuthorSearchByName (first: 1) {edges { node }} }  }`;
+         { Author{ AuthorSearchByName (filter:{name:"Unit Test"}, first:1){edges { node }} }  }`;
       chai.request(server)
         .post('/graphql')
         .send({
@@ -323,24 +353,7 @@ describe('Queries', () => {
         })
         .then((res, err) => {
           expect(res).to.have.status(200);
-          expect(res.body).to.have.deep.property('data');
-          done();
-        }).catch((err)=> {
-          throw err;
-        });
-    });
-
-    it('should return last record', (done) => {
-      const query = gql `
-         { Author{ AuthorSearchByName (last: 1) {edges { node }} }  }`;
-      chai.request(server)
-        .post('/graphql')
-        .send({
-          query,
-        })
-        .then((res, err) => {
-          expect(res).to.have.status(200);
-          expect(res.body).to.have.deep.property('data');
+          expect(res.body.data.Author.AuthorSearchByName.edges[0].node.firstName).to.equal('Unit Test');
           done();
         }).catch((err)=> {
           throw err;

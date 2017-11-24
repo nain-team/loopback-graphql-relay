@@ -21,18 +21,18 @@ describe('Mutations', () => {
         Author {
           AuthorCreate(input: {data: $data}) {
             obj {
-              first_name
-              last_name
-              birth_date
+              firstName
+              lastName
+              birthDate
             }
           }
         }
       }`;
     const variables = {
       data: {
-        first_name: 'Unit Test',
-        last_name: 'Author',
-        birth_date: new Date(),
+        firstName: 'Unit Test',
+        lastName: 'Author',
+        birthDate: new Date(),
       },
     };
 
@@ -45,8 +45,8 @@ describe('Mutations', () => {
       .then((res) => {
         expect(res).to.have.status(200);
         const result = res.body.data;
-        expect(result.Author.AuthorCreate.obj.first_name).to.equal(variables.data.first_name);
-        expect(result.Author.AuthorCreate.obj.last_name).to.equal(variables.data.last_name);
+        expect(result.Author.AuthorCreate.obj.firstName).to.equal(variables.data.firstName);
+        expect(result.Author.AuthorCreate.obj.lastName).to.equal(variables.data.lastName);
       });
   });
 
@@ -63,8 +63,8 @@ describe('Mutations', () => {
                 body
               }
               author {
-                first_name
-                last_name
+                firstName
+                lastName
               }
             }
           }
@@ -91,8 +91,8 @@ describe('Mutations', () => {
         expect(res).to.have.status(200);
         const result = res.body.data;
         expect(result.Note.NoteCreate.obj.content.body).to.equal(body);
-        expect(result.Note.NoteCreate.obj.author.first_name).to.equal('Virginia');
-        expect(result.Note.NoteCreate.obj.author.last_name).to.equal('Wolf');
+        expect(result.Note.NoteCreate.obj.author.firstName).to.equal('Virginia');
+        expect(result.Note.NoteCreate.obj.author.lastName).to.equal('Wolf');
       });
   });
 

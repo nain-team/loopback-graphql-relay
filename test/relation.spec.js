@@ -55,8 +55,8 @@ describe('Relations', () => {
           node(id: "QXV0aG9yOjM=") {
             ... on Author {
               id
-              first_name
-              last_name
+              firstName
+              lastName
               books(last: 1) {
                 totalCount
                 pageInfo {
@@ -84,7 +84,7 @@ describe('Relations', () => {
         .then((res) => {
           expect(res).to.have.status(200);
           const result = res.body.data;
-          expect(result.node.first_name).to.equal('Virginia');
+          expect(result.node.firstName).to.equal('Virginia');
           expect(result.node.books.totalCount).to.equal(2);
         });
     });
@@ -97,8 +97,8 @@ describe('Relations', () => {
           Author {
             AuthorFindById(id: 3) {
               id
-              first_name
-              last_name
+              firstName
+              lastName
               notes {
                 edges {
                   node {
@@ -118,7 +118,7 @@ describe('Relations', () => {
         .then((res) => {
           expect(res).to.have.status(200);
           const result = res.body.data;
-          expect(result.Author.AuthorFindById.first_name).to.equal('Virginia');
+          expect(result.Author.AuthorFindById.firstName).to.equal('Virginia');
           expect(result.Author.AuthorFindById.notes.edges.length).to.be.above(4);
         });
     });
@@ -131,8 +131,8 @@ describe('Relations', () => {
           node(id: "QXV0aG9yOjM=") {
             ... on Author {
               id
-              first_name
-              last_name
+              firstName
+              lastName
               friendIds
             }
           }
@@ -145,7 +145,7 @@ describe('Relations', () => {
         .then((res) => {
           expect(res).to.have.status(200);
           const result = res.body.data;
-          expect(result.node.first_name).to.equal('Virginia');
+          expect(result.node.firstName).to.equal('Virginia');
           expect(result.node.friendIds.length).to.equal(2);
         });
     });
@@ -219,8 +219,8 @@ describe('Relations', () => {
               title
               author {
                 id
-                first_name
-                last_name
+                firstName
+                lastName
               }
             }
           }
@@ -234,7 +234,7 @@ describe('Relations', () => {
           expect(res).to.have.status(200);
           const result = res.body.data;
           expect(result.node.title).to.equal('Who is Afraid');
-          expect(result.node.author.first_name).to.equal('Virginia');
+          expect(result.node.author.firstName).to.equal('Virginia');
         });
     });
   });

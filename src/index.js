@@ -13,10 +13,10 @@ module.exports = function(app, options) {
   const apollo = options.apollo;
   const path = options.path || '/graphql';
 
-  if (apollo && !apollo.apiKey) {
-    throw new Error('Apollo engine api key is not defined');
-  }
   if (apollo) {
+    if (!apollo.apiKey) {
+      throw new Error('Apollo engine api key is not defined');
+    }
     const engine = new Engine({
       engineConfig: {
         apiKey: apollo.apiKey,
