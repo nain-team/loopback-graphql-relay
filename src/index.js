@@ -40,7 +40,7 @@ module.exports = function(app, options) {
       app,
       req,
     },
-    tracing: true,
+    tracing: false,
 
     cacheControl: true,
   })));
