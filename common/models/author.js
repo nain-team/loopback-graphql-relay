@@ -1,28 +1,27 @@
 'use strict';
+
 const loopbackUtils = require('loopback/lib/utils');
 
 module.exports = function(Author) {
-  Author.remoteMethod(
-    'addFriend', {
-      http: {
-        path: '/addFriend',
-        verb: 'post',
-      },
+  Author.remoteMethod('addFriend', {
+    http: {
+      path: '/addFriend',
+      verb: 'post',
+    },
 
-      accepts: [{
-        arg: 'author',
-        type: 'number',
-      }, {
-        arg: 'friend',
-        type: ['number'],
-      }],
+    accepts: [{
+      arg: 'author',
+      type: 'number',
+    }, {
+      arg: 'friend',
+      type: ['number'],
+    }],
 
-      returns: {
-        arg: 'result',
-        type: 'object',
-      },
-    }
-  );
+    returns: {
+      arg: 'result',
+      type: 'object',
+    },
+  });
 
   Author.addFriend = function(author, friend) {
     return Author.findById(author)
@@ -35,9 +34,13 @@ module.exports = function(Author) {
 
   Author.remoteMethod('searchByName', {
     accepts: [
-      {arg: 'filter', type: 'object', description:
+      {
+        arg: 'filter',
+        type: 'object',
+        description:
           'Filter defining fields, where, include, order, offset, and limit - must be a ' +
-          'JSON-encoded string ({"something":"value"})'},
+          'JSON-encoded string ({"something":"value"})',
+      },
       {arg: 'p1', type: 'object', description: ''},
       {arg: 'p2', type: 'object', description: ''},
     ],

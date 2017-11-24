@@ -8,18 +8,17 @@ module.exports = function(Note) {
     previousClear: new Date(),
   });
 
-  Note.remoteMethod(
-    'clear', {
-      http: {
-        path: '/clear',
-        verb: 'post',
-      },
-      returns: [{
-        arg: 'note',
-        type: 'object',
-      }, {
-        arg: 'previousClear',
-        type: 'Date',
-      }],
-    });
+  Note.remoteMethod('clear', {
+    http: {
+      path: '/clear',
+      verb: 'post',
+    },
+    returns: [{
+      arg: 'note',
+      type: 'object',
+    }, {
+      arg: 'previousClear',
+      type: 'Date',
+    }],
+  });
 };

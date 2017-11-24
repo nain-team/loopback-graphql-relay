@@ -12,7 +12,7 @@ describe('Relations', () => {
   before(() => Promise.fromCallback(cb => cpx.copy('./data.json', './data/', cb)));
 
   it('should query related entity with nested relational data', () => {
-    const query = gql `
+    const query = gql`
               {
                 Customer {
                   CustomerFind(first: 2) {
@@ -50,7 +50,7 @@ describe('Relations', () => {
 
   describe('hasManyAndBelongsToMany', () => {
     it('Author should have two books', () => {
-      const query = gql `
+      const query = gql`
         {
           node(id: "QXV0aG9yOjM=") {
             ... on Author {
@@ -92,7 +92,7 @@ describe('Relations', () => {
 
   describe('hasMany', () => {
     it('should have one author and more than two notes', () => {
-      const query = gql `
+      const query = gql`
         {
           Author {
             AuthorFindById(id: 3) {
@@ -126,7 +126,7 @@ describe('Relations', () => {
 
   describe('referencesMany', () => {
     it('should have one author and two friendIds', () => {
-      const query = gql `
+      const query = gql`
         {
           node(id: "QXV0aG9yOjM=") {
             ... on Author {
@@ -153,7 +153,7 @@ describe('Relations', () => {
 
   describe('embedsMany', () => {
     it('should have one book and two links', () => {
-      const query = gql `
+      const query = gql`
         {
           Book {
             BookFindById(id: 1) {
@@ -181,7 +181,7 @@ describe('Relations', () => {
 
   describe('embedsOne', () => {
     it('should have a billingAddress', () => {
-      const query = gql `
+      const query = gql`
         {
           node(id: "Q3VzdG9tZXI6Ng==") {
             ... on Customer {
@@ -211,7 +211,7 @@ describe('Relations', () => {
 
   describe('belongsTo', () => {
     it('should have a note and its owner', () => {
-      const query = gql `
+      const query = gql`
         {
           node(id: "Tm90ZToy") {
             ... on Note {
@@ -241,7 +241,7 @@ describe('Relations', () => {
 
   describe('hasOne', () => {
     it('should have orders with its customer', () => {
-      const query = gql `
+      const query = gql`
         {
           Order {
             OrderFindById(id: 1) {

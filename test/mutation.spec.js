@@ -1,8 +1,6 @@
-/* eslint-disable camelcase */
 'use strict';
 
 const Promise = require('bluebird');
-
 const expect = require('chai').expect;
 const chai = require('chai')
   .use(require('chai-http'));
@@ -16,7 +14,7 @@ describe('Mutations', () => {
   before(() => Promise.fromCallback(cb => cpx.copy('./data.json', './data/', cb)));
 
   it('should add a single entity', () => {
-    const query = gql `
+    const query = gql`
       mutation save($data: JSON!) {
         Author {
           AuthorCreate(input: {data: $data}) {
@@ -52,7 +50,7 @@ describe('Mutations', () => {
 
   it('should add a single entity with sub type', () => {
     const body = 'Heckelbery Finn';
-    const query = gql `
+    const query = gql`
       mutation save($data: JSON!) {
         Note {
           NoteCreate(input: { data: $data }) {
@@ -97,7 +95,7 @@ describe('Mutations', () => {
   });
 
   it('should delete a single entity', () => {
-    const query = gql `
+    const query = gql`
       mutation delete($input: AuthorDeleteByIdInput!) {
         Author {
           AuthorDeleteById(input: $input) {
@@ -117,13 +115,14 @@ describe('Mutations', () => {
       })
       .then((res) => {
         expect(res).to.have.status(200);
-      }).catch((err) =>{
+      })
+      .catch((err) => {
         throw err;
       });
   });
 
   it('should login and return an accessToken', () => {
-    const query = gql `
+    const query = gql`
       mutation login ($input: UserLoginInput!){
         User {
           UserLogin(input: $input) {
@@ -148,7 +147,7 @@ describe('Mutations', () => {
   });
 
   it('should not login and return an error', () => {
-    const query = gql `
+    const query = gql`
     mutation login ($input: UserLoginInput!){
       User {
         UserLogin(input: $input) {
@@ -170,7 +169,8 @@ describe('Mutations', () => {
       .then((res) => {
         expect(res).to.have.status(200);
         expect(res.body).to.have.property('errors');
-      }).catch((err) => {
+      })
+      .catch((err) => {
         console.log(err);
       });
   });

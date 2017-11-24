@@ -4,6 +4,7 @@
 
 const server = require('../server/server');
 const expect = require('chai').expect;
+
 describe('model testing', () => {
   it.skip('should return models', (done) => {
     server.on('started', () => {

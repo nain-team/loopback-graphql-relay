@@ -12,7 +12,7 @@ describe('Queries', () => {
 
   describe('Single entity', () => {
     it('should execute a single query with relation', () => {
-      const query = gql `
+      const query = gql`
             query {
               viewer {
                 sites(first: 1) {
@@ -44,7 +44,7 @@ describe('Queries', () => {
   });
 
   it('should have a total count of 3', () => {
-    const query = gql `
+    const query = gql`
       {
         viewer {
           sites {
@@ -65,7 +65,7 @@ describe('Queries', () => {
   });
 
   it('should sort books by name in descending order', () => {
-    const query = gql `
+    const query = gql`
       {
         viewer {
           sites (order: "name DESC") {
@@ -93,7 +93,7 @@ describe('Queries', () => {
   });
 
   it('should return current logged in user', () => {
-    const query = gql `
+    const query = gql`
       {
         viewer {
           me { id username email }
@@ -114,7 +114,7 @@ describe('Queries', () => {
 
   describe('Remote hooks', () => {
     it('count', () => {
-      const query = gql `
+      const query = gql`
         {
           Author {
             count: AuthorCount
@@ -132,7 +132,7 @@ describe('Queries', () => {
     });
 
     it('exists', () => {
-      const query = gql `
+      const query = gql`
         {
           Reader {
             exists: ReaderExists(id: 1) 
@@ -150,7 +150,7 @@ describe('Queries', () => {
     });
 
     it('findOne', () => {
-      const query = gql `
+      const query = gql`
         {
           Author {
             AuthorFindOne(filter: { where: {id: 3}}) {
@@ -173,7 +173,7 @@ describe('Queries', () => {
     });
 
     it('findById', () => {
-      const query = gql `
+      const query = gql`
         {
           Author {
             AuthorFindById(id: 3) {
@@ -196,7 +196,7 @@ describe('Queries', () => {
     });
 
     it('find', () => {
-      const query = gql `
+      const query = gql`
         {
           Book {
             BookFind {
@@ -221,7 +221,7 @@ describe('Queries', () => {
     });
 
     it('should call a remoteHook and return the related data', () => {
-      const query = gql `
+      const query = gql`
         {
           Customer {
             CustomerFindById(id: 3) {
@@ -261,9 +261,9 @@ describe('Queries', () => {
     });
   });
 
-  describe('Custom Remote methods', () =>{
+  describe('Custom Remote methods', () => {
     it('should run successfully if no param is provided', (done) => {
-      const query = gql `
+      const query = gql`
          { Author{ AuthorSearchByName {edges { node }} }  }`;
       chai.request(server)
         .post('/graphql')
@@ -273,13 +273,14 @@ describe('Queries', () => {
         .then((res, err) => {
           expect(res).to.have.status(200);
           done();
-        }).catch((err)=> {
+        })
+        .catch((err) => {
           throw err;
         });
     });
 
     it('should run successfully if empty params provided', (done) => {
-      const query = gql `
+      const query = gql`
          { Author{ AuthorSearchByName (filter:"", p1:"", p2:"") {edges { node }} }  }`;
       chai.request(server)
         .post('/graphql')
@@ -289,13 +290,14 @@ describe('Queries', () => {
         .then((res, err) => {
           expect(res).to.have.status(200);
           done();
-        }).catch((err)=> {
+        })
+        .catch((err) => {
           throw err;
         });
     });
 
     it('should run successfully if some params not provided', (done) => {
-      const query = gql `
+      const query = gql`
          { Author{ AuthorSearchByName (filter:"", p1:"123", p2:"") {edges { node }} }  }`;
       chai.request(server)
         .post('/graphql')
@@ -305,13 +307,14 @@ describe('Queries', () => {
         .then((res, err) => {
           expect(res).to.have.status(200);
           done();
-        }).catch((err)=> {
+        })
+        .catch((err) => {
           throw err;
         });
     });
 
     it('should run successfully if empty array is returned', (done) => {
-      const query = gql `
+      const query = gql`
          { Author{ AuthorSearchByName {edges { node }} }  }`;
       chai.request(server)
         .post('/graphql')
@@ -321,13 +324,14 @@ describe('Queries', () => {
         .then((res, err) => {
           expect(res).to.have.status(200);
           done();
-        }).catch((err)=> {
+        })
+        .catch((err) => {
           throw err;
         });
     });
 
     it('should run successfully data is returned', (done) => {
-      const query = gql `
+      const query = gql`
          { Author{ AuthorSearchByName (filter:{name:"Unit Test"}){edges { node }} }  }`;
       chai.request(server)
         .post('/graphql')
@@ -338,13 +342,14 @@ describe('Queries', () => {
           expect(res).to.have.status(200);
           expect(res.body.data.Author.AuthorSearchByName.edges.length).to.be.above(0);
           done();
-        }).catch((err)=> {
+        })
+        .catch((err) => {
           throw err;
         });
     });
 
     it('should return first record', (done) => {
-      const query = gql `
+      const query = gql`
          { Author{ AuthorSearchByName (filter:{name:"Unit Test"}, first:1){edges { node }} }  }`;
       chai.request(server)
         .post('/graphql')
@@ -355,7 +360,8 @@ describe('Queries', () => {
           expect(res).to.have.status(200);
           expect(res.body.data.Author.AuthorSearchByName.edges[0].node.firstName).to.equal('Unit Test');
           done();
-        }).catch((err)=> {
+        })
+        .catch((err) => {
           throw err;
         });
     });

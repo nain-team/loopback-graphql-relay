@@ -1,12 +1,9 @@
 /* eslint-disable no-unused-expressions */
-
 'use strict';
 
 const Promise = require('bluebird');
-
 const expect = require('chai').expect;
-const chai = require('chai')
-  .use(require('chai-http'));
+const chai = require('chai').use(require('chai-http'));
 const server = require('../server/server');
 const cpx = require('cpx');
 
@@ -19,7 +16,7 @@ describe('Pagination', () => {
   before(() => Promise.fromCallback(cb => cpx.copy('./data.json', './data/', cb)));
 
   it('should query first 2 entities', () => {
-    const query = gql `{
+    const query = gql`{
       viewer {
         sites(first: 2) {
           totalCount
@@ -53,7 +50,7 @@ describe('Pagination', () => {
   });
 
   it('should query entity after cursor', () => {
-    const query = gql `{
+    const query = gql`{
       viewer {
         sites(after: "Y29ubmVjdGlvbi4x", first: 1) {
           totalCount
@@ -90,7 +87,7 @@ describe('Pagination', () => {
   });
 
   it('should query related entity on edge', () => {
-    const query = gql `{
+    const query = gql`{
 			viewer {
 				sites (after: "U2l0ZTox", first: 1) {
 					pageInfo {

@@ -1,6 +1,7 @@
 'use strict';
 
 const _ = require('lodash');
+const checkAccess = require('../alc');
 
 const {
   mutationWithClientMutationId,
@@ -44,19 +45,25 @@ module.exports = function getRemoteMethodMutations(model) {
               resolve: o => o,
             },
           },
-          mutateAndGetPayload: (args) => {
+          mutateAndGetPayload: (args, context) => {
             const params = [];
 
             _.forEach(acceptingParams, (param, name) => {
               params.push(args[name]);
             });
-            const wrap = promisify(model[method.name]);
 
-            if (typeObj.list) {
-              return connectionFromPromisedArray(wrap.apply(model, params), args, model);
-            }
+            const modelId = args && args.id;
+            return checkAccess({
+              accessToken: context.req.accessToken, model, method, id: modelId,
+            }).then(() => {
+              const wrap = promisify(model[method.name]);
 
-            return wrap.apply(model, params);
+              if (typeObj.list) {
+                return connectionFromPromisedArray(wrap.apply(model, params), args, model);
+              }
+
+              return wrap.apply(model, params);
+            });
           },
         });
       }

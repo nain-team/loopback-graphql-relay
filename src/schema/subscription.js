@@ -3,7 +3,6 @@
 const _ = require('lodash');
 
 const {GraphQLObjectType} = require('graphql');
-
 const {getType} = require('../types/type');
 const subscriptionWithPayload = require('../subscriptions/subscriptionWithPayload');
 

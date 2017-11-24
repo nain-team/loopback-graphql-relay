@@ -13,7 +13,7 @@ describe('Types', () => {
 
   describe('GeoPoint', () => {
     it('should contain a single object with location', () => {
-      const query = gql `
+      const query = gql`
         {
           Googlemaps {
             GooglemapsFindOne(filter:{where: {id: 1}}) {
@@ -39,7 +39,7 @@ describe('Types', () => {
     });
 
     it('should have location distance of 486 miles', () => {
-      const query = gql `
+      const query = gql`
         {
           Googlemaps {
             GooglemapsFindOne(filter:{where: {id: 1}}) {

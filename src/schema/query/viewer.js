@@ -93,7 +93,8 @@ module.exports = function(models, options) {
       name: 'Viewer',
       description: 'Viewer',
       // interfaces: () => [nodeDefinitions.nodeInterface],
-      fields: () => Object.assign({},
+      fields: () => Object.assign(
+        {},
         getMeField(User),
         getRelatedModelFields(User)
       ),

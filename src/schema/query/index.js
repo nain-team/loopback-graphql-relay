@@ -10,7 +10,8 @@ const generateViewer = require('./viewer');
 function generateModelFields(models) {
   const modelFields = {};
   _.forEach(models, (model) => {
-    const fields = Object.assign({},
+    const fields = Object.assign(
+      {},
       getRemoteMethodQueries(model)
     );
 
@@ -32,7 +33,8 @@ function generateModelFields(models) {
 }
 
 module.exports = function(models, options) {
-  const fields = Object.assign({},
+  const fields = Object.assign(
+    {},
     {
       node: getType('node'),
       viewer: generateViewer(models, options),

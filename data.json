@@ -1,12 +1,12 @@
 {
   "ids": {
     "User": 3,
-    "AccessToken": 68,
+    "AccessToken": 70,
     "ACL": 1,
     "RoleMapping": 1,
     "Role": 1,
-    "Note": 67,
-    "Author": 76,
+    "Note": 69,
+    "Author": 78,
     "Reader": 2,
     "Book": 6,
     "BookAuthor": 3,
@@ -92,7 +92,9 @@
       "v9kPMkR2g4jFA393SB3zwHAvtacVB6zpJtcMFAC5OMQB33684OrlOevZZWKbctT9": "{\"id\":\"v9kPMkR2g4jFA393SB3zwHAvtacVB6zpJtcMFAC5OMQB33684OrlOevZZWKbctT9\",\"ttl\":1209600,\"created\":\"2017-11-24T10:11:03.669Z\",\"userId\":2}",
       "fDritmYEtwWDZpAcfkpNHa1FRE9cl9SeMEipcdrbwrKE8n45Uy1kSkTA56C9252L": "{\"id\":\"fDritmYEtwWDZpAcfkpNHa1FRE9cl9SeMEipcdrbwrKE8n45Uy1kSkTA56C9252L\",\"ttl\":1209600,\"created\":\"2017-11-24T10:11:21.835Z\",\"userId\":2}",
       "VWOJtJp8bkKHaSO7CSBBsClloBDikzqpKBHPE3UovTIpTGxcuX5s5DYQMULE91Av": "{\"id\":\"VWOJtJp8bkKHaSO7CSBBsClloBDikzqpKBHPE3UovTIpTGxcuX5s5DYQMULE91Av\",\"ttl\":1209600,\"created\":\"2017-11-24T10:12:15.619Z\",\"userId\":2}",
-      "wkyMUYlPNJRETOOfvaCxvaEZ1T7PhqkRO20jzz6xAUnRqGdsm5prVmN8BQM72Brd": "{\"id\":\"wkyMUYlPNJRETOOfvaCxvaEZ1T7PhqkRO20jzz6xAUnRqGdsm5prVmN8BQM72Brd\",\"ttl\":1209600,\"created\":\"2017-11-24T11:21:18.661Z\",\"userId\":2}"
+      "wkyMUYlPNJRETOOfvaCxvaEZ1T7PhqkRO20jzz6xAUnRqGdsm5prVmN8BQM72Brd": "{\"id\":\"wkyMUYlPNJRETOOfvaCxvaEZ1T7PhqkRO20jzz6xAUnRqGdsm5prVmN8BQM72Brd\",\"ttl\":1209600,\"created\":\"2017-11-24T11:21:18.661Z\",\"userId\":2}",
+      "yHSNaKV2LdoVz4W7Z6EugesWzT3kD7l6lmdurJTpPAbr0aj8WzSSsu5XkGJSGGhH": "{\"id\":\"yHSNaKV2LdoVz4W7Z6EugesWzT3kD7l6lmdurJTpPAbr0aj8WzSSsu5XkGJSGGhH\",\"ttl\":1209600,\"created\":\"2017-11-24T13:29:24.802Z\",\"userId\":2}",
+      "EmqupmRzFr0xB6ga1scPvVEo8ChzMHc7jMdTvKSk5gSpnoPN3F4aqaGT6d7RGPc5": "{\"id\":\"EmqupmRzFr0xB6ga1scPvVEo8ChzMHc7jMdTvKSk5gSpnoPN3F4aqaGT6d7RGPc5\",\"ttl\":1209600,\"created\":\"2017-11-24T13:32:17.702Z\",\"userId\":2}"
     },
     "ACL": {},
     "RoleMapping": {},
@@ -128,7 +130,9 @@
       "63": "{\"title\":\"Heckelbery Finn\",\"content\":{\"body\":\"Heckelbery Finn\",\"footer\":\"The end\"},\"authorId\":3,\"id\":63}",
       "64": "{\"title\":\"Heckelbery Finn\",\"content\":{\"body\":\"Heckelbery Finn\",\"footer\":\"The end\"},\"authorId\":3,\"id\":64}",
       "65": "{\"title\":\"Heckelbery Finn\",\"content\":{\"body\":\"Heckelbery Finn\",\"footer\":\"The end\"},\"authorId\":3,\"id\":65}",
-      "66": "{\"title\":\"Heckelbery Finn\",\"content\":{\"body\":\"Heckelbery Finn\",\"footer\":\"The end\"},\"authorId\":3,\"id\":66}"
+      "66": "{\"title\":\"Heckelbery Finn\",\"content\":{\"body\":\"Heckelbery Finn\",\"footer\":\"The end\"},\"authorId\":3,\"id\":66}",
+      "67": "{\"title\":\"Heckelbery Finn\",\"content\":{\"body\":\"Heckelbery Finn\",\"footer\":\"The end\"},\"authorId\":3,\"id\":67}",
+      "68": "{\"title\":\"Heckelbery Finn\",\"content\":{\"body\":\"Heckelbery Finn\",\"footer\":\"The end\"},\"authorId\":3,\"id\":68}"
     },
     "Author": {
       "3": "{\"firstName\":\"Virginia\",\"lastName\":\"Wolf\",\"birth_date\":\"2017-04-27T06:21:32.364Z\",\"friendIds\":[38,39],\"id\":3}",
@@ -147,7 +151,9 @@
       "72": "{\"firstName\":\"Unit Test\",\"lastName\":\"Author\",\"birth_date\":\"2017-11-23T12:34:34.419Z\",\"friendIds\":[],\"id\":72}",
       "73": "{\"firstName\":\"Unit Test\",\"lastName\":\"Author\",\"birth_date\":\"2017-11-24T06:01:50.731Z\",\"friendIds\":[],\"id\":73}",
       "74": "{\"firstName\":\"Unit Test\",\"lastName\":\"Author\",\"birthDate\":\"2017-11-24T10:12:15.420Z\",\"friendIds\":[],\"id\":74}",
-      "75": "{\"firstName\":\"Unit Test\",\"lastName\":\"Author\",\"birthDate\":\"2017-11-24T11:21:18.455Z\",\"friendIds\":[],\"id\":75}"
+      "75": "{\"firstName\":\"Unit Test\",\"lastName\":\"Author\",\"birthDate\":\"2017-11-24T11:21:18.455Z\",\"friendIds\":[],\"id\":75}",
+      "76": "{\"firstName\":\"Unit Test\",\"lastName\":\"Author\",\"birthDate\":\"2017-11-24T13:29:24.594Z\",\"friendIds\":[],\"id\":76}",
+      "77": "{\"firstName\":\"Unit Test\",\"lastName\":\"Author\",\"birthDate\":\"2017-11-24T13:32:17.492Z\",\"friendIds\":[],\"id\":77}"
     },
     "Reader": {
       "1": "{\"name\":\"Reader 1\",\"id\":1}"
