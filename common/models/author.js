@@ -42,7 +42,7 @@ module.exports = function(Author) {
       {arg: 'p2', type: 'object', description: ''},
     ],
     returns: {arg: 'result', type: 'array', root: true},
-    http: {path: '/searchByName', verb: 'get'},
+    http: {path: '/', verb: 'get'},
   });
 
   Author.searchByName = function searchByName(filter, p1, p2, cb) {

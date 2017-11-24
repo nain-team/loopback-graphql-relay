@@ -1,5 +1,6 @@
 'use strict';
 
+const Engine = require('apollo-engine').Engine;
 const graphql = require('graphql-server-express');
 const bodyParser = require('body-parser');
 const {getSchema} = require('./schema/index');
@@ -9,9 +10,29 @@ const startSubscriptionServer = require('./subscriptions');
 module.exports = function(app, options) {
   const models = app.models();
   const schema = getSchema(models, options);
-
-  const graphiqlPath = options.graphiqlPath || '/graphiql';
+  const apollo = options.apollo;
   const path = options.path || '/graphql';
+
+  if (apollo && !apollo.apiKey) {
+    throw new Error('Apollo engine api key is not defined');
+  }
+  if (apollo) {
+    const engine = new Engine({
+      engineConfig: {
+        apiKey: apollo.apiKey,
+        logging: {
+          level: apollo.debugLevel || 'DEBUG',   // Engine Proxy logging level. DEBUG, INFO, WARN or ERROR
+        },
+      },
+      graphqlPort: apollo.graphqlPort || 2000,  // GraphQL port
+      endpoint: path || '/graphql',                   // GraphQL endpoint suffix - '/graphql' by default
+      dumpTraffic: true,                       // Debug configuration that logs traffic between Proxy and GraphQL server
+    });
+
+    engine.start();
+
+    app.use(engine.expressMiddleware());
+  }
 
   app.use(path, bodyParser.json(), graphql.graphqlExpress(req => ({
     schema,
@@ -20,12 +41,12 @@ module.exports = function(app, options) {
       req,
     },
     tracing: true,
+
     cacheControl: true,
   })));
 
-  app.use(graphiqlPath, graphql.graphiqlExpress({
-    endpointURL: path,
-  }));
+  const graphiqlPath = options.graphiqlPath || '/graphiql';
+  app.use(graphiqlPath, graphql.graphiqlExpress({endpointURL: path}));
 
   // Subscriptions
   try {

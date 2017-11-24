@@ -1,8 +1,7 @@
 'use strict';
 
 const expect = require('chai').expect;
-const chai = require('chai')
-  .use(require('chai-http'));
+const chai = require('chai').use(require('chai-http'));
 const server = require('../server/server');
 const gql = require('graphql-tag');
 const Promise = require('bluebird');
@@ -262,19 +261,87 @@ describe('Queries', () => {
     });
   });
 
-  describe('Remote methods', () =>{
-    it('should work custom remote end point', ()=>{
+  describe('Custom Remote methods', () =>{
+    it('should run successfully if no param is provided', (done) => {
       const query = gql `
-         { Author{ AuthorSearchByName (filter:"atif") {edges { node }} }  }`;
-      return chai.request(server)
+         { Author{ AuthorSearchByName {edges { node }} }  }`;
+      chai.request(server)
         .post('/graphql')
         .send({
           query,
         })
-        .then((res) => {
+        .then((res, err) => {
           expect(res).to.have.status(200);
           expect(res.body).to.have.deep.property('data');
-          expect(res.body.data.Author.AuthorSearchByName.edges[0].node).to.have.deep.property('input');
+          done();
+        }).catch((err)=> {
+          throw err;
+        });
+    });
+
+    it('should run successfully if empty params provided', (done) => {
+      const query = gql `
+         { Author{ AuthorSearchByName (filter:"", p1:"", p2:"") {edges { node }} }  }`;
+      chai.request(server)
+        .post('/graphql')
+        .send({
+          query,
+        })
+        .then((res, err) => {
+          expect(res).to.have.status(200);
+          expect(res.body).to.have.deep.property('data');
+          done();
+        }).catch((err)=> {
+          throw err;
+        });
+    });
+
+    it('should run successfully if some params not provided', (done) => {
+      const query = gql `
+         { Author{ AuthorSearchByName (filter:"", p1:"123", p2:"") {edges { node }} }  }`;
+      chai.request(server)
+        .post('/graphql')
+        .send({
+          query,
+        })
+        .then((res, err) => {
+          expect(res).to.have.status(200);
+          expect(res.body).to.have.deep.property('data');
+          done();
+        }).catch((err)=> {
+          throw err;
+        });
+    });
+
+    it('should return first record', (done) => {
+      const query = gql `
+         { Author{ AuthorSearchByName (first: 1) {edges { node }} }  }`;
+      chai.request(server)
+        .post('/graphql')
+        .send({
+          query,
+        })
+        .then((res, err) => {
+          expect(res).to.have.status(200);
+          expect(res.body).to.have.deep.property('data');
+          done();
+        }).catch((err)=> {
+          throw err;
+        });
+    });
+
+    it('should return last record', (done) => {
+      const query = gql `
+         { Author{ AuthorSearchByName (last: 1) {edges { node }} }  }`;
+      chai.request(server)
+        .post('/graphql')
+        .send({
+          query,
+        })
+        .then((res, err) => {
+          expect(res).to.have.status(200);
+          expect(res.body).to.have.deep.property('data');
+          done();
         }).catch((err)=> {
           throw err;
         });

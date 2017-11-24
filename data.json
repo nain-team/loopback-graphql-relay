@@ -1,12 +1,12 @@
 {
   "ids": {
     "User": 3,
-    "AccessToken": 62,
+    "AccessToken": 63,
     "ACL": 1,
     "RoleMapping": 1,
     "Role": 1,
-    "Note": 61,
-    "Author": 73,
+    "Note": 62,
+    "Author": 74,
     "Reader": 2,
     "Book": 6,
     "BookAuthor": 3,
@@ -86,7 +86,8 @@
       "8HfWc7Cy7JuBRnV7KJ2A5kY7cXYwYdWAtIBGC4UlmspX4esuWLD2ub0wXvYaXdY7": "{\"id\":\"8HfWc7Cy7JuBRnV7KJ2A5kY7cXYwYdWAtIBGC4UlmspX4esuWLD2ub0wXvYaXdY7\",\"ttl\":1209600,\"created\":\"2017-11-23T07:29:54.479Z\",\"userId\":2}",
       "D4DPToB1TsW62xSWBcXJuvrtjwVPviCsDPHdw80rr906gKypAiThNSDgXoPXpsvk": "{\"id\":\"D4DPToB1TsW62xSWBcXJuvrtjwVPviCsDPHdw80rr906gKypAiThNSDgXoPXpsvk\",\"ttl\":1209600,\"created\":\"2017-11-23T07:34:50.322Z\",\"userId\":2}",
       "Br6H3HtZCzDpkpYplIuB5TxnmaHwdDQ1Z7swiRq6EQMzMqqWjI1gSGLX6ABnKpaO": "{\"id\":\"Br6H3HtZCzDpkpYplIuB5TxnmaHwdDQ1Z7swiRq6EQMzMqqWjI1gSGLX6ABnKpaO\",\"ttl\":1209600,\"created\":\"2017-11-23T07:50:58.660Z\",\"userId\":2}",
-      "FPTYRGXySVKUaAI20C3dx3d6ioupCEXo6dRoFG4rQjACaR0yM42uI5E1HVlkBiVS": "{\"id\":\"FPTYRGXySVKUaAI20C3dx3d6ioupCEXo6dRoFG4rQjACaR0yM42uI5E1HVlkBiVS\",\"ttl\":1209600,\"created\":\"2017-11-23T12:34:34.622Z\",\"userId\":2}"
+      "FPTYRGXySVKUaAI20C3dx3d6ioupCEXo6dRoFG4rQjACaR0yM42uI5E1HVlkBiVS": "{\"id\":\"FPTYRGXySVKUaAI20C3dx3d6ioupCEXo6dRoFG4rQjACaR0yM42uI5E1HVlkBiVS\",\"ttl\":1209600,\"created\":\"2017-11-23T12:34:34.622Z\",\"userId\":2}",
+      "wtMr1OhZ6x1eBS2S2s3mLslSxY29QnSDJnqH8WxW3zX2FrxPDtDGMUnjhJpb6hkM": "{\"id\":\"wtMr1OhZ6x1eBS2S2s3mLslSxY29QnSDJnqH8WxW3zX2FrxPDtDGMUnjhJpb6hkM\",\"ttl\":1209600,\"created\":\"2017-11-24T06:01:50.937Z\",\"userId\":2}"
     },
     "ACL": {},
     "RoleMapping": {},
@@ -116,7 +117,8 @@
       "57": "{\"title\":\"Heckelbery Finn\",\"content\":{\"body\":\"Heckelbery Finn\",\"footer\":\"The end\"},\"authorId\":3,\"id\":57}",
       "58": "{\"title\":\"Heckelbery Finn\",\"content\":{\"body\":\"Heckelbery Finn\",\"footer\":\"The end\"},\"authorId\":3,\"id\":58}",
       "59": "{\"title\":\"Heckelbery Finn\",\"content\":{\"body\":\"Heckelbery Finn\",\"footer\":\"The end\"},\"authorId\":3,\"id\":59}",
-      "60": "{\"title\":\"Heckelbery Finn\",\"content\":{\"body\":\"Heckelbery Finn\",\"footer\":\"The end\"},\"authorId\":3,\"id\":60}"
+      "60": "{\"title\":\"Heckelbery Finn\",\"content\":{\"body\":\"Heckelbery Finn\",\"footer\":\"The end\"},\"authorId\":3,\"id\":60}",
+      "61": "{\"title\":\"Heckelbery Finn\",\"content\":{\"body\":\"Heckelbery Finn\",\"footer\":\"The end\"},\"authorId\":3,\"id\":61}"
     },
     "Author": {
       "3": "{\"first_name\":\"Virginia\",\"last_name\":\"Wolf\",\"birth_date\":\"2017-04-27T06:21:32.364Z\",\"friendIds\":[38,39],\"id\":3}",
@@ -132,7 +134,8 @@
       "69": "{\"first_name\":\"Unit Test\",\"last_name\":\"Author\",\"birth_date\":\"2017-11-23T07:29:54.274Z\",\"friendIds\":[],\"id\":69}",
       "70": "{\"first_name\":\"Unit Test\",\"last_name\":\"Author\",\"birth_date\":\"2017-11-23T07:34:50.118Z\",\"friendIds\":[],\"id\":70}",
       "71": "{\"first_name\":\"Unit Test\",\"last_name\":\"Author\",\"birth_date\":\"2017-11-23T07:50:58.453Z\",\"friendIds\":[],\"id\":71}",
-      "72": "{\"first_name\":\"Unit Test\",\"last_name\":\"Author\",\"birth_date\":\"2017-11-23T12:34:34.419Z\",\"friendIds\":[],\"id\":72}"
+      "72": "{\"first_name\":\"Unit Test\",\"last_name\":\"Author\",\"birth_date\":\"2017-11-23T12:34:34.419Z\",\"friendIds\":[],\"id\":72}",
+      "73": "{\"first_name\":\"Unit Test\",\"last_name\":\"Author\",\"birth_date\":\"2017-11-24T06:01:50.731Z\",\"friendIds\":[],\"id\":73}"
     },
     "Reader": {
       "1": "{\"name\":\"Reader 1\",\"id\":1}"
