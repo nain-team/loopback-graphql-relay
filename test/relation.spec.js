@@ -15,7 +15,7 @@ describe('Relations', () => {
     const query = gql`
               {
                 Customer {
-                  CustomerFind(first: 2) {
+                  CustomerFind(first: 1) {
                     edges {
                       node {
                         name
@@ -44,15 +44,15 @@ describe('Relations', () => {
       })
       .then((res) => {
         expect(res).to.have.status(200);
-        expect(res.body.data.Customer.CustomerFind.edges.length).to.equal(2);
+        expect(res.body.data.Customer.CustomerFind.edges.length).to.equal(1);
       });
   });
 
   describe('hasManyAndBelongsToMany', () => {
-    it('Author should have two books', () => {
+    it('Author should have three books', () => {
       const query = gql`
         {
-          node(id: "QXV0aG9yOjM=") {
+          node(id: "QXV0aG9yOjE=") {
             ... on Author {
               id
               firstName
@@ -84,8 +84,8 @@ describe('Relations', () => {
         .then((res) => {
           expect(res).to.have.status(200);
           const result = res.body.data;
-          expect(result.node.firstName).to.equal('Virginia');
-          expect(result.node.books.totalCount).to.equal(2);
+          expect(result.node.firstName).to.equal('Iqbal');
+          expect(result.node.books.totalCount).to.equal(3);
         });
     });
   });
@@ -95,7 +95,7 @@ describe('Relations', () => {
       const query = gql`
         {
           Author {
-            AuthorFindById(id: 3) {
+            AuthorFindById(id: 1) {
               id
               firstName
               lastName
@@ -118,22 +118,22 @@ describe('Relations', () => {
         .then((res) => {
           expect(res).to.have.status(200);
           const result = res.body.data;
-          expect(result.Author.AuthorFindById.firstName).to.equal('Virginia');
-          expect(result.Author.AuthorFindById.notes.edges.length).to.be.above(4);
+          expect(result.Author.AuthorFindById.firstName).to.equal('Iqbal');
+          expect(result.Author.AuthorFindById.notes.edges.length).to.be.above(0);
         });
     });
   });
 
   describe('referencesMany', () => {
-    it('should have one author and two friendIds', () => {
+    it('should have one author and 1 friendIds', () => {
       const query = gql`
         {
-          node(id: "QXV0aG9yOjM=") {
+          node(id: "QXV0aG9yOjE=") {
             ... on Author {
               id
               firstName
               lastName
-              friendIds
+              friendId
             }
           }
         }`;
@@ -145,8 +145,8 @@ describe('Relations', () => {
         .then((res) => {
           expect(res).to.have.status(200);
           const result = res.body.data;
-          expect(result.node.firstName).to.equal('Virginia');
-          expect(result.node.friendIds.length).to.equal(2);
+          expect(result.node.firstName).to.equal('Iqbal');
+          expect(result.node.friendId.length).to.equal(1);
         });
     });
   });
@@ -174,7 +174,7 @@ describe('Relations', () => {
           expect(res).to.have.status(200);
           const result = res.body.data;
           expect(result.Book.BookFindById.name).to.equal('Book 1');
-          expect(result.Book.BookFindById.links.length).to.equal(2);
+          expect(result.Book.BookFindById.links.length).to.equal(1);
         });
     });
   });
@@ -183,7 +183,7 @@ describe('Relations', () => {
     it('should have a billingAddress', () => {
       const query = gql`
         {
-          node(id: "Q3VzdG9tZXI6Ng==") {
+          node(id: "Q3VzdG9tZXI6MQ==") {
             ... on Customer {
               id
               billingAddress {
@@ -204,7 +204,7 @@ describe('Relations', () => {
         .then((res) => {
           expect(res).to.have.status(200);
           const result = res.body.data;
-          expect(result.node.billingAddress.zipCode).to.equal('95131');
+          expect(result.node.billingAddress.zipCode).to.equal('54900');
         });
     });
   });
@@ -213,7 +213,7 @@ describe('Relations', () => {
     it('should have a note and its owner', () => {
       const query = gql`
         {
-          node(id: "Tm90ZToy") {
+          node(id: "Tm90ZTox") {
             ... on Note {
               id
               title
@@ -233,8 +233,8 @@ describe('Relations', () => {
         .then((res) => {
           expect(res).to.have.status(200);
           const result = res.body.data;
-          expect(result.node.title).to.equal('Who is Afraid');
-          expect(result.node.author.firstName).to.equal('Virginia');
+          expect(result.node.title).to.equal('Note 1');
+          expect(result.node.author.firstName).to.equal('Iqbal');
         });
     });
   });
@@ -262,7 +262,7 @@ describe('Relations', () => {
         .then((res) => {
           expect(res).to.have.status(200);
           const result = res.body.data;
-          expect(result.Order.OrderFindById.customer.name).to.equal('Customer A');
+          expect(result.Order.OrderFindById.customer.name).to.equal('Customer 1');
         });
     });
   });

@@ -8,9 +8,6 @@
   },
   "mixins": {},
   "properties": {
-    "id": {
-      "type": "string"
-    },
     "name": {
       "type": "string",
       "required": true
@@ -28,7 +25,7 @@
   },
   "validations": [],
   "relations": {
-    "owner": {
+    "account": {
       "type": "belongsTo",
       "model": "Account",
       "foreignKey": ""
@@ -39,25 +36,6 @@
       "foreignKey": ""
     }
   },
-  "acls": [
-    {
-      "accessType": "*",
-      "principalType": "ROLE",
-      "principalId": "$everyone",
-      "permission": "DENY"
-    },
-    {
-      "accessType": "*",
-      "principalType": "ROLE",
-      "principalId": "$authenticated",
-      "permission": "ALLOW"
-    },
-    {
-      "accessType": "*",
-      "principalType": "ROLE",
-      "principalId": "$owner",
-      "permission": "ALLOW"
-    }
-  ],
+  "acls": [],
   "methods": {}
 }

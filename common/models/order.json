@@ -16,14 +16,8 @@
   "validations": [],
   "relations": {
     "customer": {
-      "type": "hasOne",
-      "model": "Customer",
-      "foreignKey": "id"
-    },
-    "owner": {
       "type": "belongsTo",
-      "model": "Account",
-      "foreignKey": ""
+      "model": "Customer"
     }
   },
   "acls": [],

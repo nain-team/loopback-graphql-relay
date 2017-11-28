@@ -41,8 +41,7 @@
     },
     "orders": {
       "type": "hasMany",
-      "model": "Order",
-      "foreignKey": "id"
+      "model": "Order"
     }
   },
   "acls": [],

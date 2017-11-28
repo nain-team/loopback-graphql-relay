@@ -49,7 +49,7 @@
   },
   "Reader": {
     "dataSource": "db",
-    "public": false
+    "public": true
   },
   "Book": {
     "dataSource": "db",

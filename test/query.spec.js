@@ -19,9 +19,9 @@ describe('Queries', () => {
                   edges {
                     node {
                       name
-                      owner {
-                        username
-                      }
+                        account {
+                            username
+                        }
                     }
                   }
                 }
@@ -29,7 +29,7 @@ describe('Queries', () => {
             }`;
       return chai.request(server)
         .post('/graphql')
-        .set('Authorization', 'iZF7aA2eXoadDrPDhFiqj6HvrbHNl2akDcoZ5DDD716QKI9h8ERqcLgU1EIQDlGo')
+        .set('Authorization', 'PFzHFTtogUDB0l60MvHh4nnqg2DaD8UoHV3XtKEfKvAQJOxnTl151XLXC7ulIXWG')
         .send({
           query,
         })
@@ -37,8 +37,8 @@ describe('Queries', () => {
           expect(res).to.have.status(200);
           const result = res.body.data;
           expect(result.viewer.sites.edges.length).to.equal(1);
-          expect(result.viewer.sites.edges[0].node.name).to.equal('Site B of owner 5');
-          expect(result.viewer.sites.edges[0].node.owner.username).to.equal('aatif');
+          expect(result.viewer.sites.edges[0].node.name).to.equal('Blueeast');
+          expect(result.viewer.sites.edges[0].node.account.username).to.equal('aatif');
         });
     });
   });
@@ -54,13 +54,13 @@ describe('Queries', () => {
       }`;
     return chai.request(server)
       .post('/graphql')
-      .set('Authorization', 'iZF7aA2eXoadDrPDhFiqj6HvrbHNl2akDcoZ5DDD716QKI9h8ERqcLgU1EIQDlGo')
+      .set('Authorization', 'PFzHFTtogUDB0l60MvHh4nnqg2DaD8UoHV3XtKEfKvAQJOxnTl151XLXC7ulIXWG')
       .send({
         query,
       })
       .then((res) => {
         expect(res).to.have.status(200);
-        expect(res.body.data.viewer.sites.totalCount).to.equal(3);
+        expect(res.body.data.viewer.sites.totalCount).to.equal(2);
       });
   });
 
@@ -81,14 +81,14 @@ describe('Queries', () => {
       }`;
     return chai.request(server)
       .post('/graphql')
-      .set('Authorization', 'iZF7aA2eXoadDrPDhFiqj6HvrbHNl2akDcoZ5DDD716QKI9h8ERqcLgU1EIQDlGo')
+      .set('Authorization', 'PFzHFTtogUDB0l60MvHh4nnqg2DaD8UoHV3XtKEfKvAQJOxnTl151XLXC7ulIXWG')
       .send({
         query,
       })
       .then((res) => {
         expect(res).to.have.status(200);
-        expect(res.body.data.viewer.sites.totalCount).to.equal(3);
-        expect(res.body.data.viewer.sites.edges[0].node.name).to.equal('Site C of owner 5');
+        expect(res.body.data.viewer.sites.totalCount).to.equal(2);
+        expect(res.body.data.viewer.sites.edges[0].node.name).to.equal('Orient');
       });
   });
 
@@ -101,14 +101,14 @@ describe('Queries', () => {
       }`;
     return chai.request(server)
       .post('/graphql')
-      .set('Authorization', 'iZF7aA2eXoadDrPDhFiqj6HvrbHNl2akDcoZ5DDD716QKI9h8ERqcLgU1EIQDlGo')
+      .set('Authorization', 'PFzHFTtogUDB0l60MvHh4nnqg2DaD8UoHV3XtKEfKvAQJOxnTl151XLXC7ulIXWG')
       .send({
         query,
       })
       .then((res) => {
         expect(res).to.have.status(200);
         expect(res.body.data.viewer.me.username).to.equal('aatif');
-        expect(res.body.data.viewer.me.email).to.equal('aatif@email.com');
+        expect(res.body.data.viewer.me.email).to.equal('aatif.hussain@outlook.com');
       });
   });
 
@@ -134,8 +134,8 @@ describe('Queries', () => {
     it('exists', () => {
       const query = gql`
         {
-          Reader {
-            exists: ReaderExists(id: 1) 
+          Author {
+            exists: AuthorExists(id: 1)
           }
         }`;
       return chai.request(server)
@@ -145,7 +145,7 @@ describe('Queries', () => {
         })
         .then((res) => {
           expect(res).to.have.status(200);
-          expect(res.body.data.Reader.exists).to.equal(true);
+          expect(res.body.data.Author.exists).to.equal(true);
         });
     });
 
@@ -153,7 +153,7 @@ describe('Queries', () => {
       const query = gql`
         {
           Author {
-            AuthorFindOne(filter: { where: {id: 3}}) {
+            AuthorFindOne(filter: { where: {id: 1}}) {
               id
               firstName
               lastName
@@ -167,8 +167,8 @@ describe('Queries', () => {
         })
         .then((res) => {
           expect(res).to.have.status(200);
-          expect(res.body.data.Author.AuthorFindOne.firstName).to.equal('Virginia');
-          expect(res.body.data.Author.AuthorFindOne.lastName).to.equal('Wolf');
+          expect(res.body.data.Author.AuthorFindOne.firstName).to.equal('Iqbal');
+          expect(res.body.data.Author.AuthorFindOne.lastName).to.equal('Sb');
         });
     });
 
@@ -176,7 +176,7 @@ describe('Queries', () => {
       const query = gql`
         {
           Author {
-            AuthorFindById(id: 3) {
+            AuthorFindById(id: 1) {
               id
               firstName
               lastName
@@ -190,8 +190,8 @@ describe('Queries', () => {
         })
         .then((res) => {
           expect(res).to.have.status(200);
-          expect(res.body.data.Author.AuthorFindById.firstName).to.equal('Virginia');
-          expect(res.body.data.Author.AuthorFindById.lastName).to.equal('Wolf');
+          expect(res.body.data.Author.AuthorFindById.firstName).to.equal('Iqbal');
+          expect(res.body.data.Author.AuthorFindById.lastName).to.equal('Sb');
         });
     });
 
@@ -216,7 +216,7 @@ describe('Queries', () => {
         })
         .then((res) => {
           expect(res).to.have.status(200);
-          expect(res.body.data.Book.BookFind.edges.length).to.be.above(2);
+          expect(res.body.data.Book.BookFind.edges.length).to.be.above(0);
         });
     });
 
@@ -224,7 +224,7 @@ describe('Queries', () => {
       const query = gql`
         {
           Customer {
-            CustomerFindById(id: 3) {
+            CustomerFindById(id: 1) {
               name
               age
               billingAddress {

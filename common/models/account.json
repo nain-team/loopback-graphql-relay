@@ -19,12 +19,7 @@
     "sites": {
       "type": "hasMany",
       "model": "Site",
-      "foreignKey": "ownerId"
-    },
-    "order": {
-      "type": "hasMany",
-      "model": "Order",
-      "foreignKey": "ownerId"
+      "foreignKey": "accountId"
     },
     "accessTokens": {
       "type": "hasMany",

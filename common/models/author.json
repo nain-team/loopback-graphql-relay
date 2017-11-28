@@ -18,13 +18,6 @@
     "birthDate": {
       "type": "date",
       "required": true
-    },
-    "user": {
-      "type": "User",
-      "required": false
-    },
-    "dream": {
-      "type": "Object"
     }
   },
   "validations": [],
@@ -34,19 +27,15 @@
       "model": "Note",
       "foreignKey": ""
     },
+    "books": {
+      "type": "hasMany",
+      "model": "Book",
+      "foreignKey": "authorId"
+    },
     "friends": {
       "type": "referencesMany",
       "model": "Author",
-      "foreignKey": "friendIds"
-    },
-    "others": {
-      "type": "hasMany",
-      "model": "Author"
-    },
-    "books": {
-      "type": "hasAndBelongsToMany",
-      "model": "Book",
-      "foreignKey": ""
+      "foreignKey": "friendId"
     }
   },
   "acls": [],
