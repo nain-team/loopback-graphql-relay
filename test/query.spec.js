@@ -168,7 +168,7 @@ describe('Queries', () => {
         .then((res) => {
           expect(res).to.have.status(200);
           expect(res.body.data.Author.AuthorFindOne.firstName).to.equal('Iqbal');
-          expect(res.body.data.Author.AuthorFindOne.lastName).to.equal('Sb');
+          expect(res.body.data.Author.AuthorFindOne.lastName).to.equal('Muhammad');
         });
     });
 
@@ -191,7 +191,7 @@ describe('Queries', () => {
         .then((res) => {
           expect(res).to.have.status(200);
           expect(res.body.data.Author.AuthorFindById.firstName).to.equal('Iqbal');
-          expect(res.body.data.Author.AuthorFindById.lastName).to.equal('Sb');
+          expect(res.body.data.Author.AuthorFindById.lastName).to.equal('Muhammad');
         });
     });
 

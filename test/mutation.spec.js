@@ -90,7 +90,7 @@ describe('Mutations', () => {
         const result = res.body.data;
         expect(result.Note.NoteCreate.obj.content.body).to.equal(body);
         expect(result.Note.NoteCreate.obj.author.firstName).to.equal('Iqbal');
-        expect(result.Note.NoteCreate.obj.author.lastName).to.equal('Sb');
+        expect(result.Note.NoteCreate.obj.author.lastName).to.equal('Muhammad');
       });
   });
 
