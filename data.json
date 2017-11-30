@@ -7,18 +7,18 @@
     "Role": 1,
     "Customer": 2,
     "Account": 2,
-    "Author": 23,
+    "Author": 24,
     "Reader": 1,
     "Book": 4,
     "BookAuthor": 1,
     "Order": 3,
-    "Note": 26,
+    "Note": 27,
     "Googlemaps": 1,
     "products": 1,
     "catalogs": 1,
     "Site": 3,
     "SiteBook": 2,
-    "CustomAccessToken": 31
+    "CustomAccessToken": 33
   },
   "models": {
     "User": {},
@@ -53,7 +53,8 @@
       "19": "{\"firstName\":\"Unit Test\",\"lastName\":\"Author\",\"birthDate\":\"2017-11-30T09:52:13.069Z\",\"friendId\":[],\"id\":19}",
       "20": "{\"firstName\":\"Unit Test\",\"lastName\":\"Author\",\"birthDate\":\"2017-11-30T09:52:29.102Z\",\"friendId\":[],\"id\":20}",
       "21": "{\"firstName\":\"Unit Test\",\"lastName\":\"Author\",\"birthDate\":\"2017-11-30T09:58:31.808Z\",\"friendId\":[],\"id\":21}",
-      "22": "{\"firstName\":\"Unit Test\",\"lastName\":\"Author\",\"birthDate\":\"2017-11-30T10:01:07.604Z\",\"friendId\":[],\"id\":22}"
+      "22": "{\"firstName\":\"Unit Test\",\"lastName\":\"Author\",\"birthDate\":\"2017-11-30T10:01:07.604Z\",\"friendId\":[],\"id\":22}",
+      "23": "{\"firstName\":\"Unit Test\",\"lastName\":\"Author\",\"birthDate\":\"2017-11-30T12:32:20.086Z\",\"friendId\":[],\"id\":23}"
     },
     "Reader": {},
     "Book": {
@@ -91,7 +92,8 @@
       "22": "{\"title\":\"Note added by unit test\",\"content\":{\"body\":\"Heckelbery Finn\",\"footer\":\"The end\"},\"authorId\":1,\"id\":22}",
       "23": "{\"title\":\"Note added by unit test\",\"content\":{\"body\":\"Heckelbery Finn\",\"footer\":\"The end\"},\"authorId\":1,\"id\":23}",
       "24": "{\"title\":\"Note added by unit test\",\"content\":{\"body\":\"Heckelbery Finn\",\"footer\":\"The end\"},\"authorId\":1,\"id\":24}",
-      "25": "{\"title\":\"Note added by unit test\",\"content\":{\"body\":\"Heckelbery Finn\",\"footer\":\"The end\"},\"authorId\":1,\"id\":25}"
+      "25": "{\"title\":\"Note added by unit test\",\"content\":{\"body\":\"Heckelbery Finn\",\"footer\":\"The end\"},\"authorId\":1,\"id\":25}",
+      "26": "{\"title\":\"Note added by unit test\",\"content\":{\"body\":\"Heckelbery Finn\",\"footer\":\"The end\"},\"authorId\":1,\"id\":26}"
     },
     "Googlemaps": {
       "1": "{\"location\":{\"lat\":10,\"lng\":10},\"id\":1}"
@@ -135,7 +137,9 @@
       "OLcM1NDXFJi71FvI20OYC5M6yNy7T4RdDTiHNquCorSYGHMGk7WaQTcbGdaGNohe": "{\"id\":\"OLcM1NDXFJi71FvI20OYC5M6yNy7T4RdDTiHNquCorSYGHMGk7WaQTcbGdaGNohe\",\"ttl\":1209600,\"created\":\"2017-11-30T09:58:31.959Z\",\"userId\":1,\"principalType\":\"Account\"}",
       "EYpBnFpEzjYbIJGm9V5Gc2Jb64L5kMd4NDBd8RacFF63eIDXcvJQjCgJd6HJ3CmI": "{\"id\":\"EYpBnFpEzjYbIJGm9V5Gc2Jb64L5kMd4NDBd8RacFF63eIDXcvJQjCgJd6HJ3CmI\",\"ttl\":1209600,\"created\":\"2017-11-30T09:58:32.064Z\",\"userId\":1,\"principalType\":\"Account\"}",
       "2RKroJCqVp312iRQhC2Ko7C2EOnKuce5MJ9oEdGG08u2BjRcN8R3wA5HHDfdsWT1": "{\"id\":\"2RKroJCqVp312iRQhC2Ko7C2EOnKuce5MJ9oEdGG08u2BjRcN8R3wA5HHDfdsWT1\",\"ttl\":1209600,\"created\":\"2017-11-30T10:01:07.762Z\",\"userId\":1,\"principalType\":\"Account\"}",
-      "NKjGLcaEoiDzDJTrZPw5h1m15BggdfKsrCQgze9XQArfM7Jl1xheUXUzdBIBDyPw": "{\"id\":\"NKjGLcaEoiDzDJTrZPw5h1m15BggdfKsrCQgze9XQArfM7Jl1xheUXUzdBIBDyPw\",\"ttl\":1209600,\"created\":\"2017-11-30T10:01:07.869Z\",\"userId\":1,\"principalType\":\"Account\"}"
+      "NKjGLcaEoiDzDJTrZPw5h1m15BggdfKsrCQgze9XQArfM7Jl1xheUXUzdBIBDyPw": "{\"id\":\"NKjGLcaEoiDzDJTrZPw5h1m15BggdfKsrCQgze9XQArfM7Jl1xheUXUzdBIBDyPw\",\"ttl\":1209600,\"created\":\"2017-11-30T10:01:07.869Z\",\"userId\":1,\"principalType\":\"Account\"}",
+      "LoY9ngBosQv0w95EUKgdb2gzOXlaM0DDsXe900cCGd5zLaOi6buBAMrGWEonL8kX": "{\"id\":\"LoY9ngBosQv0w95EUKgdb2gzOXlaM0DDsXe900cCGd5zLaOi6buBAMrGWEonL8kX\",\"ttl\":1209600,\"created\":\"2017-11-30T12:32:20.307Z\",\"userId\":1,\"principalType\":\"Account\"}",
+      "54DFOVZ4qQc0ytislj4xcm0g589ehbrbOVvn9Lb8ox15UXFvlLolhAy9Up91htcG": "{\"id\":\"54DFOVZ4qQc0ytislj4xcm0g589ehbrbOVvn9Lb8ox15UXFvlLolhAy9Up91htcG\",\"ttl\":1209600,\"created\":\"2017-11-30T12:32:20.462Z\",\"userId\":1,\"principalType\":\"Account\"}"
     }
   }
 }
