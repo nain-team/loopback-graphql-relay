@@ -64,7 +64,7 @@ describe('Queries', () => {
       });
   });
 
-  it('should sort books by name in descending order', () => {
+  it('should sort sites by name in descending order', () => {
     const query = gql`
       {
         viewer {
@@ -211,6 +211,7 @@ describe('Queries', () => {
         }`;
       return chai.request(server)
         .post('/graphql')
+        .set('Authorization', 'PFzHFTtogUDB0l60MvHh4nnqg2DaD8UoHV3XtKEfKvAQJOxnTl151XLXC7ulIXWG')
         .send({
           query,
         })

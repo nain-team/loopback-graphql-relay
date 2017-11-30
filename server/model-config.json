@@ -90,5 +90,9 @@
   "CustomAccessToken": {
     "dataSource": "db",
     "public": false
+  },
+  "PassToken": {
+    "dataSource": "db",
+    "public": true
   }
 }
