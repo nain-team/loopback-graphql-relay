@@ -26,32 +26,34 @@ const gql = require('graphql-tag');
 // var _ = require('lodash');
 
 describe('Pagination', () => {
-  before(() => Promise.fromCallback(cb => cpx.copy('./data.json', './data/', cb)));
+  before(() => Promise.fromCallback(cb =>
+    cpx.copy('./data.json', './data/', cb)));
 
   it('should query first 2 entities', () => {
     const query = gql`{
-      viewer {
-        sites(first: 2) {
-          totalCount
-          pageInfo {
-            hasNextPage
-            hasPreviousPage
-            startCursor
-            endCursor
-          }
-          edges {
-            node {
-              id 
-              name
+            viewer {
+                sites(first: 2) {
+                    totalCount
+                    pageInfo {
+                        hasNextPage
+                        hasPreviousPage
+                        startCursor
+                        endCursor
+                    }
+                    edges {
+                        node {
+                            id
+                            name
+                        }
+                        cursor
+                    }
+                }
             }
-            cursor
-          }
-        }
-      }
-    }`;
+        }`;
     return chai.request(server)
       .post('/graphql')
-      .set('Authorization', 'PFzHFTtogUDB0l60MvHh4nnqg2DaD8UoHV3XtKEfKvAQJOxnTl151XLXC7ulIXWG')
+      .set('Authorization',
+        'PFzHFTtogUDB0l60MvHh4nnqg2DaD8UoHV3XtKEfKvAQJOxnTl151XLXC7ulIXWG')
       .send({
         query,
       })
@@ -64,28 +66,29 @@ describe('Pagination', () => {
 
   it('should query entity after cursor', () => {
     const query = gql`{
-      viewer {
-        sites(after: "U2l0ZTox", first: 1) {
-          totalCount
-          pageInfo {
-            hasNextPage
-            hasPreviousPage
-            startCursor
-            endCursor
-          }
-          edges {
-            node {
-              id
-              name
+            viewer {
+                sites(after: "U2l0ZTox", first: 1) {
+                    totalCount
+                    pageInfo {
+                        hasNextPage
+                        hasPreviousPage
+                        startCursor
+                        endCursor
+                    }
+                    edges {
+                        node {
+                            id
+                            name
+                        }
+                        cursor
+                    }
+                }
             }
-            cursor
-          }
-        }
-      }
-    }`;
+        }`;
     return chai.request(server)
       .post('/graphql')
-      .set('Authorization', 'PFzHFTtogUDB0l60MvHh4nnqg2DaD8UoHV3XtKEfKvAQJOxnTl151XLXC7ulIXWG')
+      .set('Authorization',
+        'PFzHFTtogUDB0l60MvHh4nnqg2DaD8UoHV3XtKEfKvAQJOxnTl151XLXC7ulIXWG')
       .send({
         query,
       })
@@ -94,42 +97,44 @@ describe('Pagination', () => {
         res = res.body.data;
         expect(res.viewer.sites.totalCount).to.equal(2);
         expect(res.viewer.sites.edges.length).to.be.above(0);
-        expect(fromGlobalId(res.viewer.sites.edges[0].node.id).id).to.equal('1');
+        expect(fromGlobalId(res.viewer.sites.edges[0].node.id).id)
+          .to.equal('1');
         expect(res.viewer.sites.pageInfo.hasNextPage).to.be.true;
       });
   });
 
   it('should query related entity on edge', () => {
     const query = gql`{
-			viewer {
-				sites (after: "U2l0ZTox", first: 1) {
-					pageInfo {
-						hasNextPage
-						hasPreviousPage
-						startCursor
-						endCursor
-					}
-					edges {
-						node {
-							id
-							name
-							books {
-								totalCount
-								edges {
-									node {
-										name
-									}
-								}
-							}
-						}
-						cursor
-					}
-				}
-			}
-		}`;
+            viewer {
+                sites (after: "U2l0ZTox", first: 1) {
+                    pageInfo {
+                        hasNextPage
+                        hasPreviousPage
+                        startCursor
+                        endCursor
+                    }
+                    edges {
+                        node {
+                            id
+                            name
+                            books {
+                                totalCount
+                                edges {
+                                    node {
+                                        name
+                                    }
+                                }
+                            }
+                        }
+                        cursor
+                    }
+                }
+            }
+        }`;
     return chai.request(server)
       .post('/graphql')
-      .set('Authorization', 'PFzHFTtogUDB0l60MvHh4nnqg2DaD8UoHV3XtKEfKvAQJOxnTl151XLXC7ulIXWG')
+      .set('Authorization',
+        'PFzHFTtogUDB0l60MvHh4nnqg2DaD8UoHV3XtKEfKvAQJOxnTl151XLXC7ulIXWG')
       .send({
         query,
       })

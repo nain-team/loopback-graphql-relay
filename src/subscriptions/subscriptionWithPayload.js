@@ -67,8 +67,15 @@ module.exports = function subscriptionWithPayload({
       const type = (obj) ? obj.object.type : null;
       const target = (obj) ? obj.object.target : null;
 
-      return Promise.resolve(subscribeAndGetPayload(object, {input}, context, info))
-        .then(payload => ({clientSubscriptionId, where, type, target, object: payload}));
+      return Promise.resolve(subscribeAndGetPayload(object,
+        {input}, context, info))
+        .then(payload => ({
+          clientSubscriptionId,
+          where,
+          type,
+          target,
+          object: payload,
+        }));
     },
   };
 };

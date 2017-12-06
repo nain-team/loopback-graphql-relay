@@ -11,21 +11,22 @@ const gql = require('graphql-tag');
 // var _ = require('lodash');
 
 describe('Mutations', () => {
-  before(() => Promise.fromCallback(cb => cpx.copy('./data.json', './data/', cb)));
+  before(() => Promise.fromCallback(cb =>
+    cpx.copy('./data.json', './data/', cb)));
 
   it('should add a single entity', () => {
     const query = gql`
-      mutation save($data: JSON!) {
-        Author {
-          AuthorCreate(input: {data: $data}) {
-            obj {
-              firstName
-              lastName
-              birthDate
-            }
-          }
-        }
-      }`;
+            mutation save($data: JSON!) {
+                Author {
+                    AuthorCreate(input: {data: $data}) {
+                        obj {
+                            firstName
+                            lastName
+                            birthDate
+                        }
+                    }
+                }
+            }`;
     const variables = {
       data: {
         firstName: 'Unit Test',
@@ -43,31 +44,33 @@ describe('Mutations', () => {
       .then((res) => {
         expect(res).to.have.status(200);
         const result = res.body.data;
-        expect(result.Author.AuthorCreate.obj.firstName).to.equal(variables.data.firstName);
-        expect(result.Author.AuthorCreate.obj.lastName).to.equal(variables.data.lastName);
+        expect(result.Author.AuthorCreate.obj.firstName)
+          .to.equal(variables.data.firstName);
+        expect(result.Author.AuthorCreate.obj.lastName)
+          .to.equal(variables.data.lastName);
       });
   });
 
   it('should add a single entity with sub type', () => {
     const body = 'Heckelbery Finn';
     const query = gql`
-      mutation save($data: JSON!) {
-        Note {
-          NoteCreate(input: { data: $data }) {
-            obj {
-              id
-              title
-              content {
-                body
-              }
-              author {
-                firstName
-                lastName
-              }
-            }
-          }
-        }
-      }`;
+            mutation save($data: JSON!) {
+                Note {
+                    NoteCreate(input: { data: $data }) {
+                        obj {
+                            id
+                            title
+                            content {
+                                body
+                            }
+                            author {
+                                firstName
+                                lastName
+                            }
+                        }
+                    }
+                }
+            }`;
     const variables = {
       data: {
         title: 'Note added by unit test',
@@ -96,13 +99,13 @@ describe('Mutations', () => {
 
   it('should delete a single entity', () => {
     const query = gql`
-      mutation delete($input: AuthorDeleteByIdInput!) {
-        Author {
-          AuthorDeleteById(input: $input) {
-            clientMutationId
-          }
-        }
-      }`;
+            mutation delete($input: AuthorDeleteByIdInput!) {
+                Author {
+                    AuthorDeleteById(input: $input) {
+                        clientMutationId
+                    }
+                }
+            }`;
     const variables = {
       input: {id: '3'},
     };
@@ -123,13 +126,13 @@ describe('Mutations', () => {
 
   it('should login and return an accessToken', () => {
     const query = gql`
-      mutation login ($input: AccountLoginInput!){
-        Account {
-            AccountLogin(input: $input) {
-            obj
-          }
-        }
-      }`;
+            mutation login ($input: AccountLoginInput!){
+                Account {
+                    AccountLogin(input: $input) {
+                        obj
+                    }
+                }
+            }`;
     const variables = {
       input: {credentials: {username: 'aatif', password: '123'}},
     };
@@ -148,13 +151,13 @@ describe('Mutations', () => {
 
   it('should not login and return an error', () => {
     const query = gql`
-    mutation login ($input: AccountLoginInput!){
-        Account {
-            AccountLogin(input: $input) {
-          obj
-        }
-      }
-    }`;
+            mutation login ($input: AccountLoginInput!){
+                Account {
+                    AccountLogin(input: $input) {
+                        obj
+                    }
+                }
+            }`;
 
     const variables = {
       input: {credentials: {username: 'aatif', password: '123'}},

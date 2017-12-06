@@ -12,15 +12,15 @@ const PassThrough = require('stream').PassThrough;
 module.exports = function(PatchModel) {
   PatchModel.createChangeStream = function(options, cb) {
     /* Based on persisted-model#createChangeStream
-     *
-     * currentUser is being populated in server.js using tips from here:
-     * https://github.com/strongloop/loopback/issues/569
-     *
-     * Ignoring paramter userId, and defaulting to logged in user
-     * future improvement will check if user has role 'admin', and if so
-     * allow the userId to not match the logged in user
-     *
-     */
+         *
+         * currentUser is being populated in server.js using tips from here:
+         * https://github.com/strongloop/loopback/issues/569
+         *
+         * Ignoring paramter userId, and defaulting to logged in user
+         * future improvement will check if user has role 'admin', and if so
+         * allow the userId to not match the logged in user
+         *
+         */
 
     const idName = this.getIdName();
     const Model = this;
@@ -102,7 +102,8 @@ module.exports = function(PatchModel) {
             break;
         }
 
-        // TODO(ritch) this is ugly... maybe a ReadableStream would be better
+        // TODO(ritch) this is ugly... maybe a ReadableStream would be
+        // better
         if (writeable) {
           changes.write(change);
         }

@@ -31,7 +31,7 @@ let nodeDefinitions = {};
  * @param {*} _models
  */
 function init(_models) {
-  _.forEach(_models, (model) =>  {
+  _.forEach(_models, (model) => {
     models[model.modelName] = model;
   });
 
@@ -79,7 +79,8 @@ function generateFieldArgs(field) {
       return;
     }
 
-    args[argName] = {type: (arg.required === true) ? new GraphQLNonNull(getType(arg.type)) : getType(arg.type)};
+    args[argName] = {type: (arg.required === true) ?
+      new GraphQLNonNull(getType(arg.type)) : getType(arg.type)};
   });
 
   return args;
@@ -115,12 +116,15 @@ function generateTypeFields(def) {
     }
 
     if (field.meta.relation === true) {
-      field.type = (field.meta.isMany === true) ? getConnection(field.meta.type) : getType(field.meta.type);
+      field.type = (field.meta.isMany === true) ?
+        getConnection(field.meta.type) : getType(field.meta.type);
     } else if (field.meta.list) {
       // field.type = getConnection(field.meta.type);
       field.type = new GraphQLList(getType(field.meta.type));
     } else {
-      field.type = (field.meta.required === true) ? new GraphQLNonNull(getType(field.meta.type)) : getType(field.meta.type);
+      field.type = (field.meta.required === true) ?
+        new GraphQLNonNull(getType(field.meta.type)) :
+        getType(field.meta.type);
     }
 
     // Field arguments
@@ -168,7 +172,9 @@ function generateType(name, def) {
     return new GraphQLObjectType(def);
   } else if (def.category === 'ENUM') {
     const values = {};
-    _.forEach(def.values, (val) => { values[val] = {value: val}; });
+    _.forEach(def.values, (val) => {
+      values[val] = {value: val};
+    });
     def.values = values;
 
     return new GraphQLEnumType(def);

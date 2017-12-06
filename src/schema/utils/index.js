@@ -67,7 +67,8 @@ function getRemoteMethodInput(method, isConnection = false) {
     }
   });
 
-  return (isConnection) ? Object.assign({}, acceptingParams, connectionArgs) : acceptingParams;
+  return (isConnection) ? Object.assign({},
+    acceptingParams, connectionArgs) : acceptingParams;
 }
 
 /**
@@ -79,11 +80,13 @@ function getRemoteMethodOutput(method) {
   let list = false;
 
   if (method.returns && method.returns[0]) {
-    if (!SCALARS[method.returns[0].type] && typeof method.returns[0].type !== 'object') {
+    if (!SCALARS[method.returns[0].type] &&
+        typeof method.returns[0].type !== 'object') {
       returnType = `${method.returns[0].type}`;
     } else {
       returnType = `${method.returns[0].type}`;
-      if (_.isArray(method.returns[0].type) && _.isString(method.returns[0].type[0])) {
+      if (_.isArray(method.returns[0].type) &&
+          _.isString(method.returns[0].type[0])) {
         returnType = method.returns[0].type[0];
         list = true;
       } else if (typeof method.returns[0].type === 'object') {

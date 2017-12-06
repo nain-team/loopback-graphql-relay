@@ -29,7 +29,8 @@ module.exports = function(Author) {
         const updated = res;
         updated.friendIds.push(friend);
         return updated.save();
-      }).then((res) => {});
+      }).then((res) => {
+      });
   };
 
   Author.remoteMethod('searchByName', {
@@ -38,8 +39,9 @@ module.exports = function(Author) {
         arg: 'filter',
         type: 'object',
         description:
-          'Filter defining fields, where, include, order, offset, and limit - must be a ' +
-          'JSON-encoded string ({"something":"value"})',
+                'Filter defining fields, where, ' +
+                'include, order, offset, and limit - must be a ' +
+                'JSON-encoded string ({"something":"value"})',
       },
       {arg: 'p1', type: 'object', description: ''},
       {arg: 'p2', type: 'object', description: ''},

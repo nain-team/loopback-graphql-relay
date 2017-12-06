@@ -4,10 +4,12 @@ const _ = require('lodash');
 const utils = require('./utils');
 
 /**
- * Inspired by https://www.reindex.io/blog/relay-graphql-pagination-with-mongodb/
+ * Inspired by
+ * https://www.reindex.io/blog/relay-graphql-pagination-with-mongodb/
  */
 module.exports = function buildFilter(model, args) {
-  const idName = (model.getIdName && model.getIdName()) ? model.getIdName() : 'id';
+  const idName = (model.getIdName && model.getIdName()) ?
+    model.getIdName() : 'id';
 
   const filter = {
     where: args.where || {},

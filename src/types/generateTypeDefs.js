@@ -11,17 +11,17 @@ const {findRelatedOne, findRelatedMany} = require('../db');
 const {connectionFromPromisedArray} = require('../db/resolveConnection');
 
 /** * Loopback Types - GraphQL types
-        any - JSON
-        Array - [JSON]
-        Boolean = boolean
-        Buffer - not supported
-        Date - Date (custom scalar)
-        GeoPoint - not supported
-        null - not supported
-        Number = float
-        Object = JSON (custom scalar)
-        String - string
-    ** */
+ any - JSON
+ Array - [JSON]
+ Boolean = boolean
+ Buffer - not supported
+ Date - Date (custom scalar)
+ GeoPoint - not supported
+ null - not supported
+ Number = float
+ Object = JSON (custom scalar)
+ String - string
+ ** */
 
 let types = {};
 
@@ -55,7 +55,8 @@ function toTypes(union) {
  * @param {*} propertyName
  * @param {*} isInputType
  */
-function mapProperty(model, property, modelName, propertyName, isInputType = false) {
+function mapProperty(model, property, modelName,
+  propertyName, isInputType = false) {
   // If property is deprecated, ignore it.
   if (property.deprecated) {
     return;
@@ -66,7 +67,8 @@ function mapProperty(model, property, modelName, propertyName, isInputType = fal
     generated: false,
     meta: {
       required: property.required,
-      hidden: model.definition.settings.hidden && model.definition.settings.hidden.indexOf(propertyName) !== -1,
+      hidden: model.definition.settings.hidden &&
+      model.definition.settings.hidden.indexOf(propertyName) !== -1,
     },
   };
   const currentProperty = types[modelName].meta.fields[propertyName];
@@ -75,7 +77,8 @@ function mapProperty(model, property, modelName, propertyName, isInputType = fal
   let propertyType = property.type;
 
   // Add resolver
-  currentProperty.resolve = (obj, args, context) => (_.isNil(obj[propertyName]) ? null : obj[propertyName]);
+  currentProperty.resolve = (obj, args, context) =>
+    (_.isNil(obj[propertyName]) ? null : obj[propertyName]);
 
   // If it's an Array type, map it to JSON Scalar
   if (propertyType.name === 'Array') { // JSON Array
@@ -108,7 +111,8 @@ function mapProperty(model, property, modelName, propertyName, isInputType = fal
     currentProperty.meta.scalar = true;
     currentProperty.meta.type = scalar;
 
-    if (property.enum) { // enum has a dedicated type but no input type is required
+    if (property.enum) { // enum has a dedicated type but no input type
+      // is required
       types[typeName] = {
         generated: false,
         name: typeName,
@@ -122,8 +126,10 @@ function mapProperty(model, property, modelName, propertyName, isInputType = fal
   }
 
   // If this property is another Model
-  if (propertyType.name === 'ModelConstructor' && property.defaultFn !== 'now') {
-    currentProperty.meta.type = (!isInputType) ? propertyType.modelName : `${propertyType.modelName}Input`;
+  if (propertyType.name === 'ModelConstructor' &&
+      property.defaultFn !== 'now') {
+    currentProperty.meta.type = (!isInputType) ?
+      propertyType.modelName : `${propertyType.modelName}Input`;
     const union = propertyType.modelName.split('|');
 
     // type is a union
@@ -136,7 +142,8 @@ function mapProperty(model, property, modelName, propertyName, isInputType = fal
         },
         values: toTypes(union),
       };
-    } else if (propertyType.settings && propertyType.settings.anonymous && propertyType.definition) {
+    } else if (propertyType.settings &&
+        propertyType.settings.anonymous && propertyType.definition) {
       currentProperty.meta.type = typeName;
       types[typeName] = {
         generated: false,
@@ -201,7 +208,8 @@ function mapRelation(rel, modelName, relName) {
     },
     resolve: (obj, args, context) => {
       if (isManyRelation(rel.type) === true) {
-        return connectionFromPromisedArray(findRelatedMany(rel, obj, args, context), args);
+        return connectionFromPromisedArray(
+          findRelatedMany(rel, obj, args, context), args);
       }
 
       return findRelatedOne(rel, obj, args, context);
@@ -269,6 +277,7 @@ function getTypeDefs() {
 function getCustomTypeDefs() {
   return GeoPointTypeDefs;
 }
+
 /**
  * building all models types & relationships
  */

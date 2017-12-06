@@ -44,11 +44,11 @@ const getScalar = (name) => {
     case 'Date':
       return CustomGraphQLDateType;
 
-    // case 'File':
-    //   return FileType;
+      // case 'File':
+      //   return FileType;
 
-    // case 'GeoPoint':
-    //   return GeoPointType;
+      // case 'GeoPoint':
+      //   return GeoPointType;
 
     case 'Json':
     case 'JSON':
@@ -111,7 +111,7 @@ const getType = (name) => {
 function buildTypes(models) {
   init(models);
 
-  _.forEach(models, (model) =>  {
+  _.forEach(models, (model) => {
     getType(model.modelName);
   });
 

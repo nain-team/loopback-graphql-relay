@@ -15,7 +15,8 @@ module.exports = function getRemoteMethodQueries(model) {
 
   if (model.sharedClass && model.sharedClass.methods) {
     model.sharedClass.methods().forEach((method) => {
-      if (method.name.indexOf('Stream') === -1 && method.name.indexOf('invoke') === -1) {
+      if (method.name.indexOf('Stream') === -1 &&
+          method.name.indexOf('invoke') === -1) {
         if (!utils.isRemoteMethodAllowed(method, allowedVerbs)) {
           return;
         }
@@ -27,7 +28,8 @@ module.exports = function getRemoteMethodQueries(model) {
 
         const typeObj = utils.getRemoteMethodOutput(method);
 
-        const acceptingParams = utils.getRemoteMethodInput(method, typeObj.list);
+        const acceptingParams = utils.getRemoteMethodInput(method,
+          typeObj.list);
         const hookName = utils.getRemoteMethodQueryName(model, method);
 
         hooks[hookName] = {
@@ -50,14 +52,16 @@ module.exports = function getRemoteMethodQueries(model) {
               accessToken: context.req.accessToken, model, method, id: modelId,
             }).then(() => {
               if (typeObj.list) {
-                if (defaultFindMethods.indexOf(method.name) === -1 && method.returns[0].type.indexOf('any') !== -1) {
+                if (defaultFindMethods.indexOf(method.name) === -1 &&
+                    method.returns[0].type.indexOf('any') !== -1) {
                   params = [];
                   _.forEach(method.accepts, (accept, index) => {
                     params.push(args[accept.arg]);
                   });
                 }
 
-                return connectionFromPromisedArray(wrap.apply(model, params), args, model);
+                return connectionFromPromisedArray(wrap.apply(model, params),
+                  args, model);
               }
               return wrap.apply(model, params);
             });

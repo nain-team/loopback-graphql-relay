@@ -26,7 +26,11 @@ module.exports = function(app, schema, opts) {
     `Websocket Server is now running on http://localhost:${WS_PORT}`
   ));
 
-  const server = SubscriptionServer.create({schema, execute, subscribe}, {server: websocketServer, path: '/'});
+  const server = SubscriptionServer.create({
+    schema,
+    execute,
+    subscribe,
+  }, {server: websocketServer, path: '/'});
 
   return server;
 };

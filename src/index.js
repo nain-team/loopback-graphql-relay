@@ -21,12 +21,17 @@ module.exports = function(app, options) {
       engineConfig: {
         apiKey: apollo.apiKey,
         logging: {
-          level: apollo.debugLevel || 'DEBUG', // Engine Proxy logging level. DEBUG, INFO, WARN or ERROR
+          level: apollo.debugLevel || 'DEBUG', // Engine Proxy
+          // logging level.
+          // DEBUG, INFO, WARN
+          // or ERROR
         },
       },
       graphqlPort: apollo.graphqlPort || 2000, // GraphQL port
-      endpoint: path || '/graphql', // GraphQL endpoint suffix - '/graphql' by default
-      dumpTraffic: true, // Debug configuration that logs traffic between Proxy and GraphQL server
+      endpoint: path || '/graphql', // GraphQL endpoint suffix -
+      // '/graphql' by default
+      dumpTraffic: true, // Debug configuration that logs traffic between
+      // Proxy and GraphQL server
     });
 
     engine.start();

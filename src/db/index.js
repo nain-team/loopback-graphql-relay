@@ -10,7 +10,8 @@ function getCount(model, obj, args, context) {
 }
 
 function getFirst(model, obj, args) {
-  const idName = (model.getIdName && model.getIdName()) ? model.getIdName() : 'id';
+  const idName = (model.getIdName && model.getIdName()) ?
+    model.getIdName() : 'id';
 
   return model.findOne({
     order: idName + (args.before ? ' DESC' : ' ASC'),
@@ -42,7 +43,8 @@ function findAll(model, obj, args, context) {
     })
     .then((first) => {
       response.first = first;
-      return getList(model, obj, Object.assign({}, args, {count: response.count}));
+      return getList(model, obj, Object.assign({},
+        args, {count: response.count}));
     })
     .then((list) => {
       response.list = list;
@@ -66,7 +68,8 @@ function findAllRelated(model, obj, method, args, context) {
       function(count, callback) {
         response.count = count;
 
-        const idName = (model.getIdName && model.getIdName()) ? model.getIdName() : 'id';
+        const idName = (model.getIdName && model.getIdName()) ?
+          model.getIdName() : 'id';
         obj[`__findOne__${method}`]({
           order: idName + (args.before ? ' DESC' : ' ASC'),
           where: args.where,
@@ -74,7 +77,8 @@ function findAllRelated(model, obj, method, args, context) {
       },
       function(first, callback) {
         response.first = first;
-        obj[`__get__${method}`](buildFilter(model, Object.assign({}, args, {count: response.count})), callback);
+        obj[`__get__${method}`](buildFilter(model, Object.assign({}, args,
+          {count: response.count})), callback);
       },
     ], (err, list) => {
       if (err) {
@@ -102,7 +106,8 @@ function findAllViaThrough(rel, obj, args, context) {
       function(count, callback) {
         response.count = count;
 
-        const idName = (rel.modelTo.getIdName && rel.modelTo.getIdName()) ? rel.modelTo.getIdName() : 'id';
+        const idName = (rel.modelTo.getIdName && rel.modelTo.getIdName()) ?
+          rel.modelTo.getIdName() : 'id';
         obj[`__findOne__${rel.name}`]({
           order: idName + (args.before ? ' DESC' : ' ASC'),
           where: args.where,
@@ -110,7 +115,8 @@ function findAllViaThrough(rel, obj, args, context) {
       },
       function(first, callback) {
         response.first = first;
-        obj[`__get__${rel.name}`](buildFilter(rel.modelTo, Object.assign({}, args, {count: response.count})), callback);
+        obj[`__get__${rel.name}`](buildFilter(rel.modelTo, Object.assign({},
+          args, {count: response.count})), callback);
       },
     ], (err, list) => {
       if (err) {

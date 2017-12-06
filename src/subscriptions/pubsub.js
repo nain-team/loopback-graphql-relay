@@ -20,26 +20,24 @@ class PubSub {
     const me = this;
 
     // Subscription ID
-    const subId = this.getSubscriptionId(options.clientSubscriptionId || _.random(1, 99999));
+    const subId = this.getSubscriptionId(options.clientSubscriptionId ||
+        _.random(1, 99999));
 
     // Check Type
     const {model} = options;
 
     if (_.isNil(model)) {
-      return Promise.reject(new Error('No related model found for this subscription'));
+      return Promise.reject(new
+        Error('No related model found for this subscription'));
     }
 
     const {create, update, remove: rmv, options: opts} = options;
 
     // Login
-    // return Promise.resolve().then(() => new Promise((resolve, reject) => {
-    //   model.checkAccess(context.accessToken, null, model.createChangeStream, null, (err, allowed) => {
-    //     if (err) {
-    //       reject(err);
-    //     }
-    //     resolve(allowed);
-    //   });
-    // })).then((result) => {
+    // return Promise.resolve().then(() => new Promise((resolve, reject) =>
+    // { model.checkAccess(context.accessToken, null,
+    // model.createChangeStream, null, (err, allowed) => { if (err) {
+    // reject(err); } resolve(allowed); }); })).then((result) => {
 
     // Stream
     model.createChangeStream(opts, (err, stream) => {
@@ -105,7 +103,8 @@ class PubSub {
       this.subscriptions[subId][1](payload);
       // logger.info('subscription sent', payload);
     } catch (e) {
-      // logger.info(new Error('An error occured while try to broadcast subscription.'));
+      // logger.info(new Error('An error occured while try to broadcast
+      // subscription.'));
     }
   }
 
@@ -119,9 +118,10 @@ class PubSub {
 
       try {
         this.subscriptions[subId][1](payload);
-      // logger.info('subscription sent', payload);
+        // logger.info('subscription sent', payload);
       } catch (e) {
-      // logger.info(new Error('An error occured while try to broadcast subscription.'));
+        // logger.info(new Error('An error occured while try to
+        // broadcast subscription.'));
       }
     });
   }

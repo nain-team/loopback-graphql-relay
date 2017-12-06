@@ -14,19 +14,20 @@ const gql = require('graphql-tag');
 describe('ACL testing', () => {
   it('should allow access with access token', () => {
     const query = gql`query {
-        Book {
-            BookFind {
-                edges {
-                    node {
-                        id
+            Book {
+                BookFind {
+                    edges {
+                        node {
+                            id
+                        }
                     }
                 }
             }
-        }
-    }`;
+        }`;
     return chai.request(server)
       .post('/graphql')
-      .set('Authorization', 'PFzHFTtogUDB0l60MvHh4nnqg2DaD8UoHV3XtKEfKvAQJOxnTl151XLXC7ulIXWG')
+      .set('Authorization',
+        'PFzHFTtogUDB0l60MvHh4nnqg2DaD8UoHV3XtKEfKvAQJOxnTl151XLXC7ulIXWG')
       .send({
         query,
       })
@@ -37,16 +38,16 @@ describe('ACL testing', () => {
 
   it('should not allow access without access token', () => {
     const query = gql`query {
-        Book {
-            BookFind {
-                edges {
-                    node {
-                        id
+            Book {
+                BookFind {
+                    edges {
+                        node {
+                            id
+                        }
                     }
                 }
             }
-        }
-    }`;
+        }`;
     return chai.request(server)
       .post('/graphql')
       .send({

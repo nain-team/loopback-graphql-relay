@@ -10,7 +10,7 @@ const patchChangeStream = require('./patchChangeStream');
 module.exports = function startSubscriptionServer(app, schema, options) {
   const models = app.models();
 
-  _.forEach(models, (model) =>  {
+  _.forEach(models, (model) => {
     patchChangeStream(model);
   });
 
@@ -23,14 +23,16 @@ module.exports = function startSubscriptionServer(app, schema, options) {
     setupFunctions[model.modelName] = (options, args) => {
       const ret = {};
       ret[_.lowerCase(model.modelName)] = {
-        // filter: comment => comment.repository_name === args.repoFullName,
+        // filter: comment => comment.repository_name ===
+        // args.repoFullName,
         channelOptions: getOptions(model, options, args),
       };
 
       return ret;
     };
   });
-  // const subscriptionManager = SubscriptionManager(models, schema, new PubSub());
+  // const subscriptionManager = SubscriptionManager(models, schema, new
+  // PubSub());
   SubscriptionServer(app, schema, setupFunctions);
 
   // test(subscriptionManager);
@@ -43,7 +45,8 @@ function getOptions(model, options, args) {
     update: (!_.isNil(args.input.update)) ? args.input.update : false,
     remove: (!_.isNil(args.input.remove)) ? args.input.remove : false,
     options: (!_.isNil(args.input.options)) ? args.input.options : false,
-    clientSubscriptionId: (!_.isNil(args.input.clientSubscriptionId)) ? args.input.clientSubscriptionId : false,
+    clientSubscriptionId: (!_.isNil(args.input.clientSubscriptionId)) ?
+      args.input.clientSubscriptionId : false,
   };
 
   basicOpts.model = model;

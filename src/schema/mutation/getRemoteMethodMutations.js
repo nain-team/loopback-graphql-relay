@@ -20,7 +20,8 @@ module.exports = function getRemoteMethodMutations(model) {
 
   if (model.sharedClass && model.sharedClass.methods) {
     model.sharedClass.methods().forEach((method) => {
-      if (method.name.indexOf('Stream') === -1 && method.name.indexOf('invoke') === -1) {
+      if (method.name.indexOf('Stream') === -1 &&
+          method.name.indexOf('invoke') === -1) {
         if (!utils.isRemoteMethodAllowed(method, allowedVerbs)) {
           return;
         }
@@ -31,7 +32,8 @@ module.exports = function getRemoteMethodMutations(model) {
         }
 
         const typeObj = utils.getRemoteMethodOutput(method);
-        const acceptingParams = utils.getRemoteMethodInput(method, typeObj.list);
+        const acceptingParams =
+            utils.getRemoteMethodInput(method, typeObj.list);
         const hookName = utils.getRemoteMethodQueryName(model, method);
 
         hooks[hookName] = mutationWithClientMutationId({
@@ -59,7 +61,8 @@ module.exports = function getRemoteMethodMutations(model) {
               const wrap = promisify(model[method.name]);
 
               if (typeObj.list) {
-                return connectionFromPromisedArray(wrap.apply(model, params), args, model);
+                return connectionFromPromisedArray(wrap.apply(model,
+                  params), args, model);
               }
 
               return wrap.apply(model, params);

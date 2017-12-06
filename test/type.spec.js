@@ -9,22 +9,23 @@ const Promise = require('bluebird');
 const cpx = require('cpx');
 
 describe('Types', () => {
-  before(() => Promise.fromCallback(cb => cpx.copy('./data.json', './data/', cb)));
+  before(() => Promise.fromCallback(cb =>
+    cpx.copy('./data.json', './data/', cb)));
 
   describe('GeoPoint', () => {
     it('should contain a single object with location', () => {
       const query = gql`
-        {
-          Googlemaps {
-            GooglemapsFindOne(filter:{where: {id: 1}}) {
-              id
-              location {
-                lat
-                lng
-              }
-            }
-          }
-        }`;
+                {
+                    Googlemaps {
+                        GooglemapsFindOne(filter:{where: {id: 1}}) {
+                            id
+                            location {
+                                lat
+                                lng
+                            }
+                        }
+                    }
+                }`;
       return chai.request(server)
         .post('/graphql')
         .send({
@@ -40,18 +41,18 @@ describe('Types', () => {
 
     it('should have location distance of 486 miles', () => {
       const query = gql`
-        {
-          Googlemaps {
-            GooglemapsFindOne(filter:{where: {id: 1}}) {
-              id
-              location {
-                lat
-                lng
-                distance: distanceTo(point: {lat: 5, lng: 5})
-              }
-            }
-          }
-        }`;
+                {
+                    Googlemaps {
+                        GooglemapsFindOne(filter:{where: {id: 1}}) {
+                            id
+                            location {
+                                lat
+                                lng
+                                distance: distanceTo(point: {lat: 5, lng: 5})
+                            }
+                        }
+                    }
+                }`;
       return chai.request(server)
         .post('/graphql')
         .send({
@@ -60,7 +61,8 @@ describe('Types', () => {
         .then((res) => {
           expect(res).to.have.status(200);
           const result = res.body.data;
-          expect(result.Googlemaps.GooglemapsFindOne.location.distance).to.equal(486.3956513042483);
+          expect(result.Googlemaps.GooglemapsFindOne.
+            location.distance).to.equal(486.3956513042483);
         });
     });
   });

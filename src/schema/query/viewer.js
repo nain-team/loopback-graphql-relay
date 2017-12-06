@@ -35,7 +35,8 @@ function getRelatedModelFields(User) {
         if (!context.req.accessToken) return null;
 
         return findUserFromAccessToken(context.req.accessToken, User)
-          .then(user => connectionFromPromisedArray(findAllRelated(User, user, relation.name, args, context), args, model));
+          .then(user => connectionFromPromisedArray(findAllRelated(User,
+            user, relation.name, args, context), args, model));
       },
     };
   });
@@ -52,7 +53,8 @@ function findUserFromAccessToken(accessToken, UserModel) {
   if (!accessToken) return null;
 
   return UserModel.findById(accessToken.userId).then((user) => {
-    if (!user) return Promise.reject('No user with this access token was found.');
+    if (!user) return Promise.
+      reject('No user with this access token was found.');
     return Promise.resolve(user);
   });
 }
