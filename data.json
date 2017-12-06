@@ -7,18 +7,18 @@
     "Role": 1,
     "Customer": 2,
     "Account": 2,
-    "Author": 25,
+    "Author": 26,
     "Reader": 1,
     "Book": 4,
     "BookAuthor": 1,
     "Order": 3,
-    "Note": 28,
+    "Note": 29,
     "Googlemaps": 1,
     "products": 1,
     "catalogs": 1,
     "Site": 3,
     "SiteBook": 2,
-    "CustomAccessToken": 35
+    "CustomAccessToken": 37
   },
   "models": {
     "User": {},
@@ -34,28 +34,7 @@
     },
     "Author": {
       "1": "{\"firstName\":\"Iqbal\",\"lastName\":\"Muhammad\",\"birthDate\":\"2017-11-28T07:39:37.074Z\",\"friendId\":[2],\"id\":1}",
-      "2": "{\"firstName\":\"Unit Test\",\"lastName\":\"Author\",\"birthDate\":\"2017-11-28T07:39:37.074Z\",\"id\":2}",
-      "4": "{\"firstName\":\"Unit Test\",\"lastName\":\"Author\",\"birthDate\":\"2017-11-28T10:37:27.514Z\",\"id\":4}",
-      "5": "{\"firstName\":\"Unit Test\",\"lastName\":\"Author\",\"birthDate\":\"2017-11-28T10:41:03.827Z\",\"id\":5}",
-      "6": "{\"firstName\":\"string\",\"lastName\":\"string\",\"birthDate\":\"2017-11-28T10:04:10.076Z\",\"friendId\":[2],\"id\":6}",
-      "7": "{\"firstName\":\"Unit Test\",\"lastName\":\"Author\",\"birthDate\":\"2017-11-28T11:35:13.289Z\",\"friendId\":[],\"id\":7}",
-      "8": "{\"firstName\":\"Unit Test\",\"lastName\":\"Author\",\"birthDate\":\"2017-11-28T11:58:15.552Z\",\"friendId\":[],\"id\":8}",
-      "9": "{\"firstName\":\"Unit Test\",\"lastName\":\"Author\",\"birthDate\":\"2017-11-28T12:37:43.052Z\",\"friendId\":[],\"id\":9}",
-      "10": "{\"firstName\":\"Unit Test\",\"lastName\":\"Author\",\"birthDate\":\"2017-11-28T12:40:15.567Z\",\"friendId\":[],\"id\":10}",
-      "11": "{\"firstName\":\"Unit Test\",\"lastName\":\"Author\",\"birthDate\":\"2017-11-28T13:02:17.968Z\",\"friendId\":[],\"id\":11}",
-      "12": "{\"firstName\":\"Unit Test\",\"lastName\":\"Author\",\"birthDate\":\"2017-11-28T13:04:05.949Z\",\"friendId\":[],\"id\":12}",
-      "13": "{\"firstName\":\"Unit Test\",\"lastName\":\"Author\",\"birthDate\":\"2017-11-29T05:09:08.233Z\",\"friendId\":[],\"id\":13}",
-      "14": "{\"firstName\":\"Unit Test\",\"lastName\":\"Author\",\"birthDate\":\"2017-11-30T05:58:09.379Z\",\"friendId\":[],\"id\":14}",
-      "15": "{\"firstName\":\"Unit Test\",\"lastName\":\"Author\",\"birthDate\":\"2017-11-30T05:58:31.398Z\",\"friendId\":[],\"id\":15}",
-      "16": "{\"firstName\":\"Unit Test\",\"lastName\":\"Author\",\"birthDate\":\"2017-11-30T07:22:40.010Z\",\"friendId\":[],\"id\":16}",
-      "17": "{\"firstName\":\"Unit Test\",\"lastName\":\"Author\",\"birthDate\":\"2017-11-30T09:50:41.997Z\",\"friendId\":[],\"id\":17}",
-      "18": "{\"firstName\":\"Unit Test\",\"lastName\":\"Author\",\"birthDate\":\"2017-11-30T09:51:06.427Z\",\"friendId\":[],\"id\":18}",
-      "19": "{\"firstName\":\"Unit Test\",\"lastName\":\"Author\",\"birthDate\":\"2017-11-30T09:52:13.069Z\",\"friendId\":[],\"id\":19}",
-      "20": "{\"firstName\":\"Unit Test\",\"lastName\":\"Author\",\"birthDate\":\"2017-11-30T09:52:29.102Z\",\"friendId\":[],\"id\":20}",
-      "21": "{\"firstName\":\"Unit Test\",\"lastName\":\"Author\",\"birthDate\":\"2017-11-30T09:58:31.808Z\",\"friendId\":[],\"id\":21}",
-      "22": "{\"firstName\":\"Unit Test\",\"lastName\":\"Author\",\"birthDate\":\"2017-11-30T10:01:07.604Z\",\"friendId\":[],\"id\":22}",
-      "23": "{\"firstName\":\"Unit Test\",\"lastName\":\"Author\",\"birthDate\":\"2017-11-30T12:32:20.086Z\",\"friendId\":[],\"id\":23}",
-      "24": "{\"firstName\":\"Unit Test\",\"lastName\":\"Author\",\"birthDate\":\"2017-12-05T06:46:18.060Z\",\"friendId\":[],\"id\":24}"
+      "2": "{\"firstName\":\"Unit Test\",\"lastName\":\"Author\",\"birthDate\":\"2017-11-28T07:39:37.074Z\",\"id\":2}"
     },
     "Reader": {},
     "Book": {
@@ -71,31 +50,7 @@
     "Note": {
       "1": "{\"title\":\"Note 1\",\"content\":{\"title\":\"Todo list\",\"body\":\"hello now\",\"footer\":\"Copyrights @ author\"},\"Genre\":\"HUMOR\",\"authorId\":1,\"id\":1}",
       "2": "{\"title\":\"Heckelbery Finn\",\"content\":{\"body\":\"Heckelbery Finn\",\"footer\":\"The end\"},\"authorId\":3,\"id\":2}",
-      "3": "{\"title\":\"Heckelbery Finn\",\"content\":{\"body\":\"Heckelbery Finn\",\"footer\":\"The end\"},\"authorId\":3,\"id\":3}",
-      "4": "{\"title\":\"Heckelbery Finn\",\"content\":{\"body\":\"Heckelbery Finn\",\"footer\":\"The end\"},\"authorId\":3,\"id\":4}",
-      "5": "{\"title\":\"Heckelbery Finn\",\"content\":{\"body\":\"Heckelbery Finn\",\"footer\":\"The end\"},\"authorId\":3,\"id\":5}",
-      "6": "{\"title\":\"Heckelbery Finn\",\"content\":{\"body\":\"Heckelbery Finn\",\"footer\":\"The end\"},\"authorId\":3,\"id\":6}",
-      "7": "{\"title\":\"Note added by unit test\",\"content\":{\"body\":\"Heckelbery Finn\",\"footer\":\"The end\"},\"authorId\":1,\"id\":7}",
-      "8": "{\"title\":\"Note added by unit test\",\"content\":{\"body\":\"Heckelbery Finn\",\"footer\":\"The end\"},\"authorId\":1,\"id\":8}",
-      "9": "{\"title\":\"Note added by unit test\",\"content\":{\"body\":\"Heckelbery Finn\",\"footer\":\"The end\"},\"authorId\":1,\"id\":9}",
-      "10": "{\"title\":\"Note added by unit test\",\"content\":{\"body\":\"Heckelbery Finn\",\"footer\":\"The end\"},\"authorId\":1,\"id\":10}",
-      "11": "{\"title\":\"Note added by unit test\",\"content\":{\"body\":\"Heckelbery Finn\",\"footer\":\"The end\"},\"authorId\":1,\"id\":11}",
-      "12": "{\"title\":\"Note added by unit test\",\"content\":{\"body\":\"Heckelbery Finn\",\"footer\":\"The end\"},\"authorId\":1,\"id\":12}",
-      "13": "{\"title\":\"Note added by unit test\",\"content\":{\"body\":\"Heckelbery Finn\",\"footer\":\"The end\"},\"authorId\":1,\"id\":13}",
-      "14": "{\"title\":\"Note added by unit test\",\"content\":{\"body\":\"Heckelbery Finn\",\"footer\":\"The end\"},\"authorId\":1,\"id\":14}",
-      "15": "{\"title\":\"Note added by unit test\",\"content\":{\"body\":\"Heckelbery Finn\",\"footer\":\"The end\"},\"authorId\":1,\"id\":15}",
-      "16": "{\"title\":\"Note added by unit test\",\"content\":{\"body\":\"Heckelbery Finn\",\"footer\":\"The end\"},\"authorId\":1,\"id\":16}",
-      "17": "{\"title\":\"Note added by unit test\",\"content\":{\"body\":\"Heckelbery Finn\",\"footer\":\"The end\"},\"authorId\":1,\"id\":17}",
-      "18": "{\"title\":\"Note added by unit test\",\"content\":{\"body\":\"Heckelbery Finn\",\"footer\":\"The end\"},\"authorId\":1,\"id\":18}",
-      "19": "{\"title\":\"Note added by unit test\",\"content\":{\"body\":\"Heckelbery Finn\",\"footer\":\"The end\"},\"authorId\":1,\"id\":19}",
-      "20": "{\"title\":\"Note added by unit test\",\"content\":{\"body\":\"Heckelbery Finn\",\"footer\":\"The end\"},\"authorId\":1,\"id\":20}",
-      "21": "{\"title\":\"Note added by unit test\",\"content\":{\"body\":\"Heckelbery Finn\",\"footer\":\"The end\"},\"authorId\":1,\"id\":21}",
-      "22": "{\"title\":\"Note added by unit test\",\"content\":{\"body\":\"Heckelbery Finn\",\"footer\":\"The end\"},\"authorId\":1,\"id\":22}",
-      "23": "{\"title\":\"Note added by unit test\",\"content\":{\"body\":\"Heckelbery Finn\",\"footer\":\"The end\"},\"authorId\":1,\"id\":23}",
-      "24": "{\"title\":\"Note added by unit test\",\"content\":{\"body\":\"Heckelbery Finn\",\"footer\":\"The end\"},\"authorId\":1,\"id\":24}",
-      "25": "{\"title\":\"Note added by unit test\",\"content\":{\"body\":\"Heckelbery Finn\",\"footer\":\"The end\"},\"authorId\":1,\"id\":25}",
-      "26": "{\"title\":\"Note added by unit test\",\"content\":{\"body\":\"Heckelbery Finn\",\"footer\":\"The end\"},\"authorId\":1,\"id\":26}",
-      "27": "{\"title\":\"Note added by unit test\",\"content\":{\"body\":\"Heckelbery Finn\",\"footer\":\"The end\"},\"authorId\":1,\"id\":27}"
+      "3": "{\"title\":\"Heckelbery Finn\",\"content\":{\"body\":\"Heckelbery Finn\",\"footer\":\"The end\"},\"authorId\":3,\"id\":3}"
     },
     "Googlemaps": {
       "1": "{\"location\":{\"lat\":10,\"lng\":10},\"id\":1}"
@@ -143,7 +98,9 @@
       "LoY9ngBosQv0w95EUKgdb2gzOXlaM0DDsXe900cCGd5zLaOi6buBAMrGWEonL8kX": "{\"id\":\"LoY9ngBosQv0w95EUKgdb2gzOXlaM0DDsXe900cCGd5zLaOi6buBAMrGWEonL8kX\",\"ttl\":1209600,\"created\":\"2017-11-30T12:32:20.307Z\",\"userId\":1,\"principalType\":\"Account\"}",
       "54DFOVZ4qQc0ytislj4xcm0g589ehbrbOVvn9Lb8ox15UXFvlLolhAy9Up91htcG": "{\"id\":\"54DFOVZ4qQc0ytislj4xcm0g589ehbrbOVvn9Lb8ox15UXFvlLolhAy9Up91htcG\",\"ttl\":1209600,\"created\":\"2017-11-30T12:32:20.462Z\",\"userId\":1,\"principalType\":\"Account\"}",
       "YS90pynaWyD9lOJlHvAF2zNoo2hVSSKAWRc0PVyHtDpQaZhQZ95I2DtHPh2TVztF": "{\"id\":\"YS90pynaWyD9lOJlHvAF2zNoo2hVSSKAWRc0PVyHtDpQaZhQZ95I2DtHPh2TVztF\",\"ttl\":1209600,\"created\":\"2017-12-05T06:46:18.214Z\",\"userId\":1,\"principalType\":\"Account\"}",
-      "R0Jvj3jZV8ZaKt7xBrAARq03vjgHobSiFp370Gpjx860cDHXTjgzP9Jjp2cDB088": "{\"id\":\"R0Jvj3jZV8ZaKt7xBrAARq03vjgHobSiFp370Gpjx860cDHXTjgzP9Jjp2cDB088\",\"ttl\":1209600,\"created\":\"2017-12-05T06:46:18.331Z\",\"userId\":1,\"principalType\":\"Account\"}"
+      "R0Jvj3jZV8ZaKt7xBrAARq03vjgHobSiFp370Gpjx860cDHXTjgzP9Jjp2cDB088": "{\"id\":\"R0Jvj3jZV8ZaKt7xBrAARq03vjgHobSiFp370Gpjx860cDHXTjgzP9Jjp2cDB088\",\"ttl\":1209600,\"created\":\"2017-12-05T06:46:18.331Z\",\"userId\":1,\"principalType\":\"Account\"}",
+      "nR9dzqRipJCaLV8E6Bzjr9S70xrCv2OdDiYl2sL9kmfd3j4AJcqAGXcpTXSJFp1M": "{\"id\":\"nR9dzqRipJCaLV8E6Bzjr9S70xrCv2OdDiYl2sL9kmfd3j4AJcqAGXcpTXSJFp1M\",\"ttl\":1209600,\"created\":\"2017-12-06T07:23:08.201Z\",\"userId\":1,\"principalType\":\"Account\"}",
+      "spzm2yqxwYxU1ipeE3oaReYqOOUSHgADyvY8zPZF9B35PMoIwCfjOjEtn19Ksp0u": "{\"id\":\"spzm2yqxwYxU1ipeE3oaReYqOOUSHgADyvY8zPZF9B35PMoIwCfjOjEtn19Ksp0u\",\"ttl\":1209600,\"created\":\"2017-12-06T07:23:08.307Z\",\"userId\":1,\"principalType\":\"Account\"}"
     }
   }
 }
