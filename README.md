@@ -6,10 +6,41 @@
 
 Combine the powers of [ApolloStack](http://www.apollostack.com/) GraphQL with the backend of Loopback to automatically generate GraphQL endpoints based on Loopback Schema.
 
-![Loopback Graphql](./resources/loopback-graphql.png?raw=true "LoopBack Apollo Architecture") 
+![Loopback Graphql](./resources/loopback-graphql.png?raw=true "LoopBack Apollo Architecture")
 
 ## Caution ⚠️
 This is a work in progress. Until version 1.0 endpoint API may change.
+
+## Usage️
+This plugin accepts following options
+
+- Params
+    - graphiqlPath
+    - tracing
+    - cacheControl
+    - apollo
+    - path
+- Param default values
+    - debugLevel : DEBUG
+    - graphqlPort: 2000
+    - tracing : false
+    - cacheControl : true
+    - graphiqlPath: '/graphiql'
+    - path: '/graphql'
+- Example
+     ```
+     "apollo" :
+     {
+         "apiKey": "YOUR-KEY",
+         "debugLevel": "INFO|DEBUG|WARN|ERROR",
+         "graphqlPort": "GRAPHQL-PORT"
+     },
+     tracing: true|false,
+     cacheControl: true|false,
+     graphiqlPath: '/GRAPHIQL-PATH',
+     path: '/GRAPHQL-PATH'
+    ```
+
 
 ## Queries 💥
 - Relay Specification: `node` query to fetch single entity by ID
@@ -64,7 +95,7 @@ This is a work in progress. Until version 1.0 endpoint API may change.
 ```sh
 npm install loopback-graphql-relay
 ```
-Add the loopback-graphql-relay component to the `server/component-config.json`: 
+Add the loopback-graphql-relay component to the `server/component-config.json`:
 
 ```
 "loopback-graphql-relay": {
