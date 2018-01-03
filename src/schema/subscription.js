@@ -3,6 +3,8 @@ const { GraphQLObjectType } = require('graphql');
 const { getType } = require('../types/type');
 const subWithPayload = require('../subscriptions/subscriptionWithPayload');
 
+let loopbackModels;
+
 function addModel(model) {
   const fields = {};
   const modelName = `${model.modelName}`;
@@ -14,7 +16,11 @@ function addModel(model) {
     },
   };
 
-  const subscriptionWithPayload = subWithPayload({ modelName, outputFields });
+  const subscriptionWithPayload = subWithPayload({
+    modelName,
+    outputFields,
+    loopbackModels,
+  });
 
   fields[modelName] = subscriptionWithPayload;
 
@@ -23,6 +29,7 @@ function addModel(model) {
 
 module.exports = function (models) {
   const fields = {};
+  loopbackModels = models;
   _.forEach(models, (model) => {
     if (!model.shared) {
       return;
