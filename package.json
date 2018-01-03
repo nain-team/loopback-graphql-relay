@@ -11,7 +11,7 @@
     "eslint": "eslint .",
     "lint": "npm run eslint",
     "data": "cpx ./data.json ./data/",
-    "pretest": "npm run eslint && npm run data",
+    "pretest": "npm run data",
     "test": "mocha --reporter spec --timeout 10000",
     "start": "node server/server.js",
     "nodemon": "nodemon server/server.js",
