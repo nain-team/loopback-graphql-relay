@@ -2,7 +2,6 @@ const _ = require('lodash');
 const { GraphQLObjectType } = require('graphql');
 const { getType } = require('../types/type');
 const subWithPayload = require('../subscriptions/subscriptionWithPayload');
-var loopbackModels;
 
 function addModel(model) {
   const fields = {};
@@ -18,7 +17,7 @@ function addModel(model) {
   const subscriptionWithPayload = subWithPayload({
     modelName,
     outputFields,
-    loopbackModels,
+    model,
   });
 
   fields[modelName] = subscriptionWithPayload;
@@ -28,7 +27,6 @@ function addModel(model) {
 
 module.exports = function (models) {
   const fields = {};
-  loopbackModels = models;
   _.forEach(models, (model) => {
     if (!model.shared) {
       return;

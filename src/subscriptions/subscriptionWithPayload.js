@@ -3,8 +3,6 @@ const { LoopbackPubSub } = require('graphql-loopback-subscriptions');
 const { withFilter } = require('graphql-subscriptions');
 const { getType } = require('../types/type');
 
-var models = {};
-
 const {
   GraphQLInputObjectType,
   GraphQLNonNull,
@@ -21,8 +19,7 @@ function defaultGetPayload(obj) {
   return (obj && obj.object) ? obj : null;
 }
 
-module.exports = function subscriptionWithPayload({ modelName, subscribeAndGetPayload = defaultGetPayload, loopBackModel }) {
-  models = loopBackModel;
+module.exports = function subscriptionWithPayload({ modelName, subscribeAndGetPayload = defaultGetPayload, model }) {
   const inputType = new GraphQLInputObjectType({
     name: `${modelName}SubscriptionInput`,
     fields: () => Object.assign(
@@ -85,13 +82,7 @@ module.exports = function subscriptionWithPayload({ modelName, subscribeAndGetPa
           update: variables.input.update,
         };
 
-        for (var count = 0; count < models.length; count++) {
-          const model = models[count];
-          if (model.definition.name === modelName) {
-            subscriptionPayload.model = model;
-            break;
-          }
-        }
+        subscriptionPayload.model = model;
 
         try {
           loopbackPubSub.subscribe(arg1.fieldName, null, subscriptionPayload);
