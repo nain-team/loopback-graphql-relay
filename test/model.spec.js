@@ -1,6 +1,5 @@
 /* eslint-disable no-unused-expressions */
 
-'use strict';
 
 const server = require('../server/server');
 const expect = require('chai').expect;

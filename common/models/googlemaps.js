@@ -1,4 +1,4 @@
-'use strict';
 
-module.exports = function(Googlemaps) {
+
+module.exports = function (Googlemaps) {
 };

@@ -1,6 +1,6 @@
-'use strict';
 
-module.exports = function(app) {
+
+module.exports = function (app) {
   const router = app.loopback.Router();
   router.get('/', (req, res, next) => {
     app.models.Customer.findOne({

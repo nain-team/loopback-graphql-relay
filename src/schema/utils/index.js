@@ -1,10 +1,10 @@
-'use strict';
+
 
 const _ = require('lodash');
-const {connectionArgs} = require('graphql-relay');
+const { connectionArgs } = require('graphql-relay');
 
-const {getType, getConnection} = require('../../types/type');
-const {SCALARS} = require('../../types/generateTypeDefs');
+const { getType, getConnection } = require('../../types/type');
+const { SCALARS } = require('../../types/generateTypeDefs');
 
 const exchangeTypes = {
   any: 'JSON',
@@ -67,8 +67,10 @@ function getRemoteMethodInput(method, isConnection = false) {
     }
   });
 
-  return (isConnection) ? Object.assign({},
-    acceptingParams, connectionArgs) : acceptingParams;
+  return (isConnection) ? Object.assign(
+    {},
+    acceptingParams, connectionArgs,
+  ) : acceptingParams;
 }
 
 /**

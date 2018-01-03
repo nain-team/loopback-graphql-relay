@@ -1,9 +1,9 @@
-'use strict';
+
 
 const _ = require('lodash');
 
-const {GraphQLObjectType} = require('graphql');
-const {getType} = require('../../types/type');
+const { GraphQLObjectType } = require('graphql');
+const { getType } = require('../../types/type');
 const getRemoteMethodQueries = require('./getRemoteMethodQueries');
 const generateViewer = require('./viewer');
 
@@ -12,7 +12,7 @@ function generateModelFields(models) {
   _.forEach(models, (model) => {
     const fields = Object.assign(
       {},
-      getRemoteMethodQueries(model)
+      getRemoteMethodQueries(model),
     );
 
     if (_.size(fields) === 0) {
@@ -32,14 +32,14 @@ function generateModelFields(models) {
   return modelFields;
 }
 
-module.exports = function(models, options) {
+module.exports = function (models, options) {
   const fields = Object.assign(
     {},
     {
       node: getType('node'),
       viewer: generateViewer(models, options),
     },
-    generateModelFields(models)
+    generateModelFields(models),
   );
 
   return new GraphQLObjectType({

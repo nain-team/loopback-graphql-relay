@@ -1,5 +1,3 @@
-'use strict';
-
 const loopback = require('loopback');
 const boot = require('loopback-boot');
 
@@ -11,7 +9,7 @@ app.use(loopback.token({
   currentUserLiteral: 'me',
 }));
 
-app.start = function() {
+app.start = function () {
   // start the web server
   return app.listen(() => {
     app.emit('started');

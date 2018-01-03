@@ -1,4 +1,4 @@
-'use strict';
+
 
 const _ = require('lodash');
 const utils = require('./utils');
@@ -49,7 +49,8 @@ function limitFilter(filter, before, after, order, idName) {
 
 function applyPagination(filter, first, last, count) {
   if (first || last) {
-    let limit, skip;
+    let limit,
+      skip;
 
     if (first && count > first) {
       limit = first;

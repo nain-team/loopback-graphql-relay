@@ -1,62 +1,129 @@
-'use strict';
+/*
+const {
+  GraphQLObjectType,
+  GraphQLString,
+  GraphQLBoolean,
+  GraphQLSchema,
+  GraphQLInputObjectType,
+  GraphQLNonNull,
+} = require('graphql');
+// const {PubSub} = require('graphql-subscriptions');
+const { PubSub } = require('graphql-subscriptions');
+const { withFilter } = require('graphql-subscriptions');
+const SubscriptionServer = require('./subscriptions');
 
-const Engine = require('apollo-engine').Engine;
-const graphql = require('graphql-server-express');
-const bodyParser = require('body-parser');
-const {getSchema} = require('./schema/index');
+const PubSubService = new PubSub();
 
-const startSubscriptionServer = require('./subscriptions');
+module.exports = function (app, options) {
+  const fakeDatabase = {
+    a: {
+      id: 'a',
+      name: 'alice',
+    },
+    b: {
+      id: 'b',
+      name: 'bob',
+    },
+  };
 
-module.exports = function(app, options) {
-  const models = app.models();
-  const schema = getSchema(models, options);
-  const apollo = options.apollo;
-  const path = options.path || '/graphql';
+  const UserModel = new GraphQLObjectType({
+    name: 'User',
+    args: {},
+    fields: () => ({
+      firstName: {
+        type: GraphQLString,
+      },
+      lastName: {
+        type: GraphQLString,
+      },
+    }),
+  });
 
-  if (apollo) {
-    if (!apollo.apiKey) {
-      throw new Error('Apollo engine api key is not defined');
-    }
-    const engine = new Engine({
-      engineConfig: {
-        apiKey: apollo.apiKey,
-        logging: {
-          level: apollo.debugLevel || 'DEBUG', // Engine Proxy
-          // logging level.
-          // DEBUG, INFO, WARN
-          // or ERROR
+  const queries = new GraphQLObjectType({
+    name: 'Query',
+    fields: {
+      User: {
+        type: UserModel,
+        args: {
+          id: { type: GraphQLString },
+        },
+        resolve(_, { id }) {
+          return fakeDatabase[id];
         },
       },
-      graphqlPort: apollo.graphqlPort || 2000, // GraphQL port
-      endpoint: path || '/graphql', // GraphQL endpoint suffix -
-      // '/graphql' by default
-      dumpTraffic: true, // Debug configuration that logs traffic between
-      // Proxy and GraphQL server
-    });
-
-    engine.start();
-
-    app.use(engine.expressMiddleware());
-  }
-
-  app.use(path, bodyParser.json(), graphql.graphqlExpress(req => ({
-    schema,
-    context: {
-      app,
-      req,
     },
-    tracing: false,
+  });
 
-    cacheControl: true,
-  })));
+  const mutations = new GraphQLObjectType({
+    name: 'Mutation',
+    fields: {
+      UserMutation: {
+        type: UserModel,
+        args: {
+          id: { type: GraphQLString },
+          lastName: { type: GraphQLString },
+          firstName: { type: GraphQLString },
+        },
+        resolve(_, object) {
+          PubSubService.publish('THIS-SHOULD-MATCH', object);
+          return object;
+        },
+      },
+    },
+  });
 
-  const graphiqlPath = options.graphiqlPath || '/graphiql';
-  app.use(graphiqlPath, graphql.graphiqlExpress({endpointURL: path}));
+  const UserSubscriptionInput = new GraphQLInputObjectType({
+    name: 'UserSubscriptionInput',
+    fields: () => ({
+      create: { type: new GraphQLNonNull(GraphQLBoolean) },
+      update: { type: new GraphQLNonNull(GraphQLBoolean) },
+      remove: { type: new GraphQLNonNull(GraphQLBoolean) },
+    }),
+  });
 
-  // Subscriptions
-  try {
-    startSubscriptionServer(app, schema, options);
-  } catch (ex) {
-    console.log(ex);
-  }
+  const UserSubscriptionOutput = new GraphQLObjectType({
+    name: 'thisNameCanBeAnyName',
+    fields: () => Object.assign({
+      outputOfSubscription: { type: UserModel },
+      clientSubscriptionId: { type: GraphQLString },
+    }),
+  });
+
+  const subscriptions = new GraphQLObjectType({
+    name: 'Subscription',
+    fields: {
+      ThisIsMyFirstSubscription: {
+        type: UserSubscriptionOutput,
+        args: { subscriptionInput: { type: UserSubscriptionInput } },
+        resolve(dataReceived, { input }, context, info) {
+          // here the object dataReceived will get data from mutation
+          const op = {
+            outputOfSubscription: dataReceived,
+            clientSubscriptionId: '123',
+          };
+
+          return op;
+        },
+
+        subscribe: withFilter(() => PubSubService.asyncIterator('THIS-SHOULD-MATCH'), (payload, variables) => {
+          console.log('In the subscribe function');
+          return true;
+        }),
+      },
+    },
+  });
+
+  const schema = new GraphQLSchema({ query: queries, mutation: mutations, subscription: subscriptions });
+  SubscriptionServer(app, schema, options);
+};
+*/
+
+const { getSchema } = require('./schema/index');
+const SubscriptionServer = require('./subscriptions');
+
+module.exports = function (app, options) {
+  const models = app.models();
+  const schema = getSchema(models, options);
+
+  SubscriptionServer(app, schema, options);
 };

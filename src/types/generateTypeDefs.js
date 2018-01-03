@@ -1,4 +1,4 @@
-'use strict';
+
 
 const _ = require('lodash');
 
@@ -7,8 +7,8 @@ const {
 } = require('graphql-relay');
 
 const GeoPointTypeDefs = require('./GeoPoint');
-const {findRelatedOne, findRelatedMany} = require('../db');
-const {connectionFromPromisedArray} = require('../db/resolveConnection');
+const { findRelatedOne, findRelatedMany } = require('../db');
+const { connectionFromPromisedArray } = require('../db/resolveConnection');
 
 /** * Loopback Types - GraphQL types
  any - JSON
@@ -55,8 +55,10 @@ function toTypes(union) {
  * @param {*} propertyName
  * @param {*} isInputType
  */
-function mapProperty(model, property, modelName,
-  propertyName, isInputType = false) {
+function mapProperty(
+  model, property, modelName,
+  propertyName, isInputType = false,
+) {
   // If property is deprecated, ignore it.
   if (property.deprecated) {
     return;
@@ -208,8 +210,7 @@ function mapRelation(rel, modelName, relName) {
     },
     resolve: (obj, args, context) => {
       if (isManyRelation(rel.type) === true) {
-        return connectionFromPromisedArray(
-          findRelatedMany(rel, obj, args, context), args);
+        return connectionFromPromisedArray(findRelatedMany(rel, obj, args, context), args);
       }
 
       return findRelatedOne(rel, obj, args, context);

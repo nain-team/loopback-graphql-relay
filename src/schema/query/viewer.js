@@ -1,4 +1,4 @@
-'use strict';
+
 
 const _ = require('lodash');
 
@@ -6,10 +6,10 @@ const {
   connectionArgs,
 } = require('graphql-relay');
 
-const {GraphQLObjectType} = require('graphql');
-const {getType, getConnection} = require('../../types/type');
-const {findAllRelated} = require('../../db');
-const {connectionFromPromisedArray} = require('../../db/resolveConnection');
+const { GraphQLObjectType } = require('graphql');
+const { getType, getConnection } = require('../../types/type');
+const { findAllRelated } = require('../../db');
+const { connectionFromPromisedArray } = require('../../db/resolveConnection');
 
 /**
  * Adds fields of all relationed models
@@ -35,8 +35,10 @@ function getRelatedModelFields(User) {
         if (!context.req.accessToken) return null;
 
         return findUserFromAccessToken(context.req.accessToken, User)
-          .then(user => connectionFromPromisedArray(findAllRelated(User,
-            user, relation.name, args, context), args, model));
+          .then(user => connectionFromPromisedArray(findAllRelated(
+            User,
+            user, relation.name, args, context,
+          ), args, model));
       },
     };
   });
@@ -53,8 +55,10 @@ function findUserFromAccessToken(accessToken, UserModel) {
   if (!accessToken) return null;
 
   return UserModel.findById(accessToken.userId).then((user) => {
-    if (!user) return Promise.
-      reject('No user with this access token was found.');
+    if (!user) {
+      return Promise
+        .reject('No user with this access token was found.');
+    }
     return Promise.resolve(user);
   });
 }
@@ -67,7 +71,7 @@ function getMeField(User) {
   return {
     me: {
       type: getType(User.modelName),
-      resolve: (obj, args, {app, req}) => {
+      resolve: (obj, args, { app, req }) => {
         if (!req.accessToken) return null;
 
         return findUserFromAccessToken(req.accessToken, User);
@@ -80,7 +84,7 @@ function getMeField(User) {
  * Generates Viewer query
  * @param {*} models
  */
-module.exports = function(models, options) {
+module.exports = function (models, options) {
   const opts = Object.assign({}, {
     AccessTokenModel: 'AccessToken',
     relation: 'user',
@@ -98,7 +102,7 @@ module.exports = function(models, options) {
       fields: () => Object.assign(
         {},
         getMeField(User),
-        getRelatedModelFields(User)
+        getRelatedModelFields(User),
       ),
     }),
   };

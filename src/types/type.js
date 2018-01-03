@@ -1,4 +1,4 @@
-'use strict';
+
 
 const _ = require('lodash');
 
@@ -10,13 +10,13 @@ const {
   GraphQLInt,
 } = require('graphql');
 
-const {connectionDefinitions} = require('graphql-relay');
+const { connectionDefinitions } = require('graphql-relay');
 
 const CustomGraphQLDateType = require('./Date');
 const GraphQLJSON = require('graphql-type-json');
 
-const {getTypeDef} = require('./generateTypeDefs');
-const {init, generateType, getNodeDefinitions} = require('./generateType');
+const { getTypeDef } = require('./generateTypeDefs');
+const { init, generateType, getNodeDefinitions } = require('./generateType');
 
 /**
  * Singleton Placeholders

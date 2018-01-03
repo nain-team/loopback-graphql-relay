@@ -1,4 +1,4 @@
-'use strict';
+
 
 const Promise = require('bluebird');
 const expect = require('chai').expect;
@@ -107,7 +107,7 @@ describe('Mutations', () => {
                 }
             }`;
     const variables = {
-      input: {id: '3'},
+      input: { id: '3' },
     };
 
     return chai.request(server)
@@ -134,7 +134,7 @@ describe('Mutations', () => {
                 }
             }`;
     const variables = {
-      input: {credentials: {username: 'aatif', password: '123'}},
+      input: { credentials: { username: 'aatif', password: '123' } },
     };
 
     return chai.request(server)
@@ -160,7 +160,7 @@ describe('Mutations', () => {
             }`;
 
     const variables = {
-      input: {credentials: {username: 'aatif', password: '123'}},
+      input: { credentials: { username: 'aatif', password: '123' } },
     };
 
     return chai.request(server)

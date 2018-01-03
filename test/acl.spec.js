@@ -1,6 +1,5 @@
 /* eslint-disable no-unused-expressions */
 
-'use strict';
 
 const Promise = require('bluebird');
 const expect = require('chai').expect;
@@ -26,8 +25,10 @@ describe('ACL testing', () => {
         }`;
     return chai.request(server)
       .post('/graphql')
-      .set('Authorization',
-        'PFzHFTtogUDB0l60MvHh4nnqg2DaD8UoHV3XtKEfKvAQJOxnTl151XLXC7ulIXWG')
+      .set(
+        'Authorization',
+        'PFzHFTtogUDB0l60MvHh4nnqg2DaD8UoHV3XtKEfKvAQJOxnTl151XLXC7ulIXWG',
+      )
       .send({
         query,
       })

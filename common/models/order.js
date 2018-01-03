@@ -1,5 +1,5 @@
-'use strict';
 
-module.exports = function(Order) {
+
+module.exports = function (Order) {
 
 };

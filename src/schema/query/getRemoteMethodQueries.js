@@ -1,10 +1,10 @@
-'use strict';
+
 
 const _ = require('lodash');
 
 const promisify = require('promisify-node');
 const utils = require('../utils');
-const {connectionFromPromisedArray} = require('graphql-relay');
+const { connectionFromPromisedArray } = require('graphql-relay');
 const checkAccess = require('../alc');
 
 const allowedVerbs = ['get', 'head'];
@@ -28,14 +28,16 @@ module.exports = function getRemoteMethodQueries(model) {
 
         const typeObj = utils.getRemoteMethodOutput(method);
 
-        const acceptingParams = utils.getRemoteMethodInput(method,
-          typeObj.list);
+        const acceptingParams = utils.getRemoteMethodInput(
+          method,
+          typeObj.list,
+        );
         const hookName = utils.getRemoteMethodQueryName(model, method);
 
         hooks[hookName] = {
           name: hookName,
           description: method.description,
-          meta: {relation: true},
+          meta: { relation: true },
           args: acceptingParams,
           type: typeObj.type,
           resolve: (__, args, context, info) => {
@@ -60,8 +62,10 @@ module.exports = function getRemoteMethodQueries(model) {
                   });
                 }
 
-                return connectionFromPromisedArray(wrap.apply(model, params),
-                  args, model);
+                return connectionFromPromisedArray(
+                  wrap.apply(model, params),
+                  args, model,
+                );
               }
               return wrap.apply(model, params);
             });

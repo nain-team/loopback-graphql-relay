@@ -1,4 +1,4 @@
-'use strict';
+
 
 const _ = require('lodash');
 const checkAccess = require('../alc');
@@ -8,7 +8,7 @@ const {
 } = require('graphql-relay');
 
 const promisify = require('promisify-node');
-const {connectionFromPromisedArray} = require('graphql-relay');
+const { connectionFromPromisedArray } = require('graphql-relay');
 
 const utils = require('../utils');
 // const { getType } = require('../../types/type');
@@ -39,7 +39,7 @@ module.exports = function getRemoteMethodMutations(model) {
         hooks[hookName] = mutationWithClientMutationId({
           name: hookName,
           description: method.description,
-          meta: {relation: true},
+          meta: { relation: true },
           inputFields: acceptingParams,
           outputFields: {
             obj: {
@@ -54,19 +54,16 @@ module.exports = function getRemoteMethodMutations(model) {
               params.push(args[name]);
             });
 
-            const modelId = args && args.id;
-            return checkAccess({
-              accessToken: context.req.accessToken, model, method, id: modelId,
-            }).then(() => {
-              const wrap = promisify(model[method.name]);
+            const wrap = promisify(model[method.name]);
 
-              if (typeObj.list) {
-                return connectionFromPromisedArray(wrap.apply(model,
-                  params), args, model);
-              }
+            if (typeObj.list) {
+              return connectionFromPromisedArray(wrap.apply(
+                model,
+                params,
+              ), args, model);
+            }
 
-              return wrap.apply(model, params);
-            });
+            return wrap.apply(model, params);
           },
         });
       }

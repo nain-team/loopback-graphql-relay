@@ -1,4 +1,4 @@
-'use strict';
+
 
 const expect = require('chai').expect;
 const chai = require('chai')
@@ -61,8 +61,8 @@ describe('Types', () => {
         .then((res) => {
           expect(res).to.have.status(200);
           const result = res.body.data;
-          expect(result.Googlemaps.GooglemapsFindOne.
-            location.distance).to.equal(486.3956513042483);
+          expect(result.Googlemaps.GooglemapsFindOne
+            .location.distance).to.equal(486.3956513042483);
         });
     });
   });

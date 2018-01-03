@@ -1,6 +1,6 @@
-'use strict';
 
-module.exports = function(Note) {
+
+module.exports = function (Note) {
   Note.clear = () => ({
     note: {
       Content: '',

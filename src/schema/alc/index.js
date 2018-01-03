@@ -1,4 +1,4 @@
-'use strict';
+
 // calls the check the ACLS on the model and
 // return the access permission on method.
 function checkAccess({
@@ -12,7 +12,7 @@ function checkAccess({
         if (err) { reject(err); } else if (allowed) { resolve(allowed); } else {
           reject('Access denied');
         }
-      })
+      }),
     );
   });
 }

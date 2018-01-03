@@ -1,4 +1,4 @@
-'use strict';
+
 
 function base64(i) {
   return (new Buffer(i, 'ascii')).toString('base64');

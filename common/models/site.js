@@ -1,6 +1,6 @@
-'use strict';
 
-module.exports = function(Site) {
+
+module.exports = function (Site) {
 
   /*
       Site.sites = function(httpRequest, httpResponse, cb) {

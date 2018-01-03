@@ -1,5 +1,5 @@
 /* eslint-disable no-unused-expressions */
-'use strict';
+
 
 // {
 //     "node": {
@@ -20,7 +20,7 @@ const chai = require('chai').use(require('chai-http'));
 const server = require('../server/server');
 const cpx = require('cpx');
 
-const {fromGlobalId} = require('graphql-relay');
+const { fromGlobalId } = require('graphql-relay');
 
 const gql = require('graphql-tag');
 // var _ = require('lodash');
@@ -52,8 +52,10 @@ describe('Pagination', () => {
         }`;
     return chai.request(server)
       .post('/graphql')
-      .set('Authorization',
-        'PFzHFTtogUDB0l60MvHh4nnqg2DaD8UoHV3XtKEfKvAQJOxnTl151XLXC7ulIXWG')
+      .set(
+        'Authorization',
+        'PFzHFTtogUDB0l60MvHh4nnqg2DaD8UoHV3XtKEfKvAQJOxnTl151XLXC7ulIXWG',
+      )
       .send({
         query,
       })
@@ -87,8 +89,10 @@ describe('Pagination', () => {
         }`;
     return chai.request(server)
       .post('/graphql')
-      .set('Authorization',
-        'PFzHFTtogUDB0l60MvHh4nnqg2DaD8UoHV3XtKEfKvAQJOxnTl151XLXC7ulIXWG')
+      .set(
+        'Authorization',
+        'PFzHFTtogUDB0l60MvHh4nnqg2DaD8UoHV3XtKEfKvAQJOxnTl151XLXC7ulIXWG',
+      )
       .send({
         query,
       })
@@ -133,8 +137,10 @@ describe('Pagination', () => {
         }`;
     return chai.request(server)
       .post('/graphql')
-      .set('Authorization',
-        'PFzHFTtogUDB0l60MvHh4nnqg2DaD8UoHV3XtKEfKvAQJOxnTl151XLXC7ulIXWG')
+      .set(
+        'Authorization',
+        'PFzHFTtogUDB0l60MvHh4nnqg2DaD8UoHV3XtKEfKvAQJOxnTl151XLXC7ulIXWG',
+      )
       .send({
         query,
       })

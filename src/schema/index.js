@@ -1,6 +1,5 @@
-'use strict';
 
-const {GraphQLSchema} = require('graphql');
+const { GraphQLSchema } = require('graphql');
 const getQuery = require('./query');
 const getMutation = require('./mutation');
 const getSubscription = require('./subscription');
@@ -18,7 +17,10 @@ function getSchema(models, options) {
       options.subscriptionServer.disable !== true) {
     items.subscription = getSubscription(models);
   }
-  return new GraphQLSchema(items);
+
+  const schema = new GraphQLSchema(items);
+
+  return schema;
 }
 
 module.exports = {

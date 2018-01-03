@@ -1,4 +1,4 @@
-'use strict';
+
 
 const _ = require('lodash');
 
@@ -17,8 +17,8 @@ const {
 } = require('graphql-relay');
 
 // const type = require('./type');
-let {getType, getConnection} = require('./type');
-const {generateTypeDefs} = require('./generateTypeDefs');
+let { getType, getConnection } = require('./type');
+const { generateTypeDefs } = require('./generateTypeDefs');
 
 /**
  * Singleton Objects
@@ -79,8 +79,10 @@ function generateFieldArgs(field) {
       return;
     }
 
-    args[argName] = {type: (arg.required === true) ?
-      new GraphQLNonNull(getType(arg.type)) : getType(arg.type)};
+    args[argName] = {
+      type: (arg.required === true) ?
+        new GraphQLNonNull(getType(arg.type)) : getType(arg.type),
+    };
   });
 
   return args;
@@ -173,7 +175,7 @@ function generateType(name, def) {
   } else if (def.category === 'ENUM') {
     const values = {};
     _.forEach(def.values, (val) => {
-      values[val] = {value: val};
+      values[val] = { value: val };
     });
     def.values = values;
 
@@ -187,14 +189,14 @@ function generateType(name, def) {
  */
 function generateNodeDefinitions(models) {
   nodeDefinitions = relayNodeDefinitions(
-    (globalId, context, {rootValue}) => {
-      const {type, id} = fromGlobalId(globalId);
+    (globalId, context, { rootValue }) => {
+      const { type, id } = fromGlobalId(globalId);
       return models[type].findById(id).then((obj) => {
         obj.__typename = type;
         return Promise.resolve(obj);
       });
     },
-    obj => getType(obj.__typename)
+    obj => getType(obj.__typename),
   );
 }
 
