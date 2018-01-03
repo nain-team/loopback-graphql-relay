@@ -1,8 +1,6 @@
+module.exports = function (model) {
+  const Author = Object.assign({}, model, { model });
 
-
-const loopbackUtils = require('loopback/lib/utils');
-
-module.exports = function (Author) {
   Author.remoteMethod('addFriend', {
     http: {
       path: '/addFriend',
@@ -29,7 +27,6 @@ module.exports = function (Author) {
         const updated = res;
         updated.friendIds.push(friend);
         return updated.save();
-      }).then((res) => {
       });
   };
 

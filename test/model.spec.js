@@ -1,6 +1,6 @@
-/* eslint-disable no-unused-expressions */
-
-
+const {
+  before, describe, it,
+} = require('mocha');
 const server = require('../server/server');
 const expect = require('chai').expect;
 

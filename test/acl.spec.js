@@ -1,6 +1,6 @@
-/* eslint-disable no-unused-expressions */
-
-
+const {
+  before, describe, it,
+} = require('mocha');
 const Promise = require('bluebird');
 const expect = require('chai').expect;
 const chai = require('chai')

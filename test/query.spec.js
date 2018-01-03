@@ -1,5 +1,6 @@
-
-
+const {
+  before, describe, it,
+} = require('mocha');
 const expect = require('chai').expect;
 const chai = require('chai').use(require('chai-http'));
 const server = require('../server/server');

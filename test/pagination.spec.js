@@ -1,19 +1,6 @@
-/* eslint-disable no-unused-expressions */
-
-
-// {
-//     "node": {
-//     "id": "U2l0ZTox",
-//         "name": "Blueeast"
-// }
-// },
-// {
-//     "node": {
-//     "id": "U2l0ZToy",
-//         "name": "Orient"
-// }
-// }
-
+const {
+  before, describe, it,
+} = require('mocha');
 const Promise = require('bluebird');
 const expect = require('chai').expect;
 const chai = require('chai').use(require('chai-http'));

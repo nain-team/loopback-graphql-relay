@@ -1,6 +1,6 @@
+module.exports = function (model) {
+  const Note = Object.assign({}, model, { model });
 
-
-module.exports = function (Note) {
   Note.clear = () => ({
     note: {
       Content: '',
