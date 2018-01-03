@@ -3,7 +3,7 @@ const { LoopbackPubSub } = require('graphql-loopback-subscriptions');
 const { withFilter } = require('graphql-subscriptions');
 const { getType } = require('../types/type');
 
-let models = {};
+var models = {};
 
 const {
   GraphQLInputObjectType,
@@ -85,7 +85,7 @@ module.exports = function subscriptionWithPayload({ modelName, subscribeAndGetPa
           update: variables.input.update,
         };
 
-        for (let count = 0; count < models.length; count++) {
+        for (var count = 0; count < models.length; count++) {
           const model = models[count];
           if (model.definition.name === modelName) {
             subscriptionPayload.model = model;

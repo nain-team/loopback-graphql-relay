@@ -2,8 +2,7 @@ const _ = require('lodash');
 const { GraphQLObjectType } = require('graphql');
 const { getType } = require('../types/type');
 const subWithPayload = require('../subscriptions/subscriptionWithPayload');
-
-let loopbackModels;
+var loopbackModels;
 
 function addModel(model) {
   const fields = {};
