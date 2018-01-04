@@ -77,7 +77,7 @@ module.exports = function
         info
       ))
         .then(payload => ({
-          clientSubscriptionId, where, type, target, object: payload,
+          clientSubscriptionId, where, type, target, object: payload.object.data,
         }));
     },
     subscribe: withFilter(
