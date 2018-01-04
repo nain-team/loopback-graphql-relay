@@ -41,7 +41,7 @@ describe('Pagination', () => {
       .post('/graphql')
       .set(
         'Authorization',
-        'PFzHFTtogUDB0l60MvHh4nnqg2DaD8UoHV3XtKEfKvAQJOxnTl151XLXC7ulIXWG',
+        'GpAjBkPbiHUPPs4WY2XwpwS6bnYHcXHsyXpU1x13qS8l3zSNgnoWvaMr6GfNvYDe',
       )
       .send({
         query,
@@ -78,7 +78,7 @@ describe('Pagination', () => {
       .post('/graphql')
       .set(
         'Authorization',
-        'PFzHFTtogUDB0l60MvHh4nnqg2DaD8UoHV3XtKEfKvAQJOxnTl151XLXC7ulIXWG',
+        'GpAjBkPbiHUPPs4WY2XwpwS6bnYHcXHsyXpU1x13qS8l3zSNgnoWvaMr6GfNvYDe',
       )
       .send({
         query,
@@ -126,7 +126,7 @@ describe('Pagination', () => {
       .post('/graphql')
       .set(
         'Authorization',
-        'PFzHFTtogUDB0l60MvHh4nnqg2DaD8UoHV3XtKEfKvAQJOxnTl151XLXC7ulIXWG',
+        'GpAjBkPbiHUPPs4WY2XwpwS6bnYHcXHsyXpU1x13qS8l3zSNgnoWvaMr6GfNvYDe',
       )
       .send({
         query,

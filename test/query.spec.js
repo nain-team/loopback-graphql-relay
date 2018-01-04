@@ -33,7 +33,7 @@ describe('Queries', () => {
         .post('/graphql')
         .set(
           'Authorization',
-          'PFzHFTtogUDB0l60MvHh4nnqg2DaD8UoHV3XtKEfKvAQJOxnTl151XLXC7ulIXWG',
+          'GpAjBkPbiHUPPs4WY2XwpwS6bnYHcXHsyXpU1x13qS8l3zSNgnoWvaMr6GfNvYDe',
         )
         .send({
           query,
@@ -62,7 +62,7 @@ describe('Queries', () => {
       .post('/graphql')
       .set(
         'Authorization',
-        'PFzHFTtogUDB0l60MvHh4nnqg2DaD8UoHV3XtKEfKvAQJOxnTl151XLXC7ulIXWG',
+        'GpAjBkPbiHUPPs4WY2XwpwS6bnYHcXHsyXpU1x13qS8l3zSNgnoWvaMr6GfNvYDe',
       )
       .send({
         query,
@@ -92,7 +92,7 @@ describe('Queries', () => {
       .post('/graphql')
       .set(
         'Authorization',
-        'PFzHFTtogUDB0l60MvHh4nnqg2DaD8UoHV3XtKEfKvAQJOxnTl151XLXC7ulIXWG',
+        'GpAjBkPbiHUPPs4WY2XwpwS6bnYHcXHsyXpU1x13qS8l3zSNgnoWvaMr6GfNvYDe',
       )
       .send({
         query,
@@ -116,7 +116,7 @@ describe('Queries', () => {
       .post('/graphql')
       .set(
         'Authorization',
-        'PFzHFTtogUDB0l60MvHh4nnqg2DaD8UoHV3XtKEfKvAQJOxnTl151XLXC7ulIXWG',
+        'GpAjBkPbiHUPPs4WY2XwpwS6bnYHcXHsyXpU1x13qS8l3zSNgnoWvaMr6GfNvYDe',
       )
       .send({
         query,
@@ -234,7 +234,7 @@ describe('Queries', () => {
         .post('/graphql')
         .set(
           'Authorization',
-          'PFzHFTtogUDB0l60MvHh4nnqg2DaD8UoHV3XtKEfKvAQJOxnTl151XLXC7ulIXWG',
+          'GpAjBkPbiHUPPs4WY2XwpwS6bnYHcXHsyXpU1x13qS8l3zSNgnoWvaMr6GfNvYDe',
         )
         .send({
           query,
@@ -362,10 +362,13 @@ describe('Queries', () => {
     it('should run successfully data is returned', (done) => {
       const query = gql`
                 { Author{ AuthorSearchByName 
-                (filter:{name:"Unit Test"}){edges { node }} }  }`;
+                (filter:{name:"Atif"}){edges { node }} }  }`;
       chai.request(server)
         .post('/graphql')
-        .send({
+        .set(
+          'Authorization',
+          'GpAjBkPbiHUPPs4WY2XwpwS6bnYHcXHsyXpU1x13qS8l3zSNgnoWvaMr6GfNvYDe',
+        ).send({
           query,
         })
         .then((res, err) => {

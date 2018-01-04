@@ -30,6 +30,16 @@ module.exports = function (model) {
       });
   };
 
+  Author.searchByName = function searchByName(filter, p1, p2, cb) {
+    if (filter) {
+      Author.find({ where: { firstName: filter.name } }, (err, resp) => {
+        cb(null, resp);
+      });
+    } else {
+      cb(null, []);
+    }
+  };
+
   Author.remoteMethod('searchByName', {
     accepts: [
       {
@@ -46,14 +56,4 @@ module.exports = function (model) {
     returns: { arg: 'result', type: 'array', root: true },
     http: { path: '/searchByName', verb: 'get' },
   });
-
-  Author.searchByName = function searchByName(filter, p1, p2, cb) {
-    if (filter) {
-      Author.find({ where: { firstName: filter.name } }, (err, resp) => {
-        cb(null, resp);
-      });
-    } else {
-      cb(null, []);
-    }
-  };
 };
