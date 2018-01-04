@@ -1,3 +1,6 @@
+/**
+ * @deprecated since version 0.10.1
+ */
 'use strict';
 
 const SubscriptionManager = require('graphql-subscriptions');

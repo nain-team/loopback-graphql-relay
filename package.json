@@ -43,19 +43,21 @@
   "homepage": "https://github.com/BlueEastCode/loopback-graphql-relay#readme",
   "dependencies": {
     "apollo-engine": "0.5.4",
+    "apollo-server-express": "^1.3.2",
     "async": "2.6.0",
     "body-parser": "1.18.2",
     "event-stream": "3.3.4",
+    "express-graphql": "^0.6.11",
     "graphql": "0.11.7",
     "graphql-date": "1.0.3",
+    "graphql-loopback-subscriptions": "^0.1.0",
     "graphql-relay": "0.5.3",
-    "graphql-server-express": "1.2.0",
-    "graphql-subscriptions": "0.5.4",
+    "graphql-subscriptions": "^0.5.6",
     "graphql-type-json": "0.1.4",
     "lodash": "4.17.4",
     "loopback-filters": "0.1.3",
     "promisify-node": "0.4.0",
-    "subscriptions-transport-ws": "0.9.1"
+    "subscriptions-transport-ws": "^0.9.4"
   },
   "devDependencies": {
     "apollo-client": "2.0.3",

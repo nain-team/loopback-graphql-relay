@@ -1,52 +1,57 @@
 'use strict';
 
-const _ = require('lodash');
+const {createServer} = require('http');
+const {SubscriptionServer} = require('subscriptions-transport-ws');
+const {execute, subscribe} = require('graphql');
+const bodyParser = require('body-parser');
+const graphqlHTTP = require('express-graphql');
+const {graphqlExpress, graphiqlExpress} = require('apollo-server-express');
 
-const PubSub = require('./pubsub');
-// const SubscriptionManager = require('./subscriptionManager');
-const SubscriptionServer = require('./server');
-const patchChangeStream = require('./patchChangeStream');
+module.exports = function(app, schema, opts) {
+  app.use('/graphql', bodyParser.json(), graphqlHTTP({
+    schema: schema,
+    rootValue: global,
+    graphiql: true,
+  }));
 
-module.exports = function startSubscriptionServer(app, schema, options) {
-  const models = app.models();
+  const PORT = 3000;
 
-  _.forEach(models, (model) =>  {
-    patchChangeStream(model);
+  app.use('/graphiql', graphiqlExpress({
+    endpointURL: '/graphql',
+    subscriptionsEndpoint: `ws://localhost:${PORT}/subscriptions`,
+  }));
+
+  const server = createServer(app);
+  server.listen(PORT, () => {
+    SubscriptionServer.create(
+      {execute, subscribe, schema},
+      {server, path: '/subscriptions'}
+    );
+    console.log(`GraphQL server running on port ${PORT}.`);
   });
 
-  const setupFunctions = {};
-  _.forEach(models, (model) => {
-    if (!model.shared) {
-      return;
-    }
+  const subscriptionOpts = opts.subscriptionServer || {};
 
-    setupFunctions[model.modelName] = (options, args) => {
-      const ret = {};
-      ret[_.lowerCase(model.modelName)] = {
-        // filter: comment => comment.repository_name === args.repoFullName,
-        channelOptions: getOptions(model, options, args),
-      };
+  const disable = subscriptionOpts.disable || false;
 
-      return ret;
-    };
+  if (disable === true) {
+    return;
+  }
+
+  const WS_PORT = subscriptionOpts.port || 5000;
+  const options = subscriptionOpts.options || {};
+  const socketOptions = subscriptionOpts.socketOptions || {};
+
+  const websocketServer = createServer((request, response) => {
+    response.writeHead(404);
+    response.end();
   });
-  // const subscriptionManager = SubscriptionManager(models, schema, new PubSub());
-  SubscriptionServer(app, schema, setupFunctions);
 
-  // test(subscriptionManager);
+  websocketServer.listen(WS_PORT, () => console.log(
+    `Websocket Server is now running on http://localhost:${WS_PORT}`
+  ));
+
+  SubscriptionServer.create({schema, execute, subscribe}, {server: websocketServer, path: '/'});
+
+  return server;
 };
-
-function getOptions(model, options, args) {
-  const basicOpts = {
-    context: options.context,
-    create: (!_.isNil(args.input.create)) ? args.input.create : false,
-    update: (!_.isNil(args.input.update)) ? args.input.update : false,
-    remove: (!_.isNil(args.input.remove)) ? args.input.remove : false,
-    options: (!_.isNil(args.input.options)) ? args.input.options : false,
-    clientSubscriptionId: (!_.isNil(args.input.clientSubscriptionId)) ? args.input.clientSubscriptionId : false,
-  };
-
-  basicOpts.model = model;
-
-  return basicOpts;
-}

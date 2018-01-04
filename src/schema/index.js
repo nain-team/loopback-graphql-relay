@@ -14,10 +14,14 @@ function getSchema(models, options) {
     mutation: getMutation(models),
   };
 
-  if (options && options.subscriptionServer && options.subscriptionServer.disable !== true) {
+  if (options && options.subscriptionServer &&
+      options.subscriptionServer.disable !== true) {
     items.subscription = getSubscription(models);
   }
-  return new GraphQLSchema(items);
+
+  const schema = new GraphQLSchema(items);
+
+  return schema;
 }
 
 module.exports = {

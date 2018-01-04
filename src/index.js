@@ -1,10 +1,7 @@
 'use strict';
 
 const Engine = require('apollo-engine').Engine;
-const graphql = require('graphql-server-express');
-const bodyParser = require('body-parser');
 const {getSchema} = require('./schema/index');
-
 const startSubscriptionServer = require('./subscriptions');
 
 module.exports = function(app, options) {
@@ -21,12 +18,13 @@ module.exports = function(app, options) {
       engineConfig: {
         apiKey: apollo.apiKey,
         logging: {
-          level: apollo.debugLevel || 'DEBUG',   // Engine Proxy logging level. DEBUG, INFO, WARN or ERROR
+          level: apollo.debugLevel || 'DEBUG',
+          // DEBUG, INFO, WARN or ERROR
         },
       },
-      graphqlPort: apollo.graphqlPort || 2000,  // GraphQL port
-      endpoint: path || '/graphql',                   // GraphQL endpoint suffix - '/graphql' by default
-      dumpTraffic: true,                       // Debug configuration that logs traffic between Proxy and GraphQL server
+      graphqlPort: apollo.graphqlPort || 2000,
+      endpoint: path || '/graphql',
+      dumpTraffic: true,
     });
 
     engine.start();
@@ -34,21 +32,6 @@ module.exports = function(app, options) {
     app.use(engine.expressMiddleware());
   }
 
-  app.use(path, bodyParser.json(), graphql.graphqlExpress(req => ({
-    schema,
-    context: {
-      app,
-      req,
-    },
-    tracing: true,
-
-    cacheControl: true,
-  })));
-
-  const graphiqlPath = options.graphiqlPath || '/graphiql';
-  app.use(graphiqlPath, graphql.graphiqlExpress({endpointURL: path}));
-
-  // Subscriptions
   try {
     startSubscriptionServer(app, schema, options);
   } catch (ex) {
