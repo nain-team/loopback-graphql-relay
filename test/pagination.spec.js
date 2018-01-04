@@ -16,7 +16,6 @@ const gql = require('graphql-tag');
 // var _ = require('lodash');
 
 describe('Pagination', () => {
-  before(() => Promise.fromCallback(cb => cpx.copy('./data.json', './data/', cb)));
 
   it('should query first 2 entities', () => {
     const query = gql `{
@@ -41,12 +40,13 @@ describe('Pagination', () => {
     }`;
     return chai.request(server)
       .post('/graphql')
-      .set('Authorization', 'iZF7aA2eXoadDrPDhFiqj6HvrbHNl2akDcoZ5DDD716QKI9h8ERqcLgU1EIQDlGo')
+      .set('Authorization', 'jHLCT0e7rup6pPXOtzC9TvM0ov68DnmfwrGqJcKykg929gjC63I281GfZwqlRzVh')
       .send({
         query,
       })
       .then((res) => {
         expect(res).to.have.status(200);
+        expect(res.body.data.viewer.sites).not.to.equal(null);
         expect(res.body.data.viewer.sites.edges.length).to.equal(2);
         expect(res.body.data.viewer.sites.totalCount).to.equal(3);
       });
@@ -75,7 +75,7 @@ describe('Pagination', () => {
     }`;
     return chai.request(server)
       .post('/graphql')
-      .set('Authorization', 'iZF7aA2eXoadDrPDhFiqj6HvrbHNl2akDcoZ5DDD716QKI9h8ERqcLgU1EIQDlGo')
+      .set('Authorization', 'jHLCT0e7rup6pPXOtzC9TvM0ov68DnmfwrGqJcKykg929gjC63I281GfZwqlRzVh')
       .send({
         query,
       })
@@ -119,7 +119,7 @@ describe('Pagination', () => {
 		}`;
     return chai.request(server)
       .post('/graphql')
-      .set('Authorization', 'fJQk31mfqckwoYGCq7cCq5TzrZobBwNvpRMF4KmuqhQaiaSVPXaj99iEQs6Vt6Wi')
+      .set('Authorization', 'jHLCT0e7rup6pPXOtzC9TvM0ov68DnmfwrGqJcKykg929gjC63I281GfZwqlRzVh')
       .send({
         query,
       })

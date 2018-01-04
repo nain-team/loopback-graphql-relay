@@ -32,7 +32,7 @@ function getRelatedModelFields(User) {
       }, connectionArgs),
       type: getConnection(model.modelName),
       resolve: (obj, args, context) => {
-        if (!context.req.accessToken) return null;
+        if (!context.req || !context.req.accessToken) return null;
 
         return findUserFromAccessToken(context.req.accessToken, User)
           .then(user => connectionFromPromisedArray(findAllRelated(User, user, relation.name, args, context), args, model));

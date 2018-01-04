@@ -4,8 +4,7 @@
 const Promise = require('bluebird');
 
 const expect = require('chai').expect;
-const chai = require('chai')
-  .use(require('chai-http'));
+const chai = require('chai').use(require('chai-http'));
 const server = require('../server/server');
 const cpx = require('cpx');
 
@@ -13,7 +12,12 @@ const gql = require('graphql-tag');
 // var _ = require('lodash');
 
 describe('Mutations', () => {
-  before(() => Promise.fromCallback(cb => cpx.copy('./data.json', './data/', cb)));
+
+    var authorId = 123;
+
+    before(() => Promise.fromCallback(cb => cpx.copy('./data.json', './data/', cb)));
+    after(() => {
+    });
 
   it('should add a single entity', () => {
     const query = gql `
@@ -47,6 +51,7 @@ describe('Mutations', () => {
         const result = res.body.data;
         expect(result.Author.AuthorCreate.obj.firstName).to.equal(variables.data.firstName);
         expect(result.Author.AuthorCreate.obj.lastName).to.equal(variables.data.lastName);
+        authorId = result.Author.AuthorCreate.obj.id;
       });
   });
 
@@ -124,15 +129,15 @@ describe('Mutations', () => {
 
   it('should login and return an accessToken', () => {
     const query = gql `
-      mutation login ($input: UserLoginInput!){
-        User {
-          UserLogin(input: $input) {
+      mutation login ($input: AccountLoginInput!){
+        Account {
+          AccountLogin(input: $input) {
             obj
           }
         }
       }`;
     const variables = {
-      input: {credentials: {username: 'naveenmeher', password: '123'}},
+      input: {credentials: {username: 'aatif', password: '123'}},
     };
 
     return chai.request(server)
@@ -143,22 +148,22 @@ describe('Mutations', () => {
       })
       .then((res) => {
         expect(res).to.have.status(200);
-        expect(res.body.data.User.UserLogin.obj).to.have.property('id');
+        expect(res.body.data.Account.AccountLogin.obj).to.have.property('id');
       });
   });
 
   it('should not login and return an error', () => {
     const query = gql `
-    mutation login ($input: UserLoginInput!){
-      User {
-        UserLogin(input: $input) {
+    mutation login ($input: AccountLoginInput!){
+      Account {
+        AccountLogin(input: $input) {
           obj
         }
       }
     }`;
 
     const variables = {
-      input: {credentials: {username: 'naveenmeher', password: '1234'}},
+      input: {credentials: {username: 'aatif', password: 'wrong'}},
     };
 
     return chai.request(server)

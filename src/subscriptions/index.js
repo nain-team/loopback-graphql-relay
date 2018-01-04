@@ -4,22 +4,25 @@ const {createServer} = require('http');
 const {SubscriptionServer} = require('subscriptions-transport-ws');
 const {execute, subscribe} = require('graphql');
 const bodyParser = require('body-parser');
-const graphqlHTTP = require('express-graphql');
 const {graphqlExpress, graphiqlExpress} = require('apollo-server-express');
 
 module.exports = function(app, schema, opts) {
-  app.use('/graphql', bodyParser.json(), graphqlHTTP({
-    schema: schema,
-    rootValue: global,
-    graphiql: true,
-  }));
-
   const PORT = 3000;
 
   app.use('/graphiql', graphiqlExpress({
     endpointURL: '/graphql',
     subscriptionsEndpoint: `ws://localhost:${PORT}/subscriptions`,
   }));
+
+  app.use('/graphql', bodyParser.json(), graphqlExpress(req => ({
+    schema,
+    rootValue: global,
+    graphiql: false,
+    context: {
+      app,
+      req,
+    },
+  })));
 
   const server = createServer(app);
   server.listen(PORT, () => {

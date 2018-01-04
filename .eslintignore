@@ -2,3 +2,4 @@
 /coverage/**
 /out/**
 package-lock.json
+/test/
