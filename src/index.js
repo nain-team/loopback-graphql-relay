@@ -1,11 +1,18 @@
 'use strict';
 
+const _ = require('lodash');
 const Engine = require('apollo-engine').Engine;
 const {getSchema} = require('./schema/index');
 const startSubscriptionServer = require('./subscriptions');
+const patchChangeStream = require('./subscriptions/patchChangeStream');
 
 module.exports = function(app, options) {
   const models = app.models();
+
+  _.forEach(models, (model) =>  {
+    patchChangeStream(model);
+  });
+
   const schema = getSchema(models, options);
   const apollo = options.apollo;
   const path = options.path || '/graphql';

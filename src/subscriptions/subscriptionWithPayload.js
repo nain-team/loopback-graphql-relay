@@ -62,6 +62,7 @@ module.exports = function
     resolve(subscribedData, {input}, context, info) {
       const clientSubscriptionId = (subscribedData) ?
         subscribedData.subscriptionId : null;
+
       const object = (subscribedData) ? subscribedData.object : null;
       var where = null;
       var type = null;
@@ -88,6 +89,7 @@ module.exports = function
           remove: variables.input.remove,
           create: variables.input.create,
           update: variables.input.update,
+          opts: variables.input.options,
         };
 
         subscriptionPayload.model = model;
