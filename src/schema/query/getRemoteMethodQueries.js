@@ -13,7 +13,7 @@ module.exports = function getRemoteMethodQueries(model) {
 
   if (model.sharedClass && model.sharedClass.methods) {
     model.sharedClass.methods().forEach((method) => {
-      if (method.name.indexOf('Stream') === -1 && method.name.indexOf('invoke') === -1) {
+      if (method.shared && method.name.indexOf('Stream') === -1 && method.name.indexOf('invoke') === -1) {
         if (!utils.isRemoteMethodAllowed(method, allowedVerbs)) {
           return;
         }

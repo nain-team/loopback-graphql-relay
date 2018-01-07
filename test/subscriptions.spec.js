@@ -19,37 +19,61 @@ const GRAPHQL_ENDPOINT = 'ws://localhost:5000/subscriptions';
 
 
 describe('Subscription', () => {
-    it('Subscribe to ', async () => {
 
-        const query = gql `subscription {
-          Customer(input: {create: true, clientSubscriptionId: 5500, options: {where: {age: {gt: 100}}}}) {
-            customer {
-              name
-            }
-          }
-        }
-        `;
-
-        const GRAPHQL_ENDPOINT = 'ws://localhost:5000/graphql';
-
-        const client = new SubscriptionClient(GRAPHQL_ENDPOINT, {
-            reconnect: true,
-        }, ws);
-
-
-        const apolloClient = new ApolloClient({
-            networkInterface: client,
-            link: new HttpLink(),
+    before(async () => {
+        networkInterface = new SubscriptionClient(
+            GRAPHQL_ENDPOINT, { reconnect: true }, ws);
+        apollo = new ApolloClient({
+            networkInterface ,
+            link: new HttpLink({ uri: 'http://localhost:3000/graphql' }),
             cache: new InMemoryCache()
         });
+    });
 
-        apolloClient.subscribe({
-            query: query,
-            variables: {}
-        }).subscribe({
-            next (data) {
-                console.log(data);
-            }
+    after(done => {
+        networkInterface.close() ;
+    });
+
+    it('subscription', async () => {
+        // SUBSCRIBE and make a promise
+        const options = {
+            query: gql`
+                subscription {
+                    Customer(input: {create: true,
+                        clientSubscriptionId: 112,
+                        options: {where: {age: 50}}}) {
+                        customer {
+                            name
+                        }
+                    }
+                }
+            `
+        };
+        const subscriptionPromise = new Promise((resolve, reject) => {
+            const client = () => apollo;
+            client().subscribe(options).subscribe({
+                next: resolve,
+                error: reject
+            });
         });
+
+        let execGraphQL;
+        // MUTATE
+        await execGraphQL(
+            `mutation {
+              Customer {
+                CustomerCreate (input:{data:{name:"Atif 21", age:50}}) {
+                  obj {
+                    id
+                    name
+                  }
+                }
+              }
+            }`
+        );
+
+        // ASSERT SUBSCRIPTION RECEIVED EVENT
+        expect(await subscriptionPromise).to.deep.equal({});
+
     });
 });

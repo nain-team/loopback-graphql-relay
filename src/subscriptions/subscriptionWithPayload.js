@@ -18,7 +18,7 @@ function resolveMaybeThunk(maybeThunk) {
 }
 
 function defaultGetPayload(obj) {
-  return (obj && obj.object) ? obj : null;
+  return (obj && obj.object) ? obj.object : null;
 }
 
 module.exports = function
@@ -39,6 +39,7 @@ module.exports = function
   const modelFieldName = _.camelCase(_.lowerCase(modelName));
   outputFields[modelFieldName] = {
     type: getType(modelName),
+    // resolve: o => o.object,
     resolve: o => o.object,
   };
 
@@ -59,31 +60,27 @@ module.exports = function
     args: {
       input: {type: new GraphQLNonNull(inputType)},
     },
-    resolve(subscribedData, {input}, context, info) {
-      const clientSubscriptionId = (subscribedData) ?
-        subscribedData.subscriptionId : null;
+    resolve(payload, args, context, info) {
+      const clientSubscriptionId = (payload) ? payload.subscriptionId : null;
 
-      const object = (subscribedData) ? subscribedData.object : null;
+      const object = (payload) ? payload.object : null;
       var where = null;
       var type = null;
       var target = null;
       if (object) {
-        where = (subscribedData) ? subscribedData.object.where : null;
-        type = (subscribedData) ? subscribedData.object.type : null;
-        target = (subscribedData) ? subscribedData.object.target : null;
+        where = (payload) ? payload.object.where : null;
+        type = (payload) ? payload.object.type : null;
+        target = (payload) ? payload.object.target : null;
       }
 
-      return Promise.resolve(subscribeAndGetPayload(
-        subscribedData, {input}, context,
-        info
-      ))
+      return Promise.resolve(subscribeAndGetPayload(payload, args, context, info))
         .then(payload => ({
-          clientSubscriptionId, where, type, target, object: payload.object.data,
+          clientSubscriptionId, where, type, target, object: payload.data,
         }));
     },
     subscribe: withFilter(
       () => loopbackPubSub.asyncIterator(modelName),
-      (payload, variables, arg0, arg1) => {
+      (payload, variables, context, info) => {
         const subscriptionPayload = {
           clientSubscriptionId: variables.input.clientSubscriptionId,
           remove: variables.input.remove,
@@ -95,7 +92,7 @@ module.exports = function
         subscriptionPayload.model = model;
 
         try {
-          loopbackPubSub.subscribe(arg1.fieldName, null, subscriptionPayload);
+          loopbackPubSub.subscribe(info.fieldName, null, subscriptionPayload);
         } catch (ex) {
           console.log(ex);
         }
