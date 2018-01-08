@@ -99,7 +99,7 @@
     "sinon": "4.1.2",
     "standard-version": "4.2.0",
     "strong-error-handler": "2.3.0",
-    "validate-commit-msg": "2.14.0"
+    "validate-commit-msg": "^2.14.0"
   },
   "config": {
     "commitizen": {
