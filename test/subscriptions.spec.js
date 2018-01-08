@@ -17,7 +17,7 @@ let apollo;
 let networkInterface;
 const GRAPHQL_ENDPOINT = 'ws://localhost:5000/subscriptions';
 
-
+/*
 describe('Subscription', () => {
 
     before(async () => {
@@ -76,4 +76,4 @@ describe('Subscription', () => {
         expect(await subscriptionPromise).to.deep.equal({});
 
     });
-});
+});*/

@@ -5,8 +5,8 @@
     "ACL": 1,
     "RoleMapping": 1,
     "Role": 1,
-    "Note": 83,
-    "Author": 116,
+    "Note": 87,
+    "Author": 120,
     "Reader": 2,
     "Book": 6,
     "BookAuthor": 3,
@@ -17,7 +17,7 @@
     "Account": 7,
     "Order": 6,
     "Googlemaps": 2,
-    "CustomAccessToken": 41,
+    "CustomAccessToken": 45,
     "Site": 5
   },
   "models": {
@@ -52,7 +52,11 @@
       "79": "{\"title\":\"Heckelbery Finn\",\"content\":{\"body\":\"Heckelbery Finn\",\"footer\":\"The end\"},\"authorId\":3,\"id\":79}",
       "80": "{\"title\":\"Heckelbery Finn\",\"content\":{\"body\":\"Heckelbery Finn\",\"footer\":\"The end\"},\"authorId\":3,\"id\":80}",
       "81": "{\"title\":\"Heckelbery Finn\",\"content\":{\"body\":\"Heckelbery Finn\",\"footer\":\"The end\"},\"authorId\":3,\"id\":81}",
-      "82": "{\"title\":\"Heckelbery Finn\",\"content\":{\"body\":\"Heckelbery Finn\",\"footer\":\"The end\"},\"authorId\":3,\"id\":82}"
+      "82": "{\"title\":\"Heckelbery Finn\",\"content\":{\"body\":\"Heckelbery Finn\",\"footer\":\"The end\"},\"authorId\":3,\"id\":82}",
+      "83": "{\"title\":\"Heckelbery Finn\",\"content\":{\"body\":\"Heckelbery Finn\",\"footer\":\"The end\"},\"authorId\":3,\"id\":83}",
+      "84": "{\"title\":\"Heckelbery Finn\",\"content\":{\"body\":\"Heckelbery Finn\",\"footer\":\"The end\"},\"authorId\":3,\"id\":84}",
+      "85": "{\"title\":\"Heckelbery Finn\",\"content\":{\"body\":\"Heckelbery Finn\",\"footer\":\"The end\"},\"authorId\":3,\"id\":85}",
+      "86": "{\"title\":\"Heckelbery Finn\",\"content\":{\"body\":\"Heckelbery Finn\",\"footer\":\"The end\"},\"authorId\":3,\"id\":86}"
     },
     "Author": {
       "3": "{\"firstName\":\"Virginia\",\"lastName\":\"Wolf\",\"birth_date\":\"2017-04-27T06:21:32.364Z\",\"friendIds\":[38,39],\"id\":3}",
@@ -93,7 +97,11 @@
       "112": "{\"firstName\":\"Atif\",\"lastName\":\"Hussain\",\"birthDate\":\"1989-12-31T19:00:00.000Z\",\"friendIds\":[],\"id\":112}",
       "113": "{\"firstName\":\"Unit Test\",\"lastName\":\"Author\",\"birthDate\":\"2018-01-05T13:56:34.961Z\",\"friendIds\":[],\"id\":113}",
       "114": "{\"firstName\":\"Unit Test\",\"lastName\":\"Author\",\"birthDate\":\"2018-01-08T10:08:36.099Z\",\"friendIds\":[],\"id\":114}",
-      "115": "{\"firstName\":\"Unit Test\",\"lastName\":\"Author\",\"birthDate\":\"2018-01-08T10:10:17.983Z\",\"friendIds\":[],\"id\":115}"
+      "115": "{\"firstName\":\"Unit Test\",\"lastName\":\"Author\",\"birthDate\":\"2018-01-08T10:10:17.983Z\",\"friendIds\":[],\"id\":115}",
+      "116": "{\"firstName\":\"Unit Test\",\"lastName\":\"Author\",\"birthDate\":\"2018-01-08T14:00:17.590Z\",\"friendIds\":[],\"id\":116}",
+      "117": "{\"firstName\":\"Unit Test\",\"lastName\":\"Author\",\"birthDate\":\"2018-01-08T14:01:41.972Z\",\"friendIds\":[],\"id\":117}",
+      "118": "{\"firstName\":\"Unit Test\",\"lastName\":\"Author\",\"birthDate\":\"2018-01-08T14:05:33.827Z\",\"friendIds\":[],\"id\":118}",
+      "119": "{\"firstName\":\"Unit Test\",\"lastName\":\"Author\",\"birthDate\":\"2018-01-08T14:10:58.508Z\",\"friendIds\":[],\"id\":119}"
     },
     "Reader": {
       "1": "{\"name\":\"Reader 1\",\"id\":1}"
@@ -378,8 +386,12 @@
       "1": "{\"location\":{\"lat\":10,\"lng\":10},\"id\":1}"
     },
     "CustomAccessToken": {
-      "Evka752QNzh3ltvZtqG5C3X7uJuPv293T5ujXuVImSg91XgsmM3pWbykIqPqgzdu": "{\"id\":\"Evka752QNzh3ltvZtqG5C3X7uJuPv293T5ujXuVImSg91XgsmM3pWbykIqPqgzdu\",\"ttl\":1209600,\"created\":\"2018-01-08T10:08:36.290Z\",\"userId\":5,\"principalType\":\"Account\"}",
-      "e0mC5vpTcsk0J9HRAfc2GbT9ahRt9hnaJyfiyJkjwutUQ1xDNlUbux7FrUshZyWm": "{\"id\":\"e0mC5vpTcsk0J9HRAfc2GbT9ahRt9hnaJyfiyJkjwutUQ1xDNlUbux7FrUshZyWm\",\"ttl\":1209600,\"created\":\"2018-01-08T10:10:18.175Z\",\"userId\":5,\"principalType\":\"Account\"}"
+      "jHLCT0e7rup6pPXOtzC9TvM0ov68DnmfwrGqJcKykg929gjC63I281GfZwqlRzVh": "{\"id\":\"jHLCT0e7rup6pPXOtzC9TvM0ov68DnmfwrGqJcKykg929gjC63I281GfZwqlRzVh\",\"ttl\":1209600,\"created\":\"2018-01-08T10:08:36.290Z\",\"userId\":5,\"principalType\":\"Account\"}",
+      "e0mC5vpTcsk0J9HRAfc2GbT9ahRt9hnaJyfiyJkjwutUQ1xDNlUbux7FrUshZyWm": "{\"id\":\"e0mC5vpTcsk0J9HRAfc2GbT9ahRt9hnaJyfiyJkjwutUQ1xDNlUbux7FrUshZyWm\",\"ttl\":1209600,\"created\":\"2018-01-08T10:10:18.175Z\",\"userId\":5,\"principalType\":\"Account\"}",
+      "EzUHZHYwF5va0kWVPOPGiRzmHOuRSqqwNDSmWxKgpP6Bs0t7VLseOPFTeDGxee36": "{\"id\":\"EzUHZHYwF5va0kWVPOPGiRzmHOuRSqqwNDSmWxKgpP6Bs0t7VLseOPFTeDGxee36\",\"ttl\":1209600,\"created\":\"2018-01-08T14:00:17.882Z\",\"userId\":5,\"principalType\":\"Account\"}",
+      "Ebe9tSTsBTuNgTOOP8l1hC9ZqZurH8Ac7026djwTy7xjURCgjxTXRmkSuGKG5lnI": "{\"id\":\"Ebe9tSTsBTuNgTOOP8l1hC9ZqZurH8Ac7026djwTy7xjURCgjxTXRmkSuGKG5lnI\",\"ttl\":1209600,\"created\":\"2018-01-08T14:01:42.166Z\",\"userId\":5,\"principalType\":\"Account\"}",
+      "K6iELPYMp8bSoFZfdG6BOXGXia6SwwsbbFAcH3FmtYwe5fCjarOSUKAXvVhLlzv4": "{\"id\":\"K6iELPYMp8bSoFZfdG6BOXGXia6SwwsbbFAcH3FmtYwe5fCjarOSUKAXvVhLlzv4\",\"ttl\":1209600,\"created\":\"2018-01-08T14:05:34.367Z\",\"userId\":5,\"principalType\":\"Account\"}",
+      "fy64YMf1VeWOtYKbZ7eMAhApeKOKIk4cefRpL1R7oixnDDufJCRKggFpEEVcDaQF": "{\"id\":\"fy64YMf1VeWOtYKbZ7eMAhApeKOKIk4cefRpL1R7oixnDDufJCRKggFpEEVcDaQF\",\"ttl\":1209600,\"created\":\"2018-01-08T14:10:58.702Z\",\"userId\":5,\"principalType\":\"Account\"}"
     },
     "Site": {
       "1": "{\"name\":\"Site B of owner 5\",\"active\":true,\"location\":{\"lat\":0,\"lng\":0},\"image\":\"string\",\"ownerId\":5,\"id\":1}",
