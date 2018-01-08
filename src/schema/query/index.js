@@ -10,7 +10,6 @@ const generateViewer = require('./viewer');
 function generateModelFields(models) {
   const modelFields = {};
   _.forEach(models, (model) => {
-
     const fields = Object.assign({},
       getRemoteMethodQueries(model)
     );
