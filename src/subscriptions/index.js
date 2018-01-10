@@ -1,56 +1,60 @@
-const _ = require('lodash');
+'use strict';
 
-const PubSub = require('./pubsub');
-const SubscriptionManager = require('./subscriptionManager');
-const SubscriptionServer = require('./server');
-const patchChangeStream = require('./patchChangeStream');
+const {createServer} = require('http');
+const {SubscriptionServer} = require('subscriptions-transport-ws');
+const {execute, subscribe} = require('graphql');
+const bodyParser = require('body-parser');
+const {graphqlExpress, graphiqlExpress} = require('apollo-server-express');
 
-// // start a subscription (for testing)
-// function test(subscriptionManager) {
-//   subscriptionManager.subscribe({
-//     query: `
-//       subscription AuthorSubscription(
-//         $options: JSON
-//         $create: Boolean
-//         $update: Boolean
-//         $remove: Boolean
-//       ) {
-//         Author(input: {
-//           options: $options
-//           create: $create
-//           update: $update
-//           remove: $remove
-//           clientSubscriptionId: 85
-//         }) {
-//           author {
-//             id first_name last_name
-//           }
-//           where type target clientSubscriptionId
-//         }
-//       }
-//     `,
-//     variables: {
-//       options: { where: { last_name: 'bar' } },
-//       create: true,
-//       update: true,
-//       remove: true,
-//     },
-//     context: {},
-//     callback: (err, data) => {
-//       console.log('subs output', data);
-//     },
-//   }).catch(err => console.log(`An error occured: ${err}`));
-// }
+module.exports = function(app, schema, opts) {
+  const PORT = 3000;
 
-module.exports = function startSubscriptionServer(app, schema, options) {
-  const models = app.models();
+  app.use('/graphiql', graphiqlExpress({
+    endpointURL: '/graphql',
+    subscriptionsEndpoint: `ws://localhost:${PORT}/subscriptions`,
+  }));
 
-  _.forEach(models, (model) =>  {
-    patchChangeStream(model);
+  app.use('/graphql', bodyParser.json(), graphqlExpress(req => ({
+    schema,
+    rootValue: global,
+    graphiql: false,
+    context: {
+      app,
+      req,
+    },
+  })));
+
+  const server = createServer(app);
+  server.listen(PORT, () => {
+    SubscriptionServer.create(
+      {execute, subscribe, schema},
+      {server, path: '/subscriptions'}
+    );
+    console.log(`GraphQL server running on port ${PORT}.`);
   });
 
-  const subscriptionManager = SubscriptionManager(models, schema, new PubSub());
-  SubscriptionServer(app, subscriptionManager, options);
+  const subscriptionOpts = opts.subscriptionServer || {};
 
-  // test(subscriptionManager);
+  const disable = subscriptionOpts.disable || false;
+
+  if (disable === true) {
+    return;
+  }
+
+  const WS_PORT = subscriptionOpts.port || 5000;
+  const options = subscriptionOpts.options || {};
+  const socketOptions = subscriptionOpts.socketOptions || {};
+
+  const websocketServer = createServer((request, response) => {
+    response.writeHead(404);
+    response.end();
+  });
+
+  websocketServer.listen(WS_PORT, () => console.log(
+    `Websocket Server is now running on http://localhost:${WS_PORT}`
+  ));
+
+  SubscriptionServer.create({schema, execute, subscribe}, {server: websocketServer, path: '/'});
+
+  return server;
 };

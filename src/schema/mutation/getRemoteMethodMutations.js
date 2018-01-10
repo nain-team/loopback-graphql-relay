@@ -3,11 +3,11 @@
 const _ = require('lodash');
 
 const {
-  mutationWithClientMutationId
+  mutationWithClientMutationId,
 } = require('graphql-relay');
 
 const promisify = require('promisify-node');
-const { connectionFromPromisedArray } = require('graphql-relay');
+const {connectionFromPromisedArray} = require('graphql-relay');
 
 const utils = require('../utils');
 // const { getType } = require('../../types/type');
@@ -19,8 +19,7 @@ module.exports = function getRemoteMethodMutations(model) {
 
   if (model.sharedClass && model.sharedClass.methods) {
     model.sharedClass.methods().forEach((method) => {
-      if (method.name.indexOf('Stream') === -1 && method.name.indexOf('invoke') === -1) {
-
+      if (method.shared && method.name.indexOf('Stream') === -1 && method.name.indexOf('invoke') === -1) {
         if (!utils.isRemoteMethodAllowed(method, allowedVerbs)) {
           return;
         }
@@ -37,12 +36,12 @@ module.exports = function getRemoteMethodMutations(model) {
         hooks[hookName] = mutationWithClientMutationId({
           name: hookName,
           description: method.description,
-          meta: { relation: true },
+          meta: {relation: true},
           inputFields: acceptingParams,
           outputFields: {
             obj: {
               type: typeObj.type,
-              resolve: o => o
+              resolve: o => o,
             },
           },
           mutateAndGetPayload: (args) => {
@@ -58,7 +57,7 @@ module.exports = function getRemoteMethodMutations(model) {
             }
 
             return wrap.apply(model, params);
-          }
+          },
         });
       }
     });
