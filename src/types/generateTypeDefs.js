@@ -1,4 +1,4 @@
-'use strict';
+
 
 const _ = require('lodash');
 
@@ -7,8 +7,8 @@ const {
 } = require('graphql-relay');
 
 const GeoPointTypeDefs = require('./GeoPoint');
-const {findRelatedOne, findRelatedMany} = require('../db');
-const {connectionFromPromisedArray} = require('../db/resolveConnection');
+const { findRelatedOne, findRelatedMany } = require('../db');
+const { connectionFromPromisedArray } = require('../db/resolveConnection');
 
 /** * Loopback Types - GraphQL types
         any - JSON
@@ -93,7 +93,14 @@ function mapProperty(model, property, modelName, propertyName, isInputType = fal
 
   // If property.type is an array, its a list type.
   if (_.isArray(property.type)) {
+    // console.log(property.type[0].name);
+
     currentProperty.meta.list = true;
+    if (property.type[0].name.indexOf('Anony') !== -1) {
+      currentProperty.meta.type = 'JSON';
+    } else {
+      currentProperty.meta.type = property.type[0].name;
+    }
     propertyType = property.type[0];
   }
 
@@ -120,9 +127,15 @@ function mapProperty(model, property, modelName, propertyName, isInputType = fal
       currentProperty.type = typeName;
     }
   }
-
+  if (!scalar && !_.isArray(property.type) && property.defaultFn !== 'now') {
+    if (propertyType.name.indexOf('Anony') === -1) {
+      currentProperty.meta.type = propertyType.modelName;
+    } else {
+      currentProperty.meta.type = 'JSON';
+    }
+  }
   // If this property is another Model
-  if (propertyType.name === 'ModelConstructor' && property.defaultFn !== 'now') {
+  if (!scalar && propertyType.name && propertyType.name.indexOf('Anony') === -1 && property.defaultFn !== 'now') {
     currentProperty.meta.type = (!isInputType) ? propertyType.modelName : `${propertyType.modelName}Input`;
     const union = propertyType.modelName.split('|');
 
