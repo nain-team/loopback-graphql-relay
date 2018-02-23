@@ -96,6 +96,9 @@ function mapProperty(model, property, modelName, propertyName, isInputType = fal
     // console.log(property.type[0].name);
 
     currentProperty.meta.list = true;
+    // TODO: Its not a right way to do it. Need to Come up with a better approach.
+    // TODO: Loopback creates a model with name "Anonymous_" for properties which are of type Object OR Array.
+    // TODO: Theses Anonymous models are not accessable by app.models() method.
     if (property.type[0].name.indexOf('Anony') !== -1) {
       currentProperty.meta.type = 'JSON';
     } else {
@@ -128,6 +131,9 @@ function mapProperty(model, property, modelName, propertyName, isInputType = fal
     }
   }
   if (!scalar && !_.isArray(property.type) && property.defaultFn !== 'now') {
+    // TODO: Its not a right way to do it. Need to Come up with a better approach.
+    // TODO: Loopback creates a model with name "Anonymous_" for properties which are of type Object OR Array.
+    // TODO: Theses Anonymous models are not accessable by app.models() method.
     if (propertyType.name.indexOf('Anony') === -1) {
       currentProperty.meta.type = propertyType.modelName;
     } else {
