@@ -37,10 +37,15 @@ module.exports = function getRemoteMethodQueries(model) {
           resolve: (__, args, context, info) => {
             let params = [];
 
-            _.forEach(acceptingParams, (param, name) => {
-              params.push(args[name]);
+             _.forEach(acceptingParams, (param, name) => {
+              if (args[name] && Object.keys(args[name]).length > 0) {
+                if (typeof args[name] === 'string') {
+                    params.push(args[name])
+                } else {
+                    params.push(_.cloneDeep(args[name]))
+                }
+               }
             });
-
             const wrap = promisify(model[method.name]);
 
             if (typeObj.list) {
